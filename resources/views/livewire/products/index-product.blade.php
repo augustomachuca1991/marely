@@ -24,7 +24,9 @@
             </select>
         </div>
     </div>
-    {{$search}}
+    <div class="mt-3">
+        <livewire:products.create-product></livewire:products.create-product>
+    </div>
     <div class="mt-10 bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <x-list>
             @foreach ($products as $product)
@@ -32,5 +34,5 @@
             @endforeach
           </x-list>
     </div>
-    
+
 </div>
