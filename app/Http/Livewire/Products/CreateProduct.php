@@ -13,8 +13,8 @@ class CreateProduct extends Component
     public $stock;
     public $list_price;
     public $sale_price;
-    public $category;
     public $isOpenCreate = false;
+    public $category = '';
 
     protected $rules = [
         'code' => 'required|unique:products,code',
@@ -31,7 +31,8 @@ class CreateProduct extends Component
         return view('livewire.products.create-product');
     }
 
-    public function store(){
+    public function store()
+    {
         $this->validate();
         $product = new Product();
         $product->category_id = $this->category;
@@ -47,7 +48,16 @@ class CreateProduct extends Component
     }
 
 
-    public function resetData(){
-        $this->reset(['isOpenCreate' , 'name', 'description','code' ,'stock' , 'list_price' , 'sale_price' , 'category']);
+    public function resetData()
+    {
+        $this->reset([
+            'code',
+            'isOpenCreate',
+            'name',
+            'description',
+            'stock',
+            'list_price',
+            'sale_price',
+            'category']);
     }
 }

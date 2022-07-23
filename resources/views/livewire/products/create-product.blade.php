@@ -39,18 +39,20 @@
                     <div class="grid md:grid-cols-2 gap-2">
                         <div>
                             <x-jet-label value="{{__('List price')}} *" />
-                            <x-jet-input wire:model="list_price" type="text" class="w-full" />
-                            <x-jet-input-error for="list_price" /></div>
+                            <x-jet-input wire:model="list_price" type="text" class="w-full" placeholder="0.00" />
+                            <x-jet-input-error for="list_price" />
+                        </div>
                         <div>
                             <x-jet-label value="{{__('Sale price')}} *" />
-                            <x-jet-input wire:model="sale_price" type="text" class="w-full" />
+                            <x-jet-input wire:model="sale_price" type="text" class="w-full" placeholder="0.00" />
                             <x-jet-input-error for="sale_price" />
                         </div>
                     </div>
                 </div>
                 <div class="mb-4">
                     <x-jet-label value="{{__('Category')}}" for="category" />
-                    <select wire:model="category" name="category" class="w-full uppercase">
+                    <select wire:model="category" name="category" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm uppercase {{ $category == '' ? 'text-gray-500':''}}">
+                        <option value="" disabled>{{__('Select Category')}}</option>
                         @foreach (\App\Models\Category::All() as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach

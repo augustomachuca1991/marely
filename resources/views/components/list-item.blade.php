@@ -1,8 +1,8 @@
 <article class="flex items-start space-x-6 p-6">
-    <img src="https://picsum.photos/200/300" alt="avatar" width="60" height="88"
+    <img src="https://ui-avatars.com/api/?name={{urlencode($product->name)}}&color=7F9CF5&background=EBF4FF" alt="{{ $product->name }}" alt="avatar" width="60" height="88"
         class="flex-none rounded-md bg-gray-100" />
     <div class="min-w-0 relative flex-auto">
-        <h2 class="font-semibold text-gray-900 truncate pr-20">Title</h2>
+        <h2 class="font-semibold text-gray-900 pr-20">{{$product->code}} - {{$product->name}}</h2>
         <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
             <div class="absolute top-0 right-0 flex items-center space-x-1">
                 <dt class="text-sky-500">
@@ -16,20 +16,20 @@
             </div>
             <div>
                 <dt class="sr-only">category</dt>
-                <dd class="px-1.5 ring-1 ring-gray-200 rounded">category</dd>
+                <dd class="px-1.5 ring-1 ring-gray-200 rounded">{{$product->category->name}}</dd>
             </div>
             <div class="ml-2">
                 <dt class="sr-only">price</dt>
-                <dd>$120</dd>
+                <dd>${{$product->sale_price}}</dd>
             </div>
             <div>
-                <dt class="sr-only">description</dt>
+                <dt class="sr-only">{{__('supplier')}}</dt>
                 <dd class="flex items-center">
                     <svg width="2" height="2" fill="currentColor" class="mx-2 text-gray-300"
                         aria-hidden="true">
                         <circle cx="1" cy="1" r="1" />
                     </svg>
-                    description
+                    {{$product->created_at}}
                 </dd>
             </div>
             <div>
@@ -39,12 +39,12 @@
                         aria-hidden="true">
                         <circle cx="1" cy="1" r="1" />
                     </svg>
-                    stock
+                    stock {{$product->stock}}
                 </dd>
             </div>
             <div class="flex-none w-full mt-2 font-normal">
-                <dt class="sr-only">proveedor</dt>
-                <dd class="text-gray-400">proveedor</dd>
+                <dt class="sr-only">{{__('description')}}</dt>
+                <dd class="text-gray-400">{{$product->description}}</dd>
             </div>
         </dl>
     </div>

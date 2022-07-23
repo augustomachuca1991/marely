@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,5 +23,32 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    protected function name():Attribute
+    {
+        return new Attribute(
+            set: function($value){
+                return strtolower($value);
+            }
+        );
+    }
+
+    protected function stock():Attribute
+    {
+        return new Attribute(
+            set: function($value){
+                return intval($value);
+            }
+        );
+    }
+
+    public function scopeSearchProduct($query, $text)
+    {
+        if (!empty($text)) {
+            $query->where('name', 'like', "%{$text}%")
+            ->orWhere('code', 'like', "%{$text}%")
+            ->orWhere('list_price', 'like', "%{$text}%");
+        }
     }
 }

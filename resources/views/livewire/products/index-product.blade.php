@@ -14,13 +14,13 @@
 
             <select name="autor_imagen" id="autor_imagen"
                 class="w-full text-sm outline-none focus:outline-none bg-transparent border-gray-300">
-                <option value="">Autores</option>
+                <option value="">{{__('Supliers')}}</option>
             </select>
         </div>
         <div class="flex w-full md:w-1/6">
             <select name="imagen_type" id="imagen_type"
                 class="w-full text-sm outline-none focus:outline-none bg-transparent border-gray-300 rounded-r-md">
-                <option value="todos">Todos</option>
+                <option value="">{{__('Category')}}</option>
             </select>
         </div>
     </div>
