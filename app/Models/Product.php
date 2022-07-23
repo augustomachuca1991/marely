@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Jetstream\HasProfilePhoto;
 
 class Product extends Model
 {
     use HasFactory;
+    use HasProfilePhoto;
 
     protected $fillable = [
         'code',
@@ -43,12 +45,26 @@ class Product extends Model
         );
     }
 
+
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
     public function scopeSearchProduct($query, $text)
     {
         if (!empty($text)) {
             $query->where('name', 'like', "%{$text}%")
             ->orWhere('code', 'like', "%{$text}%")
             ->orWhere('list_price', 'like', "%{$text}%");
+        }
+    }
+
+    public function scopeSearchCategory($query, $byCategory)
+    {
+        if (!empty($byCategory)) {
+            $query->whereHas('category' , function($category) use ($byCategory){
+                $category->where('id' , $byCategory);
+            });
         }
     }
 }

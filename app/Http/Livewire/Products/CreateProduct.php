@@ -4,9 +4,13 @@ namespace App\Http\Livewire\Products;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateProduct extends Component
 {
+    use WithFileUploads;
+
+    public $photo;
     public $code;
     public $name;
     public $description;
@@ -23,7 +27,7 @@ class CreateProduct extends Component
         'stock' => 'required|integer',
         'list_price' => 'required|numeric',
         'sale_price' => 'required|numeric',
-        'category' => 'required'
+        'category' => 'required',
     ];
 
     public function render()
@@ -42,6 +46,9 @@ class CreateProduct extends Component
         $product->stock = $this->stock;
         $product->list_price = $this->list_price;
         $product->sale_price = $this->sale_price;
+        if ($this->photo) {
+            $product->profile_photo_path = $this->photo->store('products' , 'public');
+        }
         $product->save();
         $this->resetData();
         $this->emitTo('products.index-product', 'render');
@@ -58,6 +65,8 @@ class CreateProduct extends Component
             'stock',
             'list_price',
             'sale_price',
-            'category']);
+            'category',
+            'photo'
+        ]);
     }
 }

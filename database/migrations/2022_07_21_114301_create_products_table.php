@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('sale_price', 8, 2)->unsigned()->default(0);
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

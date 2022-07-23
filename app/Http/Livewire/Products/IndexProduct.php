@@ -12,17 +12,21 @@ class IndexProduct extends Component
 
     public $perPage = 10;
     public $search = "";
+    public $byCategory = "";
 
 
     protected $queryString = [
         'search' => ['except' => ''],
+        'byCategory' => ['except' => ''],
         'perPage' => ['except' => 10]
     ];
+
+    protected $listeners = ['render'];
 
     public function render()
     {
         return view('livewire.products.index-product',[
-            'products' => Product::searchProduct($this->search)->latest()->paginate($this->perPage)
+            'products' => Product::searchProduct($this->search)->searchCategory($this->byCategory)->latest()->paginate($this->perPage)
         ]);
     }
 }

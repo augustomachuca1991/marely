@@ -18,9 +18,12 @@
             </select>
         </div>
         <div class="flex w-full md:w-1/6">
-            <select name="imagen_type" id="imagen_type"
+            <select wire:model="byCategory" name="imagen_type" id="imagen_type"
                 class="w-full text-sm outline-none focus:outline-none bg-transparent border-gray-300 rounded-r-md">
                 <option value="">{{__('Category')}}</option>
+                @foreach (\App\Models\Category::all() as $item)
+                <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
             </select>
         </div>
     </div>
