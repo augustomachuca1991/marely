@@ -33,4 +33,8 @@ Route::middleware([
     Route::get('/categories', function () {
         return view('admin.categories');
     })->name('categories.index');
+
+    Route::get('/sales', function () {
+        return view('admin.sales');
+    })->name('sales.index');
 });

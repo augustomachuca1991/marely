@@ -14,6 +14,9 @@ class IndexProduct extends Component
     public $search = "";
     public $byCategory = "";
 
+    public $product;
+    public $isOpenEdit = false;
+
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -21,12 +24,25 @@ class IndexProduct extends Component
         'perPage' => ['except' => 10]
     ];
 
-    protected $listeners = ['render'];
+    protected $listeners = ['render' , 'closeModal'];
 
     public function render()
     {
         return view('livewire.products.index-product',[
             'products' => Product::searchProduct($this->search)->searchCategory($this->byCategory)->latest()->paginate($this->perPage)
         ]);
+    }
+
+
+    public function edit(Product $product)
+    {
+        $this->product = $product;
+        $this->isOpenEdit = true;
+    }
+
+
+    public function closeModal(){
+        //$this->isOpenShow = false;
+        $this->isOpenEdit = false;
     }
 }

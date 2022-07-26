@@ -99,11 +99,11 @@
                     </select>
                     <x-jet-input-error for="category"></x-jet-input-error>
                 </div>
-                <div class="mb-4">
-                    <x-jet-label value="{{__('Supplier')}} *" />
+                {{-- <div class="mb-4">
+                    <x-jet-label value="{{__('Supplier')}}" />
                     <x-jet-input wire:model="supplier" type="text" class="w-full" />
                     <x-jet-input-error for="supplier" />
-                </div>
+                </div> --}}
                 <div class="mb-4">
                     <p class="text-right text-gray-500 italic">(*) campos obligatorios</p>
                 </div>

@@ -15,11 +15,14 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products')">
+                    <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
                         {{ __('Products') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories')">
+                    <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
                         {{ __('Categories') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
+                        {{ __('Sales') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -146,11 +149,14 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products')">
+            <x-jet-responsive-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
                 {{ __('Products') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories')">
+            <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
                 {{ __('Categories') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
+                {{ __('Sales') }}
             </x-jet-responsive-nav-link>
         </div>
 
