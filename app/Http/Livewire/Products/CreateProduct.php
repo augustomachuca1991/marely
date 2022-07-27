@@ -28,6 +28,7 @@ class CreateProduct extends Component
         'list_price' => 'required|numeric',
         'sale_price' => 'required|numeric',
         'category' => 'required',
+        'photo' => 'image|max:1024|nullable',
     ];
 
     public function render()

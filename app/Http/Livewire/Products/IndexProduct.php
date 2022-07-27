@@ -10,9 +10,11 @@ class IndexProduct extends Component
 {
     use WithPagination;
 
-    public $perPage = 10;
+    public $perPage = 20;
     public $search = "";
     public $byCategory = "";
+    public $byStatus = "";
+    public $bySupplier= "";
 
     public $product;
     public $isOpenEdit = false;
@@ -21,7 +23,9 @@ class IndexProduct extends Component
     protected $queryString = [
         'search' => ['except' => ''],
         'byCategory' => ['except' => ''],
-        'perPage' => ['except' => 10]
+        'byStatus' => ['except' => ''],
+        'bySupplier' => ['except' => ''],
+        'perPage' => ['except' => 20]
     ];
 
     protected $listeners = ['render' , 'closeModal'];
@@ -29,7 +33,10 @@ class IndexProduct extends Component
     public function render()
     {
         return view('livewire.products.index-product',[
-            'products' => Product::searchProduct($this->search)->searchCategory($this->byCategory)->latest()->paginate($this->perPage)
+            'products' => Product::searchProduct($this->search)
+            ->searchCategory($this->byCategory)
+            ->searchStatus($this->byStatus)
+            ->latest()->paginate($this->perPage)
         ]);
     }
 
@@ -40,9 +47,19 @@ class IndexProduct extends Component
         $this->isOpenEdit = true;
     }
 
+    public function delete(Product $product){
+        $this->product = $product;
+        $this->product->delete();
+    }
+
 
     public function closeModal(){
         //$this->isOpenShow = false;
         $this->isOpenEdit = false;
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += $this->perPage;
     }
 }

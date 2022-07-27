@@ -5,6 +5,23 @@
             <x-slot name="title">{{ __('Edit Product')}}</x-slot>
             <x-slot name="content">
                 <div class="mb-4">
+                    <x-jet-label value="{{__('Photo')}} *" />
+                    <div class="mt-1 flex justify-center px-3 pt-3 pb-4 border-2 border-gray-300 border-dashed rounded-md">
+                        <div class="space-y-1 text-center">
+                            {{__('Photo Preview:')}}
+                            <img width="240" height="140" src="{{ $photoEdit ? $photoEdit->temporaryUrl() : $product->profile_photo_url }}">
+                            <label for="photoEdit"
+                                class="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-0 focus-within:ring-offset-0 focus-within:ring-indigo-500">
+                                <span class="mb-1">{{__('Change')}}</span>
+                                <input wire:model="photoEdit" id="photoEdit" name="photoEdit"
+                                    type="file" class="sr-only">
+                            </label>
+                            <x-jet-input-error for="photoEdit" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mb-4">
                     <div class="grid grid-cols-2 gap-2">
                         <div>
                             <x-jet-label value="{{__('Code')}} *" />
@@ -52,14 +69,7 @@
                     </select>
                     <x-jet-input-error for="product.category_id"></x-jet-input-error>
                 </div>
-                <div class="mb-4">
-                    <x-jet-label value="imagen *" for="images" />
-                    <div class="border-dashed border-2 border-indigo-400 p-1 rounded-md">
-                        @if ($product->profile_photo_path)
-                            <img class="object-fit" src="{{ $product->profile_photo_url }}">
-                        @endif
-                    </div>
-                </div>
+
                 <div class="mb-4">
                     <p class="text-right text-gray-500 italic">(*) campos obligatorios</p>
                 </div>

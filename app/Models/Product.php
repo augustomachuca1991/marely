@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Jetstream\HasProfilePhoto;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     use HasFactory;
     use HasProfilePhoto;
+    use SoftDeletes;
 
     protected $fillable = [
         'code',
@@ -65,6 +67,18 @@ class Product extends Model
             $query->whereHas('category' , function($category) use ($byCategory){
                 $category->where('id' , $byCategory);
             });
+        }
+    }
+
+
+    public function scopeSearchStatus($query, $byStatus)
+    {
+        if (!empty($byStatus)) {
+            if ($byStatus == '1') {
+                $query->onlyTrashed();
+            }elseif( $byStatus == '2'){
+                $query->withTrashed();
+            }
         }
     }
 }
