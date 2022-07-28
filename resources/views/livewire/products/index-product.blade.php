@@ -46,7 +46,7 @@
                     <img src="{{$item->profile_photo_url}}" alt="avatar" width="60" height="88"
                     class="flex-none rounded-md bg-gray-100" />
                 <div class="min-w-0 relative flex-auto">
-                    <h2 class="font-semibold text-gray-900 pr-20">{{$item->code}} - {{$item->name}}</h2>
+                    <a href=""><h2 class="font-semibold text-gray-900 pr-20 hover:text-blue-500">{{$item->code}} - {{$item->name}}</h2></a>
                     <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
                         <div class="absolute top-0 right-0 flex items-center space-x-1 text-lg">
                             <dt class="text-green-500">
@@ -92,12 +92,12 @@
                         <div class="flex-none w-full mt-2 font-normal">
                             <dt class="sr-only">{{__('description')}}</dt>
                             <dd class="flex">
-                                <a href="#" class="ml-2 ">
+                                {{-- <a href="#" class="ml-2 ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-600 hover:text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                     </svg>
-                                </a>
+                                </a> --}}
                                 <a href="#"  wire:click="edit({{$item}})"class="ml-2 ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600 hover:text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
