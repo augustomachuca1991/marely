@@ -1,5 +1,4 @@
 <div>
-    <div>
     <form wire:submit.prevent="update">
         <x-jet-dialog-modal wire:model="isOpenEdit">
             <x-slot name="title">{{ __('Edit Product')}}</x-slot>
@@ -80,7 +79,4 @@
             </x-slot>
         </x-jet-dialog-modal>
     </form>
-</div>
-
-
 </div>

@@ -18,6 +18,7 @@ class IndexProduct extends Component
 
     public $product;
     public $isOpenEdit = false;
+    public $isOpenShow = false;
 
 
     protected $queryString = [
@@ -40,6 +41,12 @@ class IndexProduct extends Component
         ]);
     }
 
+    public function show(Product $product)
+    {
+        $this->product = $product;
+        $this->isOpenShow = true;
+    }
+
 
     public function edit(Product $product)
     {
@@ -54,12 +61,18 @@ class IndexProduct extends Component
 
 
     public function closeModal(){
-        //$this->isOpenShow = false;
+        $this->isOpenShow = false;
         $this->isOpenEdit = false;
     }
 
     public function loadMore()
     {
         $this->perPage += $this->perPage;
+    }
+
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }

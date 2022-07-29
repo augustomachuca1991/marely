@@ -54,4 +54,10 @@ class IndexCategory extends Component
         $this->isOpenShow = false;
         $this->isOpenEdit = false;
     }
+
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 }
