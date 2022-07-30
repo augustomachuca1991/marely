@@ -3,7 +3,7 @@
         <div>
             <div class="flex justify-between">
                 <div class="flex-none">
-                    <x-jet-application-logo class="block h-12 w-auto" />
+                    <x-jet-application-logo class="block h-16 w-auto" />
                 </div>
                 <div class="self-stretch">
                     <livewire:categories.create-category></livewire:categories.create-category>
