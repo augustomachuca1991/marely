@@ -1,20 +1,5 @@
 <div>
     <h2 class="font-medium leading-tight text-4xl mt-0 mb-2 text-indigo-600">{{ __('Product List') }}</h2>
-    {{-- <a wire:click="" class="cursor-pointer"><svg width="20" height="20" version="1.1" id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
-            <path
-                d="M19.61,17.3l-0.52-9.4c-0.06-0.99-0.88-1.77-1.87-1.77h-2.95V4.99c0-2.35-1.91-4.26-4.27-4.26S5.73,2.64,5.73,4.99v1.14
-                                    H2.78c-0.99,0-1.81,0.78-1.87,1.77l-0.52,9.4c-0.03,0.51,0.16,1.02,0.51,1.39c0.35,0.37,0.85,0.59,1.36,0.59h15.48
-                                    c0.51,0,1.01-0.21,1.36-0.58C19.45,18.31,19.63,17.81,19.61,17.3z M7.26,4.99c0-1.51,1.23-2.74,2.74-2.74s2.74,1.23,2.74,2.74v1.14
-                                    H7.26V4.99z M17.99,17.64c-0.04,0.04-0.12,0.11-0.25,0.11H2.26c-0.13,0-0.21-0.07-0.25-0.11c-0.04-0.04-0.1-0.13-0.09-0.26l0.52-9.4
-                                    C2.45,7.8,2.6,7.65,2.78,7.65h2.95v1.83c0,0.42,0.34,0.76,0.76,0.76s0.76-0.34,0.76-0.76V7.65h5.48v1.83c0,0.42,0.34,0.76,0.76,0.76
-                                    s0.76-0.34,0.76-0.76V7.65h2.95c0.18,0,0.34,0.14,0.35,0.33l0.52,9.4C18.09,17.51,18.03,17.6,17.99,17.64z">
-            </path>
-        </svg>
-        <span
-            class="inline-block py-1 px-1.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-600 text-white rounded-full ml-2">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</span>
-    </a> --}}
     <div
         class="my-2 bg-white shadow-lg overflow-hidden sm:rounded-lg flex flex-col md:flex-row items-center w-6/6 p-3 space-y-1 md:space-y-0">
         <div class="flex w-full md:w-3/6">
@@ -67,19 +52,20 @@
                                 <div class="p-8">
                                     <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                                         {{ $item->category->name }}</div>
-                                    <a href="#"
+                                    <a href="#" wire:click="show({{ $item }})"
                                         class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
                                         {{ $item->name }}</a>
                                     <p class="mt-2 text-slate-500">{{ $item->description }}</p>
-                                    <div class="grid grid-cols-2 gap-2 justify-between mt-6">
-                                        <div>
-                                            <input type="number"
-                                                class="text-xs form-control block w-full px-2 py-1 font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
-                                                id="exampleNumber0" placeholder="{{ __('Quantity') }}" />
-                                        </div>
+                                    <div class="grid grid-cols-1 mt-6 justify-items-end">
                                         <div>
                                             <button wire:click="add_to_cart({{ $item }})"
-                                                class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full  hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">{{ __('Add') }}</button>
+                                                class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full  hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-4 inline-flex"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                    stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                </svg>{{ __('Add To Cart') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +81,8 @@
                 </a>
             @endif
         @endif
-
-
     </div>
+    @if ($isOpenShow)
+        <livewire:sales.show-sale :product="$product"></livewire:sales.show-sale>
+    @endif
 </div>

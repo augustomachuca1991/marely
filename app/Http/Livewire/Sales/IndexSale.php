@@ -16,9 +16,9 @@ class IndexSale extends Component
     public $byStatus = "";
     public $bySupplier= "";
 
-    // public $product;
-    // public $isOpenEdit = false;
-    // public $isOpenShow = false;
+    public $product;
+    //public $isOpenEdit = false;
+    public $isOpenShow = false;
 
 
     protected $queryString = [
@@ -57,11 +57,20 @@ class IndexSale extends Component
             'attributes' => array(),
             'associatedModel' => $product
         ));
+        $this->emitTo('shops.index-shop' , 'render');
     }
 
 
     public function loadMore()
     {
         $this->perPage += $this->perPage;
+    }
+
+
+    public function show(Product $product)
+    {
+        $this->product = $product;
+        $this->isOpenShow = true;
+
     }
 }

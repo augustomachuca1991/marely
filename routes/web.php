@@ -37,4 +37,8 @@ Route::middleware([
     Route::get('/sales', function () {
         return view('admin.sales');
     })->name('sales.index');
+
+    Route::get('/audits', function () {
+        return view('admin.audits');
+    })->name('audits.index');
 });

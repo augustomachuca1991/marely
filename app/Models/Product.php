@@ -29,6 +29,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function sales()
+    {
+        return $this->belongsToMany(Sale::class, 'datails' , 'product_id' ,'sale_id');
+    }
+
     protected function name():Attribute
     {
         return new Attribute(
