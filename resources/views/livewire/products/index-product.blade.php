@@ -41,156 +41,10 @@
         <livewire:products.create-product></livewire:products.create-product>
     </div>
     <div class="mt-6  overflow-hidden sm:rounded-lg">
-        {{-- <ul class="divide-y divide-slate-100">
-            @foreach ($products as $item)
-                <article class="flex items-start space-x-6 p-6 {{ $item->deleted_at ? 'bg-red-100' : '' }}">
-                    <img src="{{ $item->profile_photo_url }}" alt="avatar" width="60" height="88"
-                        class="flex-none rounded-md bg-gray-100" />
-                    <div class="min-w-0 relative flex-auto">
-                        <a href="#" wire:click="show({{ $item }})">
-                            <h2 class="font-semibold text-gray-900 pr-20 hover:text-blue-500">{{ $item->code }} -
-                                {{ $item->name }}</h2>
-                        </a>
-                        <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
-                            <div class="absolute top-0 right-0 flex items-center space-x-1 text-lg">
-                                <dt class="text-green-500">
-                                    <span class="sr-only">{{ __('price') }}</span>
-                                    $
-                                </dt>
-                                <dd>{{ $item->sale_price }}</dd>
-                            </div>
-                            <div>
-                                <dt class="sr-only">category</dt>
-                                <dd class="px-1.5 ring-1 ring-gray-200 rounded bg-yellow-200<">
-                                    {{ $item->category->name }}</dd>
-                            </div>
-                            <div class="ml-2">
-                                <dt class="sr-only">{{ __('List Price') }}</dt>
-                                <dd>${{ $item->list_price }}</dd>
-                            </div>
-                            <div>
-                                <dt class="sr-only">{{ __('supplier') }}</dt>
-                                <dd class="flex items-center">
-                                    <svg width="2" height="2" fill="currentColor" class="mx-2 text-gray-300"
-                                        aria-hidden="true">
-                                        <circle cx="1" cy="1" r="1" />
-                                    </svg>
-                                    @if (!$item->deleted_at)
-                                        {{ __('active') }}
-                                    @endif
-                                </dd>
-                            </div>
-                            <div>
-                                <dt class="sr-only">stock</dt>
-                                <dd class="flex items-center">
-                                    <svg width="2" height="2" fill="currentColor" class="mx-2 text-gray-300"
-                                        aria-hidden="true">
-                                        <circle cx="1" cy="1" r="1" />
-                                    </svg>
-                                    stock {{ $item->stock }}
-                                </dd>
-                            </div>
-                            <div class="flex-none w-full mt-2 font-normal">
-                                <dt class="sr-only">{{ __('description') }}</dt>
-                                <dd class="text-gray-500">{{ $item->description }}</dd>
-                            </div>
-                            <div class="flex-none w-full mt-2 font-normal">
-                                <dt class="sr-only">{{ __('description') }}</dt>
-                                <dd class="flex">
-                                    <a href="#" wire:click="edit({{ $item }})"class="ml-2 ">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="h-5 w-5 text-yellow-600 hover:text-yellow-400" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                        </svg>
-                                    </a>
-                                    <a href="#" wire:click="delete({{ $item }})" class="ml-2 ">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="h-5 w-5 text-red-600 hover:text-red-400" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                    </a>
-                                </dd>
-                            </div>
-                        </dl>
-                    </div>
-                </article>
-            @endforeach
-        </ul> --}}
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
-                        {{-- <table class="min-w-full rounded-md">
-                            <thead class="bg-gray-900 text-white border-b">
-                                <tr>
-                                    <th scope="col" class="text-sm font-medium px-6 py-4 text-left">
-                                        # {{ __('Code') }}
-                                    </th>
-                                    <th scope="col" class="text-sm font-medium px-6 py-4 text-left">
-                                        {{ __('Name') }}
-                                    </th>
-                                    <th scope="col" class="text-sm font-medium px-6 py-4 text-left">
-                                        {{ __('Description') }}
-                                    </th>
-                                    <th scope="col" class="text-sm font-medium px-6 py-4 text-left">
-                                        {{ __('Stock') }}
-                                    </th>
-                                    <th scope="col" class="text-sm font-medium px-6 py-4 text-left">
-                                        {{ __('List Price - Sale Price') }}
-                                    </th>
-                                    <th scope="col" class="sr-only text-sm font-medium px-6 py-4 text-left">
-                                        {{ __('Actions') }}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($products as $index => $item)
-                                    <tr class=" {{ $index % 2 == 0 ? 'bg-indigo-100' : 'bg-white' }} border-b">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            {{ $item->code }}</td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            {{ $item->name }}
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            {{ $item->description }}
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            {{ $item->stock }} Unidades
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            $ {{ $item->list_price }} - $ {{ $item->sale_price }}
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            <div class="flex">
-                                                <div><a href="#" wire:click="edit({{ $item }})">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="h-5 w-5 text-yellow-600 hover:text-yellow-400"
-                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                                            stroke-width="2">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                        </svg>
-                                                    </a>
-                                                </div>
-                                                <div><a href="#" wire:click="delete({{ $item }})">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="h-5 w-5 text-red-600 hover:text-red-400"
-                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                                            stroke-width="2">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
-                                                    </a></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table> --}}
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead>
                                 <tr>
@@ -224,73 +78,92 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($products as $index => $item)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0">
-                                                    <img class="h-10 w-10 rounded-full object-cover"
-                                                        src="{{ $item->profile_photo_url }}"
-                                                        alt="{{ $item->name }}">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        {{ $item->name }}
-                                                    </div>
-                                                    <div class="text-sm text-gray-500">
-                                                        {{ $item->description }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <!--<div class="text-sm text-gray-900">proveedot</div>-->
-                                            <div class="text-sm text-gray-500">{{ $item->category->name }}</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $item->stock }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            $ {{ $item->list_price }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            $ {{ $item->list_price }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $item->deleted_at ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800' }} ">
-                                                {{ $item->deleted_at ? 'Inactive' : 'Active' }}
-                                            </span>
-                                        </td>
-                                        <td class=" px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                @if ($products->count())
+                                    @foreach ($products as $index => $item)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <a href="#" wire:click="show({{ $item }})">
+                                                            <img class="h-10 w-10 rounded-full object-cover"
+                                                                src="{{ $item->profile_photo_url }}"
+                                                                alt="{{ $item->name }}">
+                                                        </a>
 
-                                            @if (!$item->deleted_at)
-                                                <div class="flex">
-                                                    <div><a href="#" wire:click="edit({{ $item }})">
-                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                class="h-5 w-5 text-yellow-600 hover:text-yellow-400"
-                                                                viewBox="0 0 20 20" fill="currentColor">
-                                                                <path
-                                                                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                                            </svg>
-                                                        </a>
                                                     </div>
-                                                    <div><a href="#" wire:click="delete({{ $item }})">
-                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                class="h-5 w-5 text-red-600 hover:text-red-400"
-                                                                viewBox="0 0 20 20" fill="currentColor">
-                                                                <path fill-rule="evenodd"
-                                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                                    clip-rule="evenodd" />
-                                                            </svg>
+                                                    <div class="ml-4">
+                                                        <a href="#" wire:click="show({{ $item }})"
+                                                            class="text-gray-900 hover:text-blue-700">
+                                                            <div class="text-sm font-medium ">
+
+                                                                {{ $item->name }}
+                                                            </div>
                                                         </a>
+                                                        <div class="text-sm text-gray-500">
+                                                            {{ $item->description }}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            @endif
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-500 capitalize">
+                                                    {{ $item->category->name }}</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {{ $item->stock }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                $ {{ $item->list_price }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                $ {{ $item->sale_price }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $item->deleted_at ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800' }} ">
+                                                    {{ $item->deleted_at ? 'Inactive' : 'Active' }}
+                                                </span>
+                                            </td>
+                                            <td class=" px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+
+                                                @if (!$item->deleted_at)
+                                                    <div class="flex">
+                                                        <div><a href="#" wire:click="edit({{ $item }})">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    class="h-5 w-5 text-yellow-600 hover:text-yellow-400"
+                                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                                    <path
+                                                                        d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                                                </svg>
+                                                            </a>
+                                                        </div>
+                                                        <div><a href="#"
+                                                                wire:click="delete({{ $item }})">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    class="h-5 w-5 text-red-600 hover:text-red-400"
+                                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                                        clip-rule="evenodd" />
+                                                                </svg>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="7" class="px-6 py-4 whitespace-nowrap">
+                                            <p> No se encontraron resultados para
+                                                "<span class="text-blue-600">
+                                                    {{ $search ? $search : ($byStatus ? $byStatus : ($byCategory ? $byCategory : '')) }}
+                                                </span>"
+                                            </p>
                                         </td>
                                     </tr>
-                                @endforeach
-                                <!-- More rows... -->
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -298,11 +171,12 @@
             </div>
         </div>
     </div>
-    @if ($products->hasMorePages())
+    {{ $products->links() }}
+    {{-- @if ($products->hasMorePages())
         <a wire:click="loadMore" class="cursor-pointer">
             <span class="underline text-blue-500 font-bold">{{ __('Load More') }}</span>
         </a>
-    @endif
+    @endif --}}
 
     @if ($isOpenEdit)
         <livewire:products.edit-product :product="$product"></livewire:products.edit-product>

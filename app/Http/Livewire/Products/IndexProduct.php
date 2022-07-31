@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Products;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class IndexProduct extends Component
 {
     use WithPagination;
+    use LivewireAlert;
 
     public $perPage = 20;
     public $search = "";
@@ -52,11 +54,16 @@ class IndexProduct extends Component
     {
         $this->product = $product;
         $this->isOpenEdit = true;
+
     }
 
     public function delete(Product $product){
+        // $this->alert('question', 'Quieres eliminar este articulo?', [
+        //     'showConfirmButton' => true
+        // ]);
         $this->product = $product;
         $this->product->delete();
+        $this->alert('success', 'El Articulo se ha dado de baja');
     }
 
 
