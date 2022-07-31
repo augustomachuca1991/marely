@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\Products;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class EditProduct extends Component
 {
 
     use WithFileUploads;
+    use LivewireAlert;
 
 
     public $product;
@@ -48,6 +50,7 @@ class EditProduct extends Component
         }
         $this->product->updated_at = now();
         $this->product->save();
+        $this->alert('success', 'El Articulo ha sido actualizado');
         $this->emitTo('products.index-product', 'render');
         $this->resetData();
     }

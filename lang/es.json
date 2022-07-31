@@ -195,5 +195,20 @@
     "Active":"Activo",
     "Inactive":"Inactivo",
     "Search" : "Buscar",
-    "Notifications" : "Notificaciones"
+    "Notifications" : "Notificaciones",
+    "Sales" : "Ventas",
+    "Audits" : "Auditorias",
+    "Products" : "Productos",
+    "Products List" : "Lista de Productos",
+    "New Product" : "Nuevo Producto",
+    "List Price" : "Precio de Lista",
+    "Sale Price" : "Precio de Venta",
+    "Article" : "Articulo",
+    "Description" : "Descripción",
+    "Suppliers" : "Proveedores",
+    "Category" : "Categoria",
+    "Select Category" : "Seleccionar Categoria",
+    "Edit" : "Editar",
+    "All Categories" : "Todas las Categorias",
+    "My Shop" : "Mi Tienda"
 }

@@ -1,19 +1,21 @@
 <div>
     <form wire:submit.prevent="update">
         <x-jet-dialog-modal wire:model="isOpenEdit">
-            <x-slot name="title">{{ __('Edit Product')}}</x-slot>
+            <x-slot name="title">{{ __('Edit Product') }}</x-slot>
             <x-slot name="content">
                 <div class="mb-4">
-                    <x-jet-label value="{{__('Photo')}} *" />
-                    <div class="mt-1 flex justify-center px-3 pt-3 pb-4 border-2 border-gray-300 border-dashed rounded-md">
+                    <x-jet-label value="{{ __('Photo') }} *" />
+                    <div
+                        class="mt-1 flex justify-center px-3 pt-3 pb-4 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
-                            {{__('Photo Preview:')}}
-                            <img width="240" height="140" src="{{ $photoEdit ? $photoEdit->temporaryUrl() : $product->profile_photo_url }}">
+                            {{ __('Photo Preview:') }}
+                            <img width="240" height="140"
+                                src="{{ $photoEdit ? $photoEdit->temporaryUrl() : $product->profile_photo_url }}">
                             <label for="photoEdit"
                                 class="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-0 focus-within:ring-offset-0 focus-within:ring-indigo-500">
-                                <span class="mb-1">{{__('Change')}}</span>
-                                <input wire:model="photoEdit" id="photoEdit" name="photoEdit"
-                                    type="file" class="sr-only">
+                                <span class="mb-1">{{ __('Change') }}</span>
+                                <input wire:model="photoEdit" id="photoEdit" name="photoEdit" type="file"
+                                    class="sr-only">
                             </label>
                             <x-jet-input-error for="photoEdit" />
                         </div>
@@ -23,12 +25,12 @@
                 <div class="mb-4">
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <x-jet-label value="{{__('Code')}} *" />
+                            <x-jet-label value="{{ __('Code') }} *" />
                             <x-jet-input wire:model="product.code" type="text" class="w-full" />
                             <x-jet-input-error for="product.code" />
                         </div>
                         <div>
-                            <x-jet-label value="{{__('Name')}} *" />
+                            <x-jet-label value="{{ __('Name') }} *" />
                             <x-jet-input wire:model="product.name" type="text" class="w-full" />
                             <x-jet-input-error for="product.name" />
                         </div>
@@ -37,33 +39,38 @@
                 <div class="mb-4">
                     <div class="grid md:grid-cols-3 gap-2">
                         <div>
-                            <x-jet-label value="{{__('Stock')}} *" />
+                            <x-jet-label value="{{ __('Stock') }} *" />
                             <x-jet-input wire:model="product.stock" type="number" class="w-full" />
                             <x-jet-input-error for="product.stock" />
                         </div>
                         <div>
-                            <x-jet-label value="{{__('List price')}} *" />
-                            <x-jet-input wire:model="product.list_price" type="text" class="w-full" placeholder="0.00" />
+                            <x-jet-label value="{{ __('List Price') }} *" />
+                            <x-jet-input wire:model="product.list_price" type="text" class="w-full"
+                                placeholder="0.00" />
                             <x-jet-input-error for="product.list_price" />
                         </div>
                         <div>
-                            <x-jet-label value="{{__('Sale price')}} *" />
-                            <x-jet-input wire:model="product.sale_price" type="text" class="w-full" placeholder="0.00" />
+                            <x-jet-label value="{{ __('Sale Price') }} *" />
+                            <x-jet-input wire:model="product.sale_price" type="text" class="w-full"
+                                placeholder="0.00" />
                             <x-jet-input-error for="product.sale_price" />
                         </div>
                     </div>
                 </div>
                 <div class="mb-4">
-                    <x-jet-label value="{{__('Description')}} *" />
-                    <textarea wire:model="product.description" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" name="description" id="description" cols="30" rows="3"></textarea>
+                    <x-jet-label value="{{ __('Description') }} *" />
+                    <textarea wire:model="product.description"
+                        class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                        name="description" id="description" cols="30" rows="3"></textarea>
                     <x-jet-input-error for="product.description" />
                 </div>
                 <div class="mb-4">
-                    <x-jet-label value="{{__('Category')}} *" for="category" />
-                    <select wire:model="product.category_id" name="category" class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <option value="" disabled>{{__('Select Category')}}</option>
+                    <x-jet-label value="{{ __('Category') }} *" for="category" />
+                    <select wire:model="product.category_id" name="category"
+                        class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <option value="" disabled>{{ __('Select Category') }}</option>
                         @foreach (\App\Models\Category::All() as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
                     <x-jet-input-error for="product.category_id"></x-jet-input-error>
@@ -74,8 +81,8 @@
                 </div>
             </x-slot>
             <x-slot name="footer">
-                <x-jet-secondary-button  wire:click="resetData">{{ __('Close') }}</x-jet-secondary-button>
-                <x-jet-button  type="submit">{{ __('Save Change') }}</x-jet-button>
+                <x-jet-secondary-button wire:click="resetData">{{ __('Close') }}</x-jet-secondary-button>
+                <x-jet-button type="submit">{{ __('Save Change') }}</x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>
     </form>

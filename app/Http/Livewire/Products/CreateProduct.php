@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Products;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class CreateProduct extends Component
 {
     use WithFileUploads;
+    use LivewireAlert;
 
     public $photo;
     public $code;
@@ -51,6 +53,7 @@ class CreateProduct extends Component
             $product->profile_photo_path = $this->photo->store('products' , 'public');
         }
         $product->save();
+        $this->alert('success', 'Nuevo Articulo Creado');
         $this->resetData();
         $this->emitTo('products.index-product', 'render');
     }
