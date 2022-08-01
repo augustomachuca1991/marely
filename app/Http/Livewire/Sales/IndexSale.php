@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Sales;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class IndexSale extends Component
 {
     use WithPagination;
+    use LivewireAlert;
 
     public $perPage = 20;
     public $search = "";
@@ -49,10 +51,13 @@ class IndexSale extends Component
 
     public function add_to_cart(Product $product)
     {
+        $this->alert('success' , 'Se agregó un articulo al carrito',[
+            'position' => 'bottom-end'
+        ]);
         \Cart::session(auth()->id())->add(array(
             'id' => $product->id,
             'name' => $product->name,
-            'price' => $product->list_price,
+            'price' => $product->sale_price,
             'quantity' => 1,
             'attributes' => array(),
             'associatedModel' => $product

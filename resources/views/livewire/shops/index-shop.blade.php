@@ -110,7 +110,6 @@
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <x-jet-application-mark class="block h-9 w-auto" />
-                    MARELY
                 </div>
                 <div class="justify-self-start">
                     <a href="#" wire:click="resetData">

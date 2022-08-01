@@ -1,17 +1,18 @@
 <div>
     <x-jet-dialog-modal wire:model="isOpenShow">
         <x-slot name="title">
-            <div
-                class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-black text-sm z-50">
-                <button wire:click="resetData">
-                    <svg class="fill-current text-black hover:text-red-700" xmlns="http://www.w3.org/2000/svg"
-                        width="18" height="18" viewBox="0 0 18 18">
-                        <path
-                            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                        </path>
-                    </svg>
-                </button>
-            </div>
+           {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
+                <div
+                    class=" modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-black text-sm z-50">
+                    <button wire:click="resetData">
+                        <svg class="fill-current text-black text-red-700 hover:text-red-500" xmlns="http://www.w3.org/2000/svg"
+                            width="18" height="18" viewBox="0 0 18 18">
+                            <path
+                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
         </x-slot>
         <x-slot name="content">
             <div

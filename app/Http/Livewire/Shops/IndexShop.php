@@ -6,9 +6,12 @@ use App\Models\Product;
 use App\Models\Sale;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Livewire\Component;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class IndexShop extends Component
 {
+    use LivewireAlert;
+    
     public $cart;
     public $quantities = [];
     public $isOpenShow = false;
@@ -85,6 +88,7 @@ class IndexShop extends Component
                 $sale->products()->attach($product->id);
             }
         }
+        $this->alert('success' , 'La compra se realizó con exito');
         $this->isOpenNext = true;
     }
 
