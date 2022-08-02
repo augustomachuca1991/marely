@@ -4,7 +4,7 @@
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-gray-900">{{ __('Sales') }}</h2>
                 <a wire:click="$emitTo('audits.index-audit' , 'close')"
-                    class="hover:bg-red-400 cursor-pointer group flex items-center rounded-md bg-red-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm">
+                    class="hover:bg-red-400 cursor-pointer group flex items-center rounded-md bg-red-500 text-white text-sm font-medium p-1 shadow-sm">
                     <svg width="20" height="20" fill="currentColor" class="mr-2" aria-hidden="true">
                         <path
                             d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
@@ -35,16 +35,16 @@
                                         #
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                        Vendedor
+                                        {{__('Saller')}}
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                        Productos
+                                        {{__('Articles')}}
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                        Fecha
+                                        {{__('Date')}}
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                        Total
+                                        {{__('Total')}}
                                     </th>
                                 </tr>
                             </thead class="border-b">
@@ -60,13 +60,17 @@
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <ul class="w-96 text-gray-900">
                                                 @foreach ($item->products as $product)
-                                                    <li class="capitalize">{{ $product->name }}</li>
+                                                    <li class="capitalize">{{ $product->name }} ({{$product->pivot->quantity}}) - ${{$product->pivot->price_to_date}}
+                                                        {{-- <div class="text-sm text-gray-500">
+                                                            {{ $product->code }}
+                                                        </div> --}}
+                                                    </li>
                                                 @endforeach
                                             </ul>
 
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            {{ $item->created_at }}
+                                            {{ $item->created_at->format('d/m/Y h:i:s') }}
 
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">

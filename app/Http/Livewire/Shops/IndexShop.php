@@ -85,7 +85,7 @@ class IndexShop extends Component
             if ($product->stock > $item->quantity ) {
                 $product->stock -= $item->quantity;
                 $product->save();
-                $sale->products()->attach($product->id);
+                $sale->products()->attach($product->id,['quantity' =>  $item->quantity , 'price_to_date' => $item->price]);
             }
         }
         $this->alert('success' , 'La compra se realizó con exito');
