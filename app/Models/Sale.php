@@ -28,4 +28,34 @@ class Sale extends Model
         return $this->belongsToMany(Product::class, 'details' , 'sale_id' ,'product_id')->withPivot('quantity','price_to_date');
     }
 
+    public function scopeSearchSale($query, $text)
+    {
+        if (!empty($text)) {
+            $query->whereHas('products' , function ($products) use ($text){
+                $products->where('products.code', 'like', "%{$text}%" )
+                ->orWhere('products.name', 'like', "%{$text}%")
+                ->orWhere('products.description', 'like', "%{$text}%");
+            });
+        }
+    }
+
+    public function scopeSearchUser($query, $userId)
+    {
+        if (!empty($userId)) {
+            $query->whereHas('user' , function ($user) use ($userId){
+                $user->where('id', $userId );
+            });
+        }
+    }
+
+    public function scopeFromTo($query, $dateFrom, $dateTo)
+    {
+        if (!empty($dateFrom) && !empty($dateTo) ) {
+            // $query->whereHas('user' , function ($user) use ($userId){
+            //     $user->where('id', $userId );
+            // });
+        }
+    }
+
+
 }
