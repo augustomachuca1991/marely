@@ -3,26 +3,66 @@
     <x-jet-dialog-modal wire:model="isOpenShow">
         <x-slot name="title">{{ __('Show Product') }}</x-slot>
         <x-slot name="content">
-            <div class="mb-4">
-                <figure class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800">
-                    <img class="w-24 h-24 md:w-48 md:h-auto md:rounded-none rounded-full mx-auto"
-                        src="{{ $product->profile_photo_url }}" alt="{{ $product->name }}" width="384" height="512">
-                    <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
-                        <blockquote>
-                            <p class="text-lg font-medium">
-                                {{ $product->code }} - {{ $product->name }}
-                            </p>
-                        </blockquote>
-                        <figcaption class="font-medium">
-                            <div class="text-sky-500 dark:text-sky-400">
-                                {{ $product->description }}
+            <!-- This example requires Tailwind CSS v2.0+ -->
+            <div class="bg-white">
+                <div
+                    class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
+                    <div>
+                        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Technical
+                            Specifications</h2>
+                        <p class="mt-4 text-gray-500">The walnut wood card tray is precision milled to perfectly fit a
+                            stack of Focus cards. The powder coated steel divider separates active cards from new ones,
+                            or can be used to archive important task lists.</p>
+
+                        <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
+                            <div class="border-t border-gray-200 pt-4">
+                                <dt class="font-medium text-gray-900">Origin</dt>
+                                <dd class="mt-2 text-sm text-gray-500">Designed by Good Goods, Inc.</dd>
                             </div>
-                            <div class="text-slate-700 dark:text-slate-500">
-                                provider, ${{ $product->sale_price }}
+
+                            <div class="border-t border-gray-200 pt-4">
+                                <dt class="font-medium text-gray-900">Material</dt>
+                                <dd class="mt-2 text-sm text-gray-500">Solid walnut base with rare earth magnets and
+                                    powder coated steel card cover</dd>
                             </div>
-                        </figcaption>
+
+                            <div class="border-t border-gray-200 pt-4">
+                                <dt class="font-medium text-gray-900">Dimensions</dt>
+                                <dd class="mt-2 text-sm text-gray-500">6.25&quot; x 3.55&quot; x 1.15&quot;</dd>
+                            </div>
+
+                            <div class="border-t border-gray-200 pt-4">
+                                <dt class="font-medium text-gray-900">Finish</dt>
+                                <dd class="mt-2 text-sm text-gray-500">Hand sanded and finished with natural oil</dd>
+                            </div>
+
+                            <div class="border-t border-gray-200 pt-4">
+                                <dt class="font-medium text-gray-900">Includes</dt>
+                                <dd class="mt-2 text-sm text-gray-500">Wood card tray and 3 refill packs</dd>
+                            </div>
+
+                            <div class="border-t border-gray-200 pt-4">
+                                <dt class="font-medium text-gray-900">Considerations</dt>
+                                <dd class="mt-2 text-sm text-gray-500">Made from natural materials. Grain and color vary
+                                    with each item.</dd>
+                            </div>
+                        </dl>
                     </div>
-                </figure>
+                    <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+                        <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-01.jpg"
+                            alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
+                            class="rounded-lg bg-gray-100">
+                        <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-02.jpg"
+                            alt="Top down view of walnut card tray with embedded magnets and card groove."
+                            class="rounded-lg bg-gray-100">
+                        <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-03.jpg"
+                            alt="Side of walnut card tray with card groove and recessed card area."
+                            class="rounded-lg bg-gray-100">
+                        <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-04.jpg"
+                            alt="Walnut card tray filled with cards and card angled in dedicated groove."
+                            class="rounded-lg bg-gray-100">
+                    </div>
+                </div>
             </div>
         </x-slot>
         <x-slot name="footer">

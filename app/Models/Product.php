@@ -31,22 +31,22 @@ class Product extends Model
 
     public function sales()
     {
-        return $this->belongsToMany(Sale::class, 'datails' , 'product_id' ,'sale_id')->withPivot('quantity','price_to_date');
+        return $this->belongsToMany(Sale::class, 'datails', 'product_id', 'sale_id')->withPivot('quantity', 'price_to_date');
     }
 
-    protected function name():Attribute
+    protected function name(): Attribute
     {
         return new Attribute(
-            set: function($value){
+            set: function ($value) {
                 return strtolower($value);
             }
         );
     }
 
-    protected function stock():Attribute
+    protected function stock(): Attribute
     {
         return new Attribute(
-            set: function($value){
+            set: function ($value) {
                 return intval($value);
             }
         );
@@ -61,16 +61,16 @@ class Product extends Model
     {
         if (!empty($text)) {
             $query->where('name', 'like', "%{$text}%")
-            ->orWhere('code', 'like', "%{$text}%")
-            ->orWhere('list_price', 'like', "%{$text}%");
+                ->orWhere('code', 'like', "%{$text}%")
+                ->orWhere('list_price', 'like', "%{$text}%");
         }
     }
 
     public function scopeSearchCategory($query, $byCategory)
     {
         if (!empty($byCategory)) {
-            $query->whereHas('category' , function($category) use ($byCategory){
-                $category->where('id' , $byCategory);
+            $query->whereHas('category', function ($category) use ($byCategory) {
+                $category->where('id', $byCategory);
             });
         }
     }
@@ -81,7 +81,7 @@ class Product extends Model
         if (!empty($byStatus)) {
             if ($byStatus == '1') {
                 $query->onlyTrashed();
-            }elseif( $byStatus == '2'){
+            } elseif ($byStatus == '2') {
                 $query->withTrashed();
             }
         }
