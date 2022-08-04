@@ -1,4 +1,4 @@
-<div>
+div>
 
     <x-jet-dialog-modal wire:model="isOpenShow">
         <x-slot name="title">{{ __('Show Product') }}</x-slot>
