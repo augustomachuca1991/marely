@@ -21,16 +21,16 @@
                 <div class="mb-4">
                     @if ($photo)
                         <x-jet-label value="{{ __('Photo Preview:') }}" />
-                        <img class="object-none object-center bg-yellow-300" src="{{ $photo->temporaryUrl() }}">
+                        <img class="bg-yellow-300 object-none object-center" src="{{ $photo->temporaryUrl() }}">
                         <label for="file-upload-edit"
-                            class="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-0 focus-within:ring-offset-0 focus-within:ring-indigo-500">
+                            class="relative cursor-pointer rounded-md font-medium text-indigo-600 focus-within:outline-none focus-within:ring-0 focus-within:ring-indigo-500 focus-within:ring-offset-0 hover:text-indigo-500">
                             <span class="mb-1">{{ __('Change') }}</span>
                             <input wire:model="photo" id="file-upload-edit" name="file-upload-edit" type="file"
                                 class="sr-only">
                         </label>
                     @else
                         <div
-                            class="mt-1 flex justify-center px-6 pt-5 pb-7 border-2 border-gray-300 border-dashed rounded-md">
+                            class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-7">
                             <div class="space-y-1 text-center">
                                 <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
                                     viewBox="0 0 48 48" aria-hidden="true">
@@ -39,7 +39,7 @@
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <label for="file-upload-edit"
-                                    class="relative cursor-pointer rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-0 focus-within:ring-offset-0 focus-within:ring-indigo-500">
+                                    class="relative cursor-pointer rounded-md font-medium text-indigo-600 focus-within:outline-none focus-within:ring-0 focus-within:ring-indigo-500 focus-within:ring-offset-0 hover:text-indigo-500">
                                     <span class="mb-1">{{ __('Select Photo') }}</span>
                                     <input wire:model="photo" id="file-upload-edit" name="file-upload-edit"
                                         type="file" class="sr-only">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <div class="grid md:grid-cols-3 gap-2">
+                    <div class="grid gap-2 md:grid-cols-3">
                         <div>
                             <x-jet-label value="{{ __('Stock') }} *" />
                             <x-jet-input wire:model="stock" type="number" class="w-full" />
@@ -90,14 +90,14 @@
                 <div class="mb-4">
                     <x-jet-label value="{{ __('Description') }} *" />
                     <textarea wire:model="description"
-                        class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         name="description" id="description" cols="30" rows="3"></textarea>
                     <x-jet-input-error for="description" />
                 </div>
                 <div class="mb-4">
                     <x-jet-label value="{{ __('Category') }} *" for="category" />
                     <select wire:model="category" name="category"
-                        class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                         <option value="" disabled>{{ __('Select Category') }}</option>
                         @foreach (\App\Models\Category::All() as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -111,7 +111,7 @@
                     <x-jet-input-error for="supplier" />
                 </div> --}}
                 <div class="mb-4">
-                    <p class="text-right text-gray-500 italic">(*) campos obligatorios</p>
+                    <p class="text-right italic text-gray-500">(*) campos obligatorios</p>
                 </div>
             </x-slot>
             <x-slot name="footer">
