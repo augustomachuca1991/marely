@@ -113,7 +113,7 @@
                                                 </ul>
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                                                {{ $item->created_at->format('d/m/Y h:i:s') }}
+                                                {{ $item->created_at->format('d/m/Y h:ia') }}
 
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
