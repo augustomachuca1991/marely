@@ -77,12 +77,34 @@
                         </div>
                         <div>
                             <x-jet-label value="{{ __('List Price') }} *" />
-                            <x-jet-input wire:model="list_price" type="text" class="w-full" placeholder="0.00" />
+                            <div>
+                                
+                                <div class="relative rounded-md shadow-sm">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <span class="text-gray-500 sm:text-sm"> $ </span>
+                                    </div>
+                                    <input type="text" name="list_price" id="list_price" wire:model="list_price"
+                                        class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-300 focus:ring-indigo-200"
+                                        placeholder="0.00">
+                                    
+                                </div>
+                            </div>
                             <x-jet-input-error for="list_price" />
                         </div>
                         <div>
                             <x-jet-label value="{{ __('Sale Price') }} *" />
-                            <x-jet-input wire:model="sale_price" type="text" class="w-full" placeholder="0.00" />
+                            <div>
+                                
+                                <div class="relative rounded-md shadow-sm">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <span class="text-gray-500 sm:text-sm"> $ </span>
+                                    </div>
+                                    <input type="text" name="sale_price" id="sale_price" wire:model="sale_price"
+                                        class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-300 focus:ring-indigo-200"
+                                        placeholder="0.00">
+                                    
+                                </div>
+                            </div>
                             <x-jet-input-error for="sale_price" />
                         </div>
                     </div>

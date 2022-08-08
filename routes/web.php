@@ -41,4 +41,8 @@ Route::middleware([
     Route::get('/audits', function () {
         return view('admin.audits');
     })->name('audits.index');
+
+    Route::get('/suppliers', function () {
+        return view('admin.suppliers');
+    })->name('suppliers.index');
 });
