@@ -3,19 +3,10 @@
         <header class="space-y-4 bg-white p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-gray-900">{{ __('Sales') }}</h2>
-                {{-- <a wire:click="$emitTo('audits.index-audit' , 'close')"
-                    class="hover:bg-red-400 cursor-pointer group flex items-center rounded-md bg-red-500 text-white text-sm font-medium p-1 shadow-sm">
-                    <svg width="20" height="20" fill="currentColor" class="mr-2" aria-hidden="true">
-                        <path
-                            d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
-                    </svg>
-
-                </a> --}}
 
                 <div class="grid grid-cols-2 justify-items-end gap-2">
                     <div class="flex">
                         <div>
-
                             <x-jet-input wire:model="from" type="date" max="{{ now()->format('Y-m-d') }}" name="from"
                                 id="form"></x-jet-input>
                             <x-jet-input-error for="from" />
@@ -113,7 +104,7 @@
                                                 </ul>
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                                                {{ $item->created_at->format('d/m/Y h:ia') }}
+                                                {{ $item->created_at->format('d/m/Y h:i:s') }}
 
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">

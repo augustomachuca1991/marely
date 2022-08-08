@@ -21,10 +21,12 @@
             </select>
         </div>
         <div class="flex w-full md:w-1/6">
-
             <select name="supplier" id="supplier" wire:model="bySupplier"
                 class="w-full border-gray-300 bg-transparent text-sm outline-none focus:outline-none">
-                <option value="">{{ __('Supliers') }}</option>
+                <option value="">{{ __('Suppliers') }}</option>
+                @foreach (\App\Models\Supplier::all() as $item)
+                    <option value="{{ $item->id }}">{{ $item->company_name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="flex w-full md:w-1/6">

@@ -57,11 +57,11 @@
                                 </div>
                                 <div class="p-8">
                                     <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                                        {{ $item->category->name }}</div>
+                                        {{ $item->name }}</div>
                                     <a href="#" wire:click="show({{ $item }})"
                                         class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                                        {{ $item->name }}</a>
-                                    <p class="mt-2 text-slate-500">{{ $item->description }}</p>
+                                        {{ $item->description }}</a>
+                                    <p class="mt-2 text-slate-500">$ {{ $item->sale_price }}</p>
                                     <div class="grid grid-cols-1 mt-6 justify-items-end">
                                         <div>
                                             <button wire:click="add_to_cart({{ $item }})"

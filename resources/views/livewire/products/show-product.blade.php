@@ -5,8 +5,8 @@
             <div
                 class="modal-close absolute top-0 right-0 z-50 mt-4 mr-4 flex cursor-pointer flex-col items-center text-sm text-black">
                 <button wire:click="resetData">
-                    <svg class="fill-current text-red-700 hover:text-red-500"
-                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                    <svg class="fill-current text-red-700 hover:text-red-500" xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 18 18">
                         <path
                             d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
                         </path>
@@ -16,7 +16,7 @@
         </x-slot>
         <x-slot name="content">
             {{--  --}}
-            <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+            <div class="overflow-hidden bg-white  sm:rounded-lg">
                 <div class="px-4 py-5 sm:px-6">
                     <h3 class="text-lg font-medium leading-6 text-gray-900">{{ __('Article Information') }}</h3>
                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
@@ -69,7 +69,12 @@
                                         <div class="ml-4 flex-shrink-0">
                                             <span
                                                 class="{{ $product->deleted_at ? 'text-red-500' : 'text-green-500' }} font-medium">
-                                                 </span>
+                                                <svg id="10015.io" viewBox="0 0 480 480" class="h-5 w-5"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <path fill="#1ce778"
+                                                        d="M410,343Q359,446,249,430.5Q139,415,106.5,327.5Q74,240,116.5,170Q159,100,245,91Q331,82,396,161Q461,240,410,343Z" />
+                                                </svg> </span>
                                         </div>
                                     </li>
                                     <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
