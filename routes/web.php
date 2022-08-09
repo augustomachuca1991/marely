@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\AuditController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ReportController;
+use App\Models\Sale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,31 +30,19 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [HomeController::class , 'index'])->name('dashboard');
 
-    Route::get('/products', function () {
-        return view('admin.products');
-    })->name('products.index');
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
-    Route::get('/categories', function () {
-        return view('admin.categories');
-    })->name('categories.index');
+    Route::get('/categories', [CategoryController::class , 'index'])->name('categories.index');
 
-    Route::get('/sales', function () {
-        return view('admin.sales');
-    })->name('sales.index');
+    Route::get('/sales', [SaleController::class , 'index'])->name('sales.index');
 
-    Route::get('/audits', function () {
-        return view('admin.audits');
-    })->name('audits.index');
+    Route::get('/audits', [AuditController::class , 'index'])->name('audits.index');
 
-    Route::get('/suppliers', function () {
-        return view('admin.suppliers');
-    })->name('suppliers.index');
+    Route::get('/suppliers', [SupplierController::class , 'index'])->name('suppliers.index');
 
-    Route::get('/reports', function () {
-        return view('admin.reports');
-    })->name('reports.index');
+
+    Route::get('/reports', [ReportController::class , 'index'])->name('reports.index');
+    Route::get('/reports/pdf/{id}', [ReportController::class, 'download'])->name('reports.pdf');
 });
