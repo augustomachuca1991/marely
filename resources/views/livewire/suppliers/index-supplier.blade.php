@@ -35,14 +35,15 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>{{ $item->phone_number ? '+'.$item->phone_number : 'No Phone' }}</p>
+                                
                             </blockquote>
                             <figcaption class="flex items-center space-x-4"><img
-                                    src="https://ui-avatars.com/api/?name={{ urlencode($item->company_name) }}&color=7F9CF5&background=EBF4FF"
+                                    src="https://ui-avatars.com/api/?name={{ urlencode($item->company_name) }}&color=417505&background=random"
                                     alt="{{ $item->company_name }}" class="h-14 w-14 flex-none rounded-full object-cover"
                                     loading="lazy">
                                 <div class="flex-auto">
                                     <div class="text-base font-semibold text-slate-900 dark:text-slate-300"><a
-                                            href="https://twitter.com/ryanflorence/status/1187951799442886656"
+                                            href="#"
                                             tabindex="0"><span class="absolute inset-0"></span>{{ $item->company_name }}</a>
                                     </div>
                                     <div class="mt-0.5">{{ $item->location }}</div>

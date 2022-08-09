@@ -45,4 +45,8 @@ Route::middleware([
     Route::get('/suppliers', function () {
         return view('admin.suppliers');
     })->name('suppliers.index');
+
+    Route::get('/reports', function () {
+        return view('admin.reports');
+    })->name('reports.index');
 });
