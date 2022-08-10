@@ -1,8 +1,8 @@
 <div>
 
-    <div class="flex space-x-2 justify-center">
+    <div class="flex justify-center space-x-2">
         <a href="#" wire:click="show"
-            class="inline-block px-6 py-2.5 font-medium text-xs leading-tight uppercase rounded  transition duration-150 ease-in-out items-center">
+            class="inline-block items-center rounded px-6 py-2.5 text-xs font-medium uppercase leading-tight transition duration-150 ease-in-out">
             <svg width="20" height="20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20"
                 style="enable-background:new 0 0 20 20;" xml:space="preserve">
@@ -17,7 +17,7 @@
             </svg>
             @if ($carts->count())
                 <span
-                    class="inline-block py-1 px-1.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-600 text-white rounded-full ml-2">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</span>
+                    class="ml-2 inline-block whitespace-nowrap rounded-full bg-red-600 py-1 px-1.5 text-center align-baseline font-bold leading-none text-white">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</span>
             @endif
         </a>
     </div>
@@ -31,26 +31,26 @@
                     <thead>
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                                 {{ __('Name') }}
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                                 {{ __('Quantity') }}
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                                 {{ __('Price') }}
                             </th>
-                            <th scope="col" class="px-6 py-3 bg-gray-50">
+                            <th scope="col" class="bg-gray-50 px-6 py-3">
                                 <span class="sr-only">{{ __('Actions') }}</span>
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody class="divide-y divide-gray-200 bg-white">
                         @foreach ($carts->sortBy('id') as $index => $item)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="whitespace-nowrap px-6 py-4">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0">
                                             <img class="h-10 w-10 rounded-full object-cover"
@@ -67,17 +67,17 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <td class="whitespace-nowrap px-6 py-4">
                                     {{-- {{ var_export($quantities) }} --}}
                                     <x-jet-input wire:model="quantities.{{ $index }}" min="1"
                                         wire:change="update_quantity({{ $item->id }} , {{ $index }} )"
                                         type="number" class="w-24">
                                     </x-jet-input>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                                     $ {{ \Cart::session(auth()->id())->get($item->id)->getPriceSum() }}
                                 </td>
-                                <td class=" px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
                                     <a href="#" wire:click="delete_to_cart({{ $item->id }})">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="h-5 w-5 text-red-600 hover:text-red-400" viewBox="0 0 20 20"
@@ -100,7 +100,9 @@
         <x-slot name="footer">
             <x-jet-secondary-button class="mr-2" wire:click="$set('isOpenShow' , false)">{{ __('Close') }}
             </x-jet-secondary-button>
-            <x-jet-button wire:click="confirmSale">{{ __('Confirm') }}</x-jet-button>
+            @if ($carts->count())
+                <x-jet-button wire:click="confirmSale">{{ __('Confirm') }}</x-jet-button>
+            @endif
         </x-slot>
     </x-jet-dialog-modal>
 
@@ -109,64 +111,64 @@
         <x-slot name="title">
             <x-jet-application-mark class="block h-9 w-auto" />
             <div
-            class=" modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-black text-sm z-50">
-            <button wire:click="resetData">
-                <svg class="fill-current text-red-700 hover:text-red-500" xmlns="http://www.w3.org/2000/svg"
-                    width="18" height="18" viewBox="0 0 18 18">
-                    <path
-                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                    </path>
-                </svg>
-            </button>
-        </div>
+                class="modal-close absolute top-0 right-0 z-50 mt-4 mr-4 flex cursor-pointer flex-col items-center text-sm text-black">
+                <button wire:click="resetData">
+                    <svg class="fill-current text-red-700 hover:text-red-500" xmlns="http://www.w3.org/2000/svg"
+                        width="18" height="18" viewBox="0 0 18 18">
+                        <path
+                            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
         </x-slot>
         <x-slot name="content">
             <div class="mb-4">
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="inline-block min-w-full py-4 sm:px-6 lg:px-8">
                             <div class="overflow-hidden">
                                 <table class="min-w-full text-center">
                                     <thead class="border-b bg-gray-50">
                                         <tr>
 
-                                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                            <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
                                                 {{ __('Article') }}
                                             </th>
-                                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                            <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
                                                 {{ __('Quantity') }}
                                             </th>
-                                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                            <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
                                                 {{ __('Unit Price') }}
                                             </th>
-                                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                            <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
                                                 {{ __('SubTotal') }}
                                             </th>
                                         </tr>
                                     </thead class="border-b">
                                     <tbody>
                                         @foreach ($carts as $item)
-                                            <tr class="bg-white border-b">
+                                            <tr class="border-b bg-white">
                                                 <td
-                                                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                    class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
                                                     {{ $item->associatedModel->name }}
                                                 </td>
                                                 <td
-                                                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                    class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
                                                     {{ $item->quantity }} uidades
                                                 </td>
                                                 <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                    class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
                                                     ${{ $item->price }}
                                                 </td>
                                                 <td
-                                                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                    class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
                                                     ${{ \Cart::session(auth()->id())->get($item->id)->getPriceSum() }}
                                                 </td>
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td colspan="4" class="text-right p-2"> Total:
+                                            <td colspan="4" class="p-2 text-right"> Total:
                                                 ${{ \Cart::session(auth()->id())->getTotal() }} </td>
                                         </tr>
                                     </tbody>
@@ -181,7 +183,7 @@
             {{-- <x-jet-secondary-button class="mr-2" wire:click="$set('isOpenNext' , false)">{{ __('Print') }}
             </x-jet-secondary-button> --}}
             <x-jet-button wire:click="next">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-flex text-green-700" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex h-5 w-5 text-green-700" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />

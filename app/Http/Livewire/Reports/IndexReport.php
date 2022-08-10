@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Reports;
 
 use App\Models\Sale;
+use App\Models\User;
 use Livewire\Component;
 use PDF;
 
@@ -16,6 +17,8 @@ class IndexReport extends Component
     public $from = "";
     public $to = "";
     public $perPage = 10;
+    public $user;
+    public $selectUser = false;
 
 
     protected $listeners = ['render'];
@@ -44,22 +47,10 @@ class IndexReport extends Component
     }
 
 
-    public function download()
+    public function selectedUser(User $user)
     {
-
-        
-        // $data = [
-        //     'titulo' => 'Marely.net'
-        // ];
-
-        // $pdf = PDF::loadView('admin.reports-pdf', $data);
-
-        // dd($pdf);
-
-        // return $pdf->stream('archivo.pdf');
-
-        // $pdf = App::make('dompdf.wrapper');
-        // $pdf->loadHTML('<h1>Test</h1>');
-        // return $pdf->stream();
+        $this->user = $user;
+        $this->perUser = $this->user->id;
+        $this->selectUser = false;
     }
 }

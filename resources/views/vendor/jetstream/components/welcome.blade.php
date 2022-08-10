@@ -1,10 +1,10 @@
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
     <div>
-        <x-jet-application-logo class="block h-16 w-auto" />
+        <x-jet-application-logo class="block h-32 w-auto" />
     </div>
 
     <div class="mt-8 text-2xl">
-        Welcome to your Jetstream application!
+        {{__('Welcome to your Web Site !')}}
     </div>
 
     <div class="mt-6 text-gray-500">

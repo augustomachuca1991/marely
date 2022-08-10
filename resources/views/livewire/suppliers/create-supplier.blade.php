@@ -8,13 +8,12 @@
     }
 }">
     <div @click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-buuton')"
-        class="group flex cursor-pointer items-center rounded-md bg-blue-500 py-2 pl-2 pr-3 text-sm font-medium text-white shadow-sm hover:bg-blue-400">
-        <svg width="20" height="20" fill="currentColor" class="mr-2">
+        class="group cursor-pointer inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+        <svg width="20" height="20" fill="currentColor" class="mr-2 text-green-700">
             <path d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z">
             </path>
-        </svg>{{ __('New') }}
+        </svg>{{ __('New Supplier') }}
     </div>
-
 
     <!-- modal -->
     <div x-show="open" :id="$id('dropdown-button')" style="display: none" class="relative z-10"

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuditController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ReportController;
@@ -45,4 +46,6 @@ Route::middleware([
 
     Route::get('/reports', [ReportController::class , 'index'])->name('reports.index');
     Route::get('/reports/pdf/{id}', [ReportController::class, 'download'])->name('reports.pdf');
+
+    Route::get('/purchases', [PurchaseController::class, 'index'])->name('purchases.index');
 });

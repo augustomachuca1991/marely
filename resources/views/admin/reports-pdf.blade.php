@@ -56,7 +56,7 @@
         <div class="container-fluid">
             <a class="navbar-brand">Marely Libreria & Art. Escolares</a>
             <div class="d-flex">
-                <img class="img-thumbnail" src="image/logoMarely.svg" alt="" width="240" height="120"
+                <img class="img-thumbnail" src="image/logoMarely1.svg" alt="" width="240" height="120"
                 class="d-inline-block align-text-top">
             </div>
         </div>
@@ -81,6 +81,7 @@
                 <thead>
                     <tr>
                         <th>Cant.</th>
+                        <th>Articulo</th>
                         <th>Descripcion</th>
                         <th>Precio Unitario</th>
                         <th>Importe</th>
@@ -90,7 +91,8 @@
                     @foreach ($sale->products as $item)
                         <tr>
                             <td>{{ $item->pivot->quantity }}</td>
-                            <td>{{ $item->name }} - {{ $item->description }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->description }}</td>
                             <td>$ {{ $item->pivot->price_to_date }}</td>
                             <td>$ {{ $item->pivot->price_to_date * $item->pivot->quantity }}</td>
                         </tr>
@@ -98,7 +100,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="4">
+                        <th colspan="5">
                             <h5>Total ${{ $sale->amount }}</h5>
                         </th>
                     </tr>
