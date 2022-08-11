@@ -42,7 +42,7 @@
             </div> --}}
 
             <div class="container mx-auto">
-                <div class="grid grid-rows-1 gap-2 lg:justify-items-end lg:grid-cols-2">
+                <div class="grid grid-rows-1 gap-2 lg:grid-cols-2 lg:justify-items-end">
 
                     <div x-data="{
                         open: @entangle('selectUser'),
@@ -130,7 +130,8 @@
                                     class="{{ $errors->has('to') ? 'border rounded-md border-red-500' : '' }} w-full" />
                                 <x-jet-input-error for="to" />
                             </div>
-                            <div class="flex-none {{($errors->has('to') || $errors->has('from')) ? 'self-center' : 'self-end mb-1'}} ">
+                            <div
+                                class="{{ $errors->has('to') || $errors->has('from') ? 'self-center' : 'self-end mb-1' }} flex-none">
                                 <x-jet-danger-button wire:click="filterDate">buscar</x-jet-danger-button>
                             </div>
                         </div>
@@ -155,10 +156,98 @@
             </form>
         </header>
         <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+
+                        @if ($sales->count())
+                            <table class="table-auto min-w-full divide-y divide-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"
+                                            class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                            {{ __('Saller') }}
+                                        </th>
+                                        <th scope="col"
+                                            class="bg-gray-50 px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
+                                            {{ __('Articles') }}
+                                        </th>
+                                        <th scope="col"
+                                            class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                            {{ __('Date') }}
+                                        </th>
+                                        <th scope="col"
+                                            class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                            {{ __('Total') }}
+                                        </th>
+
+                                        <th scope="col" class="bg-gray-50 px-6 py-3">
+                                            <span class="sr-only">{{ __('Actions') }}</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 bg-white">
+                                    @foreach ($sales as $index => $item)
+                                        <tr>
+                                            <td class="whitespace-nowrap px-6 py-4">
+                                                {{ $index + 1 }}
+
+                                            </td>
+                                            <td class="whitespace-nowrap px-6 py-4">
+                                                <div class="text-sm font-medium text-gray-900 capitalize">
+                                                    {{ $item->user->name }}
+                                                </div>
+                                            </td>
+                                            <td class="whitespace-nowrap px-6 py-4">
+                                                @foreach ($item->products as $i => $product)
+                                                    <div
+                                                        class="{{ $i % 2 == 0 ? 'text-gray-900' : 'text-gray-500' }} text-sm">
+                                                        <p  class="text-right capitalize">{{ $product->name }}({{ $product->pivot->quantity }}) -
+                                                        ${{ $product->pivot->price_to_date }}</p></div>
+                                                @endforeach
+                                            </td>
+                                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                                {{ $item->created_at->format('d/m/Y h:i:s') }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                                ${{ $item->amount }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium text-green-700 hover:text-green-500">
+                                                <a href="{{ route('reports.pdf', $item->id) }}" target="_blank"
+                                                    class="cursor-pointer inline-flex">{{__('Print')}}<svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-6 w-6 " fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                                                    </svg></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    <!-- More rows... -->
+                                </tbody>
+                            </table>
+                            <!---paginations-->
+                            <div class="border-gray-200 bg-white px-4 py-3 sm:px-6">
+                                {{ $sales->links() }}
+                            </div>
+                        @else
+                            <div class="border-gray-200 bg-white px-4 py-3 text-gray-500 sm:px-6">
+                                No hay resultado para la búsqueda
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-4 sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
-                        <table class="min-w-full text-center">
+                        <table class="min-w-full text-center table-auto">
                             <thead class="border-b bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
@@ -198,9 +287,7 @@
                                                             ({{ $product->pivot->quantity }})
                                                             -
                                                             ${{ $product->pivot->price_to_date }}
-                                                            {{-- <div class="text-sm text-gray-500">
-                                                        {{ $product->code }}
-                                                    </div> --}}
+                                                            
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -237,6 +324,6 @@
                 </div>
             </div>
         </div>
-        {{ $sales->links() }}
+        {{ $sales->links() }} --}}
     </section>
 </div>

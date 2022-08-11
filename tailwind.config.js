@@ -4,17 +4,17 @@ const colors = require('tailwindcss/colors');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './vendor/laravel/jetstream/**/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/**/*.js',
-        './resources/**/*.vue',
+        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./vendor/laravel/jetstream/**/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
     ],
 
     theme: {
         extend: {
-            colors:{
+            colors: {
                 teal: colors.teal,
                 rose: colors.rose,
                 orange: colors.orange,
@@ -27,13 +27,14 @@ module.exports = {
                 slate: colors.slate,
             },
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+                serif: ["Merriweather", "serif"],
             },
         },
     },
 
     plugins: [
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/typography'),
+        require("@tailwindcss/forms"),
+        require("@tailwindcss/typography"),
     ],
 };
