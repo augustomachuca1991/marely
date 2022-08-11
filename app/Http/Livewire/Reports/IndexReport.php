@@ -53,4 +53,5 @@ class IndexReport extends Component
         $this->perUser = $this->user->id;
         $this->selectUser = false;
     }
+
 }
