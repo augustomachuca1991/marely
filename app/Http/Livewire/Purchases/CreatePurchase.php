@@ -3,13 +3,18 @@
 namespace App\Http\Livewire\Purchases;
 
 use App\Models\Product;
+use App\Models\Referral;
 use App\Models\Supplier;
 use Livewire\Component;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Arr;
 
 class CreatePurchase extends Component
 {
-    
+    use LivewireAlert;
+
     public $isOpenCreate = false;
+    public $bonification;
 
     public $supplierText = '';
     public $suggestionSupplier = false;
@@ -19,10 +24,11 @@ class CreatePurchase extends Component
     public $suggestionProduct = false;
     public $product;
 
-    public $addStock = false;
+    public $editMode = false;
 
 
     public $productsAdd = [];
+    public $addStock = [];
     
     public function render()
     {
@@ -48,7 +54,8 @@ class CreatePurchase extends Component
         $this->suggestionProduct = false;
         $this->product = $product;
         array_push($this->productsAdd, $product);
-        //$this->reset(['$this->productText']);
+        array_push($this->addStock, 0);
+        $this->reset(['productText']);
         //$this->listProducts = Product::whereIn('id' , $this->productsAdd)->get();
     }
 
@@ -60,5 +67,29 @@ class CreatePurchase extends Component
 
     public function removeItem($index){
         unset($this->productsAdd[$index]);
+    }
+
+    public function store()
+    {
+        
+        $this->validate([
+            'addStock.*' => 'required|integer|min:0',
+            'bonification' => 'numeric'
+        ]);
+        $referral = new Referral();
+        $referral->bonification = $this->bonification;
+        $referral->supplier_id = $this->supplier->id;
+        $referral->created_at = now();
+        $referral->save();
+        foreach ($this->addStock as $key => $value) {
+            $this->supplier->products()->attach( $this->productsAdd[$key]['id'] , [
+                'quantity' => $value,
+                'unit_price' => $this->productsAdd[$key]['list_price'],
+            ]);
+            //$this->productsAdd[$key]['stock'] += $value;
+        }
+        $this->reset('addStock' , 'productsAdd', 'isOpenCreate');
+        $this->alert('success' , 'Se ha cargado un nuevo remito');
+        
     }
 }

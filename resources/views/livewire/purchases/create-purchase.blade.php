@@ -51,7 +51,6 @@
 
                     </div>
                 </div>
-
                 @if ($supplier)
                     <div class="mb-4">
                         <div class="lg:flex lg:items-center lg:justify-between">
@@ -128,8 +127,9 @@
                                     </button>
                                 </span> --}}
 
-                                <span class="sm:ml-3">
-                                    <button type="button"
+                                @if (count($productsAdd))
+                                    <span class="sm:ml-3">
+                                    <button type="button" wire:click="store"
                                         class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
 
                                         <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -141,6 +141,7 @@
                                         {{ __('Confirm') }}
                                     </button>
                                 </span>
+                                @endif
                                 <div class="relative ml-3 sm:hidden">
                                     <button type="button"
                                         class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -235,19 +236,23 @@
                                                             {{ $add['code'] }}</p>
                                                     </div>
                                                     <div class="flex flex-1 items-end justify-between text-sm">
-                                                        @if ($addStock)
-                                                        <input wire:model="stock
-                                                        " id="addStock" name="addStock" type="number">
-                                                        @else
-                                                        <p class="text-gray-500">{{ __('Stock') }} -
-                                                            {{ $add['stock'] }}</p>
-                                                        @endif
-                                                        <x-jet-secondary-button type="button" wire:click="$set('addStock' , true)">{{__('Add Stock')}}</x-jet-secondary-button>
+
+                                                        <p class="text-gray-500">
+                                                            {{ __('Current Stock') }}({{ $add['stock'] }}) -
+                                                            <x-jet-input class="w-24"
+                                                                wire:model="addStock.{{ $index }}"
+                                                                type="number" />
+                                                            <x-jet-input-error for="addStock.{{$index}}" />
+                                                        </p>
 
                                                         <div class="flex">
+                                                            {{-- <button type="button"
+                                                                wire:click="sumItem({{ $index }})"
+                                                                class="font-medium text-green-600 hover:text-green-500">{{ __('Add') }}</button> --}}
                                                             <button type="button"
                                                                 wire:click="removeItem({{ $index }})"
                                                                 class="font-medium text-red-600 hover:text-red-500">Remove</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -260,10 +265,17 @@
                         </div>
                     @endif
                 @endif
+                <div class="mb-4">
+                    <x-jet-label value="{{ __('Bonification %') }}" />
+                    <x-jet-input wire:model="bonification" type="number" min="0" />
+                    <x-jet-input-error for="bonification" />
+                </div>
             </x-slot>
             <x-slot name="footer">
                 {{-- {{ $supplier ? $supplier->company_name : '' }}
                 {{ $product ? $product->name : '' }} --}}
+
+                {{-- {{var_export($productsAdd)}} --}}
             </x-slot>
         </x-jet-dialog-modal>
     </form>

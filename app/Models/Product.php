@@ -34,6 +34,11 @@ class Product extends Model
         return $this->belongsToMany(Sale::class, 'datails', 'product_id', 'sale_id')->withPivot('quantity', 'price_to_date');
     }
 
+    public function suppliers()
+    {
+        return $this->belongsToMany(Supplier::class)->withPivot('quantity','unit_price');
+    }
+
     protected function name(): Attribute
     {
         return new Attribute(

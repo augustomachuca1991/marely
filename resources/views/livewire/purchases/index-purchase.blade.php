@@ -19,32 +19,38 @@
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
                 </svg>
-                <input
+                <input wire:model="search"
                     class="w-full appearance-none rounded-md py-2 pl-10 text-sm leading-6 text-slate-600 placeholder-slate-400 shadow-sm ring-1 ring-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                    type="text" aria-label="Filter projects" placeholder="Filter projects...">
+                    type="text" aria-label="Filter referrrals" placeholder="Filter referrrals...">
             </form>
         </header>
         <div
             class="grid grid-cols-1 gap-4 bg-slate-50 p-4 text-sm leading-6 sm:grid-cols-2 sm:px-8 sm:pt-6 sm:pb-8 lg:grid-cols-1 lg:p-4 xl:grid-cols-2 xl:px-8 xl:pt-6 xl:pb-8">
 
 
-            @foreach (App\Models\Category::all() as $item)
+            @foreach ($referrals as $item)
                 <a href="/"
                     class="group rounded-md bg-gray-100 p-3 shadow-sm ring-1 ring-slate-200 hover:bg-sky-600 hover:shadow-md hover:ring-sky-600">
                     <dl class="grid grid-cols-2 grid-rows-2 items-center sm:block lg:grid xl:block">
                         <div>
-                            <dt class="sr-only">Title</dt>
+                            <dt class="sr-only">{{ __('Company Name') }}</dt>
                             <div class="font-semibold capitalize text-slate-900 group-hover:text-white">
-                                {{ $item->name }}
+                                {{ $item->supplier->company_name }} - 
+                                <span class="text-gray-600 text-sm group-hover:text-white">{{$item->created_at->format('d/m/Y H:ia')}}</span>
                             </div>
                         </div>
                         <div>
-                            <dt class="sr-only">Category</dt>
-                            <div class="group-hover:text-sky-200">{{ $item->description }}</div>
+                            <dt class="sr-only">{{ __('Location') }}</dt>
+                            <div class="group-hover:text-sky-200">{{ $item->supplier->location }}</div>
+                        </div>
+
+                        <div>
+                            <dt class="sr-only">{{ __('Phone Number') }}</dt>
+                            <div class="group-hover:text-sky-100">{{ $item->supplier->phone_number }}</div>
                         </div>
                         <div class="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4">
                             <dt class="sr-only">Users</dt>
-                            @foreach ($item->products->take(4) as $product)
+                            @foreach ($item->supplier->products as $product)
                                 <div
                                     class="inline-flex justify-end -space-x-1.5 sm:justify-start lg:justify-end xl:justify-start">
                                     <img src="{{ $product->profile_photo_url }}" alt="{{ $product->name }}"

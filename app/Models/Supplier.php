@@ -20,6 +20,18 @@ class Supplier extends Model
     ];
 
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withPivot('quantity','unit_price');
+    }
+
+
+    public function referrals()
+    {
+        return $this->hasMany(Referral::class);
+    }
+
+
     protected function company_name(): Attribute
     {
         return new Attribute(

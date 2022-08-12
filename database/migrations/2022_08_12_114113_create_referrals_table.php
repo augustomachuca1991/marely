@@ -13,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_supplier', function (Blueprint $table) {
+        Schema::create('referrals', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
-
             $table->bigInteger('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers');
-
-            $table->integer('quantity')->unsigned();
-            $table->decimal('unit_price', 8, 2)->unsigned()->default(0);
+            $table->decimal('bonification')->unsigned()->default(0)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_supplier');
+        Schema::dropIfExists('referrals');
     }
 };
