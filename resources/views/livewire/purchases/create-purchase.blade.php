@@ -236,7 +236,8 @@
                                                     </div>
                                                     <div class="flex flex-1 items-end justify-between text-sm">
                                                         @if ($addStock)
-                                                        <input wire:model="stock" id="addStock" name="addStock" type="number">
+                                                        <input wire:model="stock
+                                                        " id="addStock" name="addStock" type="number">
                                                         @else
                                                         <p class="text-gray-500">{{ __('Stock') }} -
                                                             {{ $add['stock'] }}</p>
