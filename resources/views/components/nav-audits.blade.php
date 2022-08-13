@@ -30,8 +30,8 @@
 
                 <a href="{{ route('reports.index') }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
                     {{ __('Reports') }} </a>
-                <a href="{{ route('purchases.index')}}" class="text-base font-medium text-gray-500 hover:text-gray-900">
-                    {{ __('Purchases') }} </a>
+                <a href="{{ route('referrals.index')}}" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                    {{ __('Referrals') }} </a>
                 <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">
                     {{ __('Ernings') }}
                 </a>
@@ -256,8 +256,8 @@
                         {{ __('Reports') }}
                     </a>
 
-                    <a href="{{ route('purchases.index')}}" class="text-base font-medium text-gray-900 hover:text-gray-700">
-                        {{ __('Purchases') }}
+                    <a href="{{ route('referrals.index')}}" class="text-base font-medium text-gray-900 hover:text-gray-700">
+                        {{ __('Referrals') }}
                     </a>
                 </div>
             </div>

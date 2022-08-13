@@ -29,14 +29,15 @@
 
 
             @foreach ($referrals as $item)
-                <a href="/"
-                    class="group rounded-md bg-gray-100 p-3 shadow-sm ring-1 ring-slate-200 hover:bg-sky-600 hover:shadow-md hover:ring-sky-600">
+                <a wire:click="show({{$item}})"
+                    class="cursor-pointer group rounded-md bg-gray-100 p-3 shadow-sm ring-1 ring-slate-200 hover:bg-sky-600 hover:shadow-md hover:ring-sky-600">
                     <dl class="grid grid-cols-2 grid-rows-2 items-center sm:block lg:grid xl:block">
                         <div>
                             <dt class="sr-only">{{ __('Company Name') }}</dt>
                             <div class="font-semibold capitalize text-slate-900 group-hover:text-white">
-                                {{ $item->supplier->company_name }} - 
-                                <span class="text-gray-600 text-sm group-hover:text-white">{{$item->created_at->format('d/m/Y H:ia')}}</span>
+                                {{ $item->supplier->company_name }} -
+                                <span
+                                    class="text-sm text-gray-600 group-hover:text-white">{{ $item->created_at->format('d/m/Y H:ia') }}</span>
                             </div>
                         </div>
                         <div>
@@ -50,7 +51,7 @@
                         </div>
                         <div class="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4">
                             <dt class="sr-only">Users</dt>
-                            @foreach ($item->supplier->products as $product)
+                            @foreach ($item->products as $product)
                                 <div
                                     class="inline-flex justify-end -space-x-1.5 sm:justify-start lg:justify-end xl:justify-start">
                                     <img src="{{ $product->profile_photo_url }}" alt="{{ $product->name }}"
@@ -62,8 +63,12 @@
                     </dl>
                 </a>
             @endforeach
-            <livewire:purchases.create-purchase></livewire:purchases.create-purchase>
+            <livewire:referrals.create-referral></livewire:referrals.create-referral>
 
         </div>
     </section>
+
+    @if ($isOpenShow)
+        <livewire:referrals.show-referral :referral="$referral"></livewire:referrals.show-referral>
+    @endif
 </div>

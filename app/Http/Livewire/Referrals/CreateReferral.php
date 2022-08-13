@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Purchases;
+namespace App\Http\Livewire\Referrals;
 
 use App\Models\Product;
 use App\Models\Referral;
 use App\Models\Supplier;
-use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Illuminate\Support\Arr;
+use Livewire\Component;
 
-class CreatePurchase extends Component
+class CreateReferral extends Component
 {
     use LivewireAlert;
 
@@ -34,7 +33,7 @@ class CreatePurchase extends Component
     {
         $suppliers = Supplier::search($this->supplierText)->take(5)->get();
         $products = Product::searchProduct($this->productText)->take(5)->get();
-        return view('livewire.purchases.create-purchase',[
+        return view('livewire.referrals.create-referral',[
             'suppliers' => $suppliers,
             'products' => $products
         ]);
@@ -82,7 +81,7 @@ class CreatePurchase extends Component
         $referral->created_at = now();
         $referral->save();
         foreach ($this->addStock as $key => $value) {
-            $this->supplier->products()->attach( $this->productsAdd[$key]['id'] , [
+            $referral->products()->attach( $this->productsAdd[$key]['id'] , [
                 'quantity' => $value,
                 'unit_price' => $this->productsAdd[$key]['list_price'],
             ]);
@@ -90,6 +89,7 @@ class CreatePurchase extends Component
         }
         $this->reset('addStock' , 'productsAdd', 'isOpenCreate');
         $this->alert('success' , 'Se ha cargado un nuevo remito');
+        $this->emitTo('referrals.index-referral', 'render');
         
     }
 }

@@ -129,18 +129,18 @@
 
                                 @if (count($productsAdd))
                                     <span class="sm:ml-3">
-                                    <button type="button" wire:click="store"
-                                        class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                        <button type="button" wire:click="store"
+                                            class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
 
-                                        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        {{ __('Confirm') }}
-                                    </button>
-                                </span>
+                                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            {{ __('Confirm') }}
+                                        </button>
+                                    </span>
                                 @endif
                                 <div class="relative ml-3 sm:hidden">
                                     <button type="button"
@@ -148,8 +148,9 @@
                                         id="mobile-menu-button" aria-expanded="false" aria-haspopup="true">
                                         More
                                         <!-- Heroicon name: solid/chevron-down -->
-                                        <svg class="-mr-1 ml-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <svg class="-mr-1 ml-2 h-5 w-5 text-gray-500"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd"
                                                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                 clip-rule="evenodd" />
@@ -242,7 +243,7 @@
                                                             <x-jet-input class="w-24"
                                                                 wire:model="addStock.{{ $index }}"
                                                                 type="number" />
-                                                            <x-jet-input-error for="addStock.{{$index}}" />
+                                                            <x-jet-input-error for="addStock.{{ $index }}" />
                                                         </p>
 
                                                         <div class="flex">

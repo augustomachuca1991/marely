@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('product_supplier', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
+            // $table->bigInteger('product_id')->unsigned();
+            // $table->foreign('product_id')->references('id')->on('products');
 
-            $table->bigInteger('supplier_id')->unsigned();
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
+            // $table->bigInteger('supplier_id')->unsigned();
+            // $table->foreign('supplier_id')->references('id')->on('suppliers');
 
-            $table->integer('quantity')->unsigned();
-            $table->decimal('unit_price', 8, 2)->unsigned()->default(0);
+            // $table->integer('quantity')->unsigned();
+            // $table->decimal('unit_price', 8, 2)->unsigned()->default(0);
             $table->timestamps();
         });
     }

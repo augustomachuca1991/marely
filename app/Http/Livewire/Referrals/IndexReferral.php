@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Http\Livewire\Purchases;
+namespace App\Http\Livewire\Referrals;
 
 use App\Models\Referral;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class IndexPurchase extends Component
+class IndexReferral extends Component
 {
     use WithPagination;
 
     public $perPage = 20;
     public $search = "";
+    public $isOpenShow = false;
+
+    protected $listeners = ['render' , 'closeModal'];
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -20,7 +23,7 @@ class IndexPurchase extends Component
     
     public function render()
     {
-        return view('livewire.purchases.index-purchase' , [
+        return view('livewire.referrals.index-referral' , [
             'referrals' => Referral::latest()->paginate($this->perPage)
         ]);
     }
@@ -28,5 +31,18 @@ class IndexPurchase extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+    public function closeModal()
+    {
+        $this->reset(['isOpenShow']);
+        
+    }
+
+
+    public function show(Referral $referral)
+    {
+        $this->referral = $referral;
+        $this->isOpenShow = true;
     }
 }
