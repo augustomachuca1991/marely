@@ -13,7 +13,7 @@
             <x-slot name="title">{{ __('New Referral') }}</x-slot>
             <x-slot name="content">
                 <div class="mb-4">
-                    <div class="text-gray-500">
+                    {{-- <div class="text-gray-500">
                         <div class="relative bg-transparent text-lg text-gray-800">
                             <div class="flex items-center border-b-2 border-teal-500 py-2">
                                 <x-jet-input wire:model="supplierText" wire:keydown="$set('suggestionSupplier' , true)"
@@ -49,7 +49,36 @@
                             </ul>
                         @endif
 
-                    </div>
+                    </div> --}}
+                    <section class="relative w-full max-w-lg rounded-md px-5 py-4">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </span>
+
+                            <input wire:model="supplierText" wire:keydown="$set('suggestionSupplier' , true)"
+                                type="text"
+                                class="w-full rounded-md border bg-white py-3 pl-10 pr-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-500"
+                                placeholder="Search">
+                        </div>
+                        @if ($suggestionSupplier && $supplierText != '')
+                            <div
+                                class="absolute inset-x-0 mx-5 mt-4 max-h-72 overflow-y-auto rounded-md border bg-white px-6 py-3 dark:border-transparent dark:bg-gray-800">
+                                @foreach ($suppliers as $item)
+                                    <a wire:click="loadSupplier({{ $item }})" href="#" class="block py-1">
+                                        <h3 class="font-medium text-gray-700 hover:underline dark:text-gray-100">
+                                            {{ $item->company_name }}</h3>
+                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ $item->location }}</p>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
+                    </section>
                 </div>
                 @if ($supplier)
                     <div class="mb-4">
