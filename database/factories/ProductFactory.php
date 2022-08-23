@@ -18,7 +18,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'code' => Str::random(10),
+            'code' => $this->faker->numberBetween(1000000000000, 9999999999999),
             'name' => $this->faker->sentence(2),
             'description' => $this->faker->sentence(5),
             'stock' => $this->faker->numberBetween(5, 30),

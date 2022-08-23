@@ -49,7 +49,7 @@
             <div class="grid grid-rows-1 gap-3 md:grid-cols-2 md:gap-2 lg:grid-cols-3">
                 @foreach ($products as $item)
                     <div>
-                        <div
+                        {{-- <div
                             class="{{ $item->stock ? 'bg-white' : 'bg-red-300' }} mx-auto max-w-md overflow-hidden rounded-xl shadow-md md:max-w-2xl">
                             <div class="md:flex">
                                 <div class="md:shrink-0">
@@ -79,6 +79,29 @@
 
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        <div class="mx-auto flex max-w-sm flex-col items-center justify-center">
+                            <div wire:click="show({{ $item }})"
+                                class="h-64 w-full cursor-pointer rounded-lg bg-gray-300 bg-cover bg-center shadow-md"
+                                style="background-image: url({{ $item->profile_photo_url }})">
+                            </div>
+
+                            <div
+                                class="-mt-10 w-56 overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800 md:w-64">
+                                <h3
+                                    class="py-2 text-center font-bold uppercase tracking-wide text-gray-800 hover:text-blue-500 dark:text-white">
+                                    {{ $item->name }}</h3>
+
+                                <div class="flex items-center justify-between bg-gray-200 px-3 py-2 dark:bg-gray-700">
+                                    <span
+                                        class="font-bold text-gray-800 dark:text-gray-200">${{ $item->sale_price }}</span>
+                                    @if ($item->stock)
+                                        <button wire:click="add_to_cart({{ $item }})"
+                                            class="transform rounded bg-gray-800 px-2 py-1 text-xs font-semibold uppercase text-white transition-colors duration-200 hover:bg-gray-700 focus:bg-gray-700 focus:outline-none dark:hover:bg-gray-600 dark:focus:bg-gray-600">{{ __('Add to cart') }}</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>

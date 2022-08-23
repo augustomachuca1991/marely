@@ -1,6 +1,6 @@
 <div>
     <div class="border-b border-gray-200 bg-white p-6 sm:px-20">
-        <div>
+        {{-- <div>
             <div class="flex justify-between">
                 <div class="flex-none">
                     <x-jet-application-logo class="block h-16 w-auto" />
@@ -9,9 +9,9 @@
                     <livewire:categories.create-category></livewire:categories.create-category>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="mt-6 text-gray-500">
+        <div class=" text-gray-500">
             <div
                 class="w-6/6 flex flex-col items-center space-y-1 overflow-hidden p-3 sm:rounded-lg md:flex-row md:space-y-0">
                 <div class="flex w-full md:w-4/6">
@@ -46,7 +46,47 @@
         </div>
     </div>
 
-    <div class="grid gap-2 bg-gray-200 bg-opacity-25 md:grid-cols-3">
+    <section class=" dark:bg-gray-900">
+        <div class="container mx-auto px-6 py-10">
+            <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">{{__('Categories')}}</h1>
+
+            <div class="mx-auto my-6 max-w-2xl text-center text-gray-500 dark:text-gray-300">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo incidunt ex placeat modi magni quia error
+                alias, adipisci rem similique, at omnis eligendi optio eos harum.
+            </div>
+
+            <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:mt-16 xl:grid-cols-4">
+                @if ($categories->count())
+                    @foreach ($categories as $item)
+                        <div
+                            class="group flex transform cursor-pointer flex-col items-center rounded-xl border bg-white p-8 transition-colors duration-200 hover:border-transparent hover:bg-cyan-600 dark:border-gray-700 dark:hover:border-transparent">
+                            <img class="h-32 w-32 rounded-full object-cover ring-4 ring-gray-300"
+                                src="https://ui-avatars.com/api/?name={{ urlencode($item->name) }}&color=f8f8f8&background=263238"
+                                alt="{{$item->name}}">
+
+                            <h1
+                                class="mt-4 text-2xl font-semibold capitalize text-gray-700 group-hover:text-white dark:text-white">
+                                {{$item->name}}</h1>
+
+                            <p class="mt-2 capitalize text-gray-500 group-hover:text-gray-300 dark:text-gray-300">{{$item->description}}</p>
+
+                            <div class="-mx-2 mt-3 flex">
+                                <a href="#"
+                                    class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white dark:text-gray-300 dark:hover:text-gray-300"
+                                    aria-label="Calendar">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                      </svg>
+                                    {{$item->created_at->format('d/m/Y h:ia')}}
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
+    </section>
+    {{-- <div class="grid gap-2 bg-gray-200 bg-opacity-25 md:grid-cols-3">
         @if ($categories->count())
             @foreach ($categories as $item)
                 <div class="border-spacing-2 border p-6">
@@ -105,7 +145,7 @@
             </div>
         @endif
 
-    </div>
+    </div> --}}
     @if ($isOpenShow)
         <livewire:categories.show-category :category="$category"></livewire:categories.show-category>
     @endif

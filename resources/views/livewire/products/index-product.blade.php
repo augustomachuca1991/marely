@@ -96,7 +96,7 @@
                                                     <div class="ml-4">
                                                         <a href="#" wire:click="show({{ $item }})"
                                                             class="text-gray-900 hover:text-blue-700">
-                                                            <div class="text-sm font-medium">
+                                                            <div class="text-sm font-medium capitalize">
 
                                                                 {{ $item->name }}
                                                             </div>
@@ -109,7 +109,8 @@
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4">
                                                 <div class="text-sm capitalize text-gray-500">
-                                                    {{ $item->category->name }}</div>
+                                                    {{ $item->category->name}}
+                                                </div>
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                                                 {{ $item->stock }}
@@ -122,8 +123,8 @@
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4">
                                                 <span
-                                                    class="{{ $item->deleted_at ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800' }} inline-flex rounded-full px-2 text-xs font-semibold leading-5">
-                                                    {{ $item->deleted_at ? 'Inactive' : 'Active' }}
+                                                    class="{{ $item->stock < 1 ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800' }} inline-flex rounded-full px-2 text-xs font-semibold leading-5">
+                                                    {{ $item->stock < 1 ? 'Inactive' : 'Active' }}
                                                 </span>
                                             </td>
                                             <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">

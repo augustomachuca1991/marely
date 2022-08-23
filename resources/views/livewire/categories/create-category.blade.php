@@ -1,5 +1,5 @@
 <div>
-    <x-jet-button class="w-full" wire:click="$set('isOpenCreate' , true)">
+    <x-jet-button class="w-auto" wire:click="$set('isOpenCreate' , true)">
         <div class="flex">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-600" viewBox="0 0 20 20"

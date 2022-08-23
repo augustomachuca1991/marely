@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Categories') }}
-        </h2>
+        <livewire:categories.create-category></livewire:categories.create-category>
     </x-slot>
 
     <div class="py-12">
