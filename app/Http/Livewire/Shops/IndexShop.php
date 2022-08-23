@@ -11,60 +11,70 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class IndexShop extends Component
 {
     use LivewireAlert;
-    
+
     public $cart;
     public $quantities = [];
+    public $articles = [];
     public $isOpenShow = false;
     public $isOpenNext = false;
+    public $sale;
 
 
     protected $listeners = ['render'];
 
-    // function rules() {
-    //     return [
-    //         'stock' => 'lte:'.$this->product->id,
-    //         'product.name' => 'required|max:50|unique:products,name,'.$this->product->id,
-    //         'product.description' => 'required|max:255',
-    //         'product.stock' => 'required|integer',
-    //         'product.list_price' => 'required|numeric',
-    //         'product.sale_price' => 'required|numeric',
-    //         'product.category_id' => 'required',
-    //         'photoEdit' => 'image|max:1024|nullable',
-    //     ];
-    // }
+    protected $messages = [
+
+        'quantities.*.required' => 'Este campo es obligatorio',
+        'quantities.*.integer' => 'Este campo solo acepta numeros enteros',
+        'quantities.*.min' => 'Este campo debe contener al menos 1 articulo',
+        'quantities.*.lte' => 'El stock no disponible',
+
+    ];
 
     public function render()
     {
 
         $carts = Cart::session(auth()->id())->getContent();
-        return view('livewire.shops.index-shop' , [
+        return view('livewire.shops.index-shop', [
             'carts' => $carts
         ]);
     }
 
+
+    public function updated($field)
+
+    {
+
+        $this->validateOnly($field, [
+            'quantities.*' => 'required|integer|min:1|lte:articles.*.stock'
+        ]);
+    }
 
     public function show()
     {
         //$this->cart = Cart::session(auth()->id())->getContent();
         $this->isOpenShow = true;
         $this->quantities = Cart::session(auth()->id())->getContent()->pluck('quantity', 'id')->all();
+        $this->articles = Cart::session(auth()->id())->getContent()->pluck('associatedModel', 'id')->all();
     }
 
 
-    public function delete_to_cart($rowId)
+    public function delete_to_cart($rowId, $index)
     {
+
+        unset($this->articles[$index]);
+        //array_splice($this->stockAvailable, $index, 1);
         Cart::session(auth()->id())->remove($rowId);
         if (!Cart::session(auth()->id())->getContent()->count()) {
             $this->reset('isOpenShow');
         }
-
     }
 
-    public function update_quantity($itemId, $index)
+    public function update_quantity($item, $index)
     {
-        // dd($itemId, $this->quantities[$index]);
+        $this->articles[$index] = $item['associatedModel'];
         Cart::session(auth()->id())->update(
-            $itemId,
+            $item['id'],
             array(
                 'quantity' => array(
                     'relative' => false,
@@ -76,19 +86,23 @@ class IndexShop extends Component
 
     public function confirmSale()
     {
-        $sale = new Sale();
-        $sale->user_id = auth()->id();
-        $sale->amount = Cart::session(auth()->id())->getTotal();
-        $sale->save();
+        $this->validate([
+            'quantities.*' => 'required|integer|min:1|lte:articles.*.stock'
+        ]);
+        $this->sale = new Sale();
+        $this->sale->user_id = auth()->id();
+        $this->sale->amount = Cart::session(auth()->id())->getTotal();
+        $this->sale->save();
         foreach (Cart::session(auth()->id())->getContent() as $key => $item) {
             $product = Product::findOrFail($item->associatedModel->id);
-            if ($product->stock > $item->quantity ) {
-                $product->stock -= $item->quantity;
-                $product->save();
-                $sale->products()->attach($product->id,['quantity' =>  $item->quantity , 'price_to_date' => $item->price]);
+            $product->stock -= $item->quantity;
+            $product->save();
+            $this->sale->products()->attach($product->id, ['quantity' =>  $item->quantity, 'price_to_date' => $item->price]);
+            if ($product->stock == 0) {
+                $product->delete();
             }
         }
-        $this->alert('success' , 'La compra se realizó con exito');
+        $this->alert('success', 'La compra se realizó con exito');
         $this->isOpenNext = true;
     }
 
@@ -98,7 +112,6 @@ class IndexShop extends Component
             'isOpenNext',
             'isOpenShow',
         ]);
-
         Cart::session(auth()->id())->clear();
     }
 }

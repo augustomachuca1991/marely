@@ -62,7 +62,7 @@
                                                 {{ $item->name }}
                                             </div>
                                             <div class="text-sm text-gray-500">
-                                                {{ $item->associatedModel->category->name }}
+                                                disponible {{ $item->associatedModel->stock }}
                                             </div>
                                         </div>
                                     </div>
@@ -70,15 +70,16 @@
                                 <td class="whitespace-nowrap px-6 py-4">
                                     {{-- {{ var_export($quantities) }} --}}
                                     <x-jet-input wire:model="quantities.{{ $index }}" min="1"
-                                        wire:change="update_quantity({{ $item->id }} , {{ $index }} )"
-                                        type="number" class="w-24">
+                                        wire:change="update_quantity({{ $item}} , {{ $index }})"
+                                        type="number" class="{{ $errors->has('quantities.'.$index) ? 'border rounded-md border-red-500' : 'w-24' }}">
                                     </x-jet-input>
+                                    <x-jet-input-error for="quantities.{{$index}}" />
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                                     $ {{ \Cart::session(auth()->id())->get($item->id)->getPriceSum() }}
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                                    <a href="#" wire:click="delete_to_cart({{ $item->id }})">
+                                    <a href="#" wire:click="delete_to_cart({{ $item->id }} , {{$index}})">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="h-5 w-5 text-red-600 hover:text-red-400" viewBox="0 0 20 20"
                                             fill="currentColor">
@@ -123,6 +124,8 @@
             </div>
         </x-slot>
         <x-slot name="content">
+            
+            @if ($sale)
             <div class="mb-4">
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -147,29 +150,29 @@
                                         </tr>
                                     </thead class="border-b">
                                     <tbody>
-                                        @foreach ($carts as $item)
+                                        @foreach ($sale->products as $product)
                                             <tr class="border-b bg-white">
                                                 <td
                                                     class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                                                    {{ $item->associatedModel->name }}
+                                                    {{ $product->name }}
                                                 </td>
                                                 <td
                                                     class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                                                    {{ $item->quantity }} uidades
+                                                    {{ $product->pivot->quantity }} unidades
                                                 </td>
                                                 <td
                                                     class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                                                    ${{ $item->price }}
+                                                    $ {{ $product->pivot->price_to_date }}
                                                 </td>
                                                 <td
                                                     class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                                                    ${{ \Cart::session(auth()->id())->get($item->id)->getPriceSum() }}
+                                                    $ {{ $product->pivot->price_to_date * $product->pivot->quantity }}
                                                 </td>
                                             </tr>
                                         @endforeach
                                         <tr>
                                             <td colspan="4" class="p-2 text-right"> Total:
-                                                ${{ \Cart::session(auth()->id())->getTotal() }} </td>
+                                                ${{ $sale->amount }} </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -178,18 +181,22 @@
                     </div>
                 </div>
             </div>
+            @endif
         </x-slot>
         <x-slot name="footer">
-            {{-- <x-jet-secondary-button class="mr-2" wire:click="$set('isOpenNext' , false)">{{ __('Print') }}
-            </x-jet-secondary-button> --}}
-            <x-jet-button wire:click="next">
-                <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex h-5 w-5 text-green-700" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                </svg>
-                {{ __('Print') }}
-            </x-jet-button>
+            <x-jet-secondary-button class="mr-2" wire:click="resetData">{{ __('Close') }}
+            </x-jet-secondary-button>
+            @if ($sale)
+                <a href="{{ route('reports.pdf', $sale->id) }}" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex h-5 w-5 text-green-700" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                    {{ __('Print') }}
+                </a>
+            @endif
+
         </x-slot>
     </x-jet-dialog-modal>
 

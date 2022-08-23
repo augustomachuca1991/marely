@@ -28,6 +28,7 @@ class IndexReport extends Component
         $sales = Sale::searchSale($this->search)
         ->searchUser($this->perUser)
         ->fromTo($this->from, $this->to)
+        ->latest()
         ->paginate($this->perPage);
         return view('livewire.reports.index-report', [
             'sales' => $sales
