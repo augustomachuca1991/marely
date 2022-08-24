@@ -45,47 +45,22 @@
                                 </button>
                             </div>
                             <div
-                                class="hidden w-full flex-wrap items-center justify-end space-y-4 rounded-xl bg-gray-300 p-6 md:flex md:w-8/12 md:flex-nowrap md:space-y-0 md:space-x-4 md:divide-x md:bg-transparent md:p-0 lg:w-7/12">
-                                <div class="block w-full md:w-max">
-                                    {{-- <ul class="space-y-4 font-medium tracking-wide text-gray-500 md:flex md:space-y-0">
-                                        <li>
-                                            <a href="#" class="block md:px-4">
-                                                <div
-                                                    class="relative text-teal-600 before:absolute before:-bottom-7 before:mx-auto before:mt-auto before:h-1 before:w-full before:rounded-t-full before:bg-teal-500">
-                                                    <span>Link</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="group block md:px-4">
-                                                <div
-                                                    class="group relative before:absolute before:-bottom-7 before:mt-auto before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:rounded-full before:bg-teal-800 before:transition group-hover:before:scale-x-100">
-                                                    <span class="group-hover:text-teal-500">Link</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="group block md:px-4">
-                                                <div
-                                                    class="group relative before:absolute before:-bottom-7 before:mx-auto before:mt-auto before:h-0.5 before:w-full before:scale-x-0 before:rounded-full before:bg-teal-800 before:transition group-hover:before:scale-x-100">
-                                                    <span class="group-hover:text-teal-500">Link</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul> --}}
+                                class="mobile-links hidden w-full flex-wrap items-center justify-end space-y-4 rounded-xl bg-white p-6 md:flex md:w-8/12 md:flex-nowrap md:space-y-0 md:space-x-4 md:divide-x md:bg-transparent md:p-0 lg:w-7/12">
+                                <div class="mr-2 block w-full md:w-max">
+                                    <!--nav link-->
                                 </div>
                                 @if (Route::has('login'))
                                     <div class="w-full space-y-4 md:flex md:w-max md:space-y-0 md:space-x-4">
                                         @auth
                                             <a href="{{ route('dashboard') }}" type="button" title="Start buying"
-                                                class="w-full rounded-xl py-3 px-6 text-center transition focus:bg-teal-100 active:bg-teal-200 sm:w-max">
+                                                class="w-full rounded-xl py-3 px-6 text-center transition hover:bg-teal-100 sm:w-max md:ml-2">
                                                 <span class="block font-semibold text-teal-600">
                                                     Dashboard
                                                 </span>
                                             </a>
                                         @else
                                             <a href="{{ route('login') }}" type="button" title="Start buying"
-                                                class="w-full rounded-xl py-3 px-6 text-center transition focus:bg-teal-100 active:bg-teal-200 sm:w-max">
+                                                class="w-full rounded-xl py-3 px-6 text-center transition hover:bg-teal-100 sm:w-max md:ml-2">
                                                 <span class="block font-semibold text-teal-600">
                                                     Login
                                                 </span>
@@ -106,7 +81,8 @@
                         </div>
                     </div>
                 </div>
-                <div aria-hidden="true" class="w-12/12 m-auto -mt-6 h-4 bg-teal-600 opacity-30 blur md:-mt-4"></div>
+                <div aria-hidden="true"
+                    class="m-auto -mt-5 h-4 w-11/12 bg-teal-600 opacity-50 blur md:-mt-4 md:opacity-30"></div>
             </nav>
         </header>
         <div class="flex min-h-screen bg-gradient-to-b from-white to-teal-50">
@@ -147,8 +123,14 @@
             </div>
         </div>
     </div>
-
     @livewireScripts
+    <script>
+        const menuButton = document.querySelector('#hamburger')
+        menuButton.addEventListener('click', e => {
+            const menu = document.querySelector('.mobile-links');
+            menu.classList.toggle('hidden');
+        })
+    </script>
 </body>
 
 </html>
