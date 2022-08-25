@@ -31,6 +31,8 @@ class IndexSale extends Component
         'perPage' => ['except' => 20]
     ];
 
+    protected $listeners = ['closeModal'];
+
     public function render()
     {
         $products = Product::searchProduct($this->search)
@@ -51,9 +53,7 @@ class IndexSale extends Component
 
     public function add_to_cart(Product $product)
     {
-        $this->alert('success' , 'Se agregó un articulo al carrito',[
-            'position' => 'bottom-end'
-        ]);
+        
         \Cart::session(auth()->id())->add(array(
             'id' => $product->id,
             'name' => $product->name,
@@ -62,6 +62,9 @@ class IndexSale extends Component
             'attributes' => array(),
             'associatedModel' => $product
         ));
+        $this->alert('success' , 'Se agregó un articulo al carrito',[
+            'position' => 'bottom-end'
+        ]);
         $this->emitTo('shops.index-shop' , 'render');
     }
 
@@ -71,6 +74,9 @@ class IndexSale extends Component
         $this->perPage += $this->perPage;
     }
 
+    public function closeModal(){
+        $this->isOpenShow = false;
+    }
 
     public function show(Product $product)
     {

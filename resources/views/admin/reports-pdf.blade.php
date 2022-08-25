@@ -100,7 +100,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->description }}</td>
                             <td>$ {{ $item->pivot->price_to_date }}</td>
-                            <td>$ {{ $item->pivot->price_to_date * $item->pivot->quantity }}</td>
+                            <td>$ {{ number_format(($item->pivot->price_to_date * $item->pivot->quantity) , 2,',','') }}</td>
                         </tr>
                     @endforeach
                 </tbody>

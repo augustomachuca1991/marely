@@ -46,14 +46,63 @@
     </div>
     <div class="overflow-hidden sm:rounded-lg">
         @if ($products->count())
-            <div class="grid grid-rows-1 gap-3 md:grid-cols-2 md:gap-2 lg:grid-cols-3">
+            <div class="grid grid-rows-1 gap-3 md:grid-cols-2 md:gap-2">
                 @foreach ($products as $item)
                     <div>
+                        {{-- <div
+                            class="mx-auto flex max-w-md overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800">
+                            <div class="w-1/3 bg-cover"
+                                style="background-image: url('{{$item->profile_photo_url}}'); object-fit:cover">
+                            </div>
+
+                            <div class="w-2/3 p-4 md:p-4">
+                                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{$item->name}}</h1>
+
+                                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{$item->descripcion}}</p>
+
+                                <div class="item-center mt-2 flex">
+                                    <svg class="h-5 w-5 fill-current text-gray-700 dark:text-gray-300"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
+                                    </svg>
+
+                                    <svg class="h-5 w-5 fill-current text-gray-700 dark:text-gray-300"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
+                                    </svg>
+
+                                    <svg class="h-5 w-5 fill-current text-gray-700 dark:text-gray-300"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
+                                    </svg>
+
+                                    <svg class="h-5 w-5 fill-current text-gray-500" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
+                                    </svg>
+
+                                    <svg class="h-5 w-5 fill-current text-gray-500" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
+                                    </svg>
+                                </div>
+
+                                <div class="item-center mt-3 flex justify-between">
+                                    <h1 class="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">$220</h1>
+                                    <button
+                                        class="transform rounded bg-gray-800 px-2 py-1 text-xs font-bold uppercase text-white transition-colors duration-200 hover:bg-gray-700 focus:bg-gray-700 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600">Add
+                                        to Cart</button>
+                                </div>
+                            </div>
+                        </div> --}}
                         {{-- <div
                             class="{{ $item->stock ? 'bg-white' : 'bg-red-300' }} mx-auto max-w-md overflow-hidden rounded-xl shadow-md md:max-w-2xl">
                             <div class="md:flex">
                                 <div class="md:shrink-0">
-                                    <img class="h-48 w-full object-cover md:h-full md:w-48"
+                                    <img class="h-36 w-full object-cover md:h-full md:w-24"
                                         src="{{ $item->profile_photo_url }}" alt="{{ $item->name }}">
                                 </div>
                                 <div class="p-8">
@@ -110,11 +159,6 @@
 
             </div>
             {{ $products->links() }}
-            {{-- @if ($products->hasMorePages())
-                <a wire:click="loadMore" class="cursor-pointer">
-                    <span class="underline text-blue-500 font-bold">{{ __('Load More') }}</span>
-                </a>
-            @endif --}}
         @endif
     </div>
     @if ($isOpenShow)

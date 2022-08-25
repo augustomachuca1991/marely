@@ -25,7 +25,7 @@
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <!-- text - start -->
             <div class="mb-10 md:mb-16">
-                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Collections</h2>
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">{{__('Suppliers')}}</h2>
 
                 <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This is a section of some simple
                     filler text, also known as placeholder text. It shares some characteristics of a real written text
@@ -37,19 +37,44 @@
                 @foreach ($suppliers as $item)
                     <!-- product - start -->
                     <a href="#"
-                        class="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-                        <img src="https://ui-avatars.com/api/?format=svg&name={{ urlencode($item->company_name) }}&background=random"
+                        class="group relative flex h-56 items-end overflow-hidden rounded-lg bg-pink-100 p-4 shadow-lg">
+                        {{-- <img src="https://ui-avatars.com/api/?format=svg&name={{ urlencode($item->company_name) }}&background=random"
                             loading="lazy" alt="Photo by Fakurian Design"
-                            class="absolute inset-0 h-48 w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            class="absolute inset-0 h-36 w-full object-cover object-center transition duration-200 group-hover:scale-110" /> --}}
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                         </div>
 
                         <div class="relative flex flex-col">
-                            <span class="text-gray-200 uppercase">{{$item->company_name}}</span>
+                            {{-- <span class="text-gray-200 uppercase">{{$item->company_name}}</span>
                             <span class="text-lg font-semibold text-white lg:text-xl">{{$item->location}}</span>
-                            <span class="text-lg font-semibold text-white lg:text-xl">{{$item->phone_number}}</span>
+                            <span class="text-lg font-semibold text-white lg:text-xl">{{$item->phone_number}}</span> --}}
+                            <div class="py-6 md:py-0 md:px-6">
+                                <h1 class="text-4xl font-bold capitalize">{{$item->company_name}}</h1>
+                                <p class="pt-2 pb-4">Fill in the form to start a conversation</p>
+                                <div class="space-y-4">
+                                    <p class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 sm:mr-6">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span>{{$item->location}}</span>
+                                    </p>
+                                    <p class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 sm:mr-6">
+                                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                        </svg>
+                                        <span>+54-{{$item->phone_number}}</span>
+                                    </p>
+                                    <p class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 sm:mr-6">
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                        </svg>
+                                        <span>contact@business.com</span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </a>
                     <!-- product - end -->

@@ -24,11 +24,11 @@
 
 
     <aside
-        class="fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between border-r bg-gray-200 px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+        class="fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between overflow-auto border-r bg-gray-200 px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
         <div>
             <div class="-mx-6 px-6 py-4">
                 <a href="{{ route('dashboard') }}" title="home">
-                    <img src="{{ asset('image/logoMarely4.svg') }}" class="w-36" alt="marely logo">
+                    <img src="{{ asset('image/logoMarely4.svg') }}" class="w-full" alt="marely logo">
                 </a>
             </div>
 
@@ -54,7 +54,7 @@
                             <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
                                 class="fill-current group-hover:text-sky-300"></path>
                         </svg>
-                        <span class="-mr-1 font-medium">Dashboard</span>
+                        <span class="-mr-1 font-medium">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
                 <li>
@@ -69,7 +69,21 @@
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="group-hover:text-gray-700">Products</span>
+                        <span class="group-hover:text-gray-700">{{ __('Products') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('suppliers.index') }}"
+                        class="group {{ request()->routeIs('suppliers.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                            <path class="fill-current text-gray-500 group-hover:text-cyan-300"
+                                d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25zM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 116 0h3a.75.75 0 00.75-.75V15z" />
+                            <path class="fill-current text-gray-700 group-hover:text-cyan-600"
+                                d="M8.25 19.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0zM15.75 6.75a.75.75 0 00-.75.75v11.25c0 .087.015.17.042.248a3 3 0 015.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 00-3.732-10.104 1.837 1.837 0 00-1.47-.725H15.75z" />
+                            <path class="fill-current text-gray-900 group-hover:text-cyan-300"
+                                d="M19.5 19.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z" />
+                        </svg>
+                        <span class="group-hover:text-gray-700">{{ __('Suppliers') }}</span>
                     </a>
                 </li>
                 <li>
@@ -82,33 +96,10 @@
                             <path class="fill-current text-gray-600 group-hover:text-cyan-600"
                                 d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
                         </svg>
-                        <span class="group-hover:text-gray-700">Categories</span>
+                        <span class="group-hover:text-gray-700">{{ __('Categories') }}</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('reports.index') }}"
-                        class="group {{ request()->routeIs('reports.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
-                                d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-                                clip-rule="evenodd" />
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
-                                d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
-                        </svg>
-                        <span class="group-hover:text-gray-700">Reports</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="group flex items-center space-x-4 px-4 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600"
-                                d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
-                                d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-                        </svg>
-                        <span class="group-hover:text-gray-700">Other data</span>
-                    </a>
-                </li>
+
                 <li>
                     <a href="{{ route('sales.index') }}"
                         class="group {{ request()->routeIs('sales.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
@@ -119,34 +110,78 @@
                                 d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
                                 clip-rule="evenodd" />
                         </svg>
-                        <span class="group-hover:text-gray-700">Sales</span>
+                        <span class="group-hover:text-gray-700">{{ __('Sales') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('reports.index') }}"
+                        class="group {{ request()->routeIs('reports.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
+                                d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                                clip-rule="evenodd" />
+                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
+                                d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
+                        </svg>
+                        <span class="group-hover:text-gray-700">{{ __('Reports') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('referrals.index') }}" class="group flex items-center space-x-4 px-4 py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24" fill="currentColor"
+                            class="h-5 w-5">
+                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
+                                d="M10.464 8.746c.227-.18.497-.311.786-.394v2.795a2.252 2.252 0 01-.786-.393c-.394-.313-.546-.681-.546-1.004 0-.323.152-.691.546-1.004zM12.75 15.662v-2.824c.347.085.664.228.921.421.427.32.579.686.579.991 0 .305-.152.671-.579.991a2.534 2.534 0 01-.921.42z" />
+                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
+                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v.816a3.836 3.836 0 00-1.72.756c-.712.566-1.112 1.35-1.112 2.178 0 .829.4 1.612 1.113 2.178.502.4 1.102.647 1.719.756v2.978a2.536 2.536 0 01-.921-.421l-.879-.66a.75.75 0 00-.9 1.2l.879.66c.533.4 1.169.645 1.821.75V18a.75.75 0 001.5 0v-.81a4.124 4.124 0 001.821-.749c.745-.559 1.179-1.344 1.179-2.191 0-.847-.434-1.632-1.179-2.191a4.122 4.122 0 00-1.821-.75V8.354c.29.082.559.213.786.393l.415.33a.75.75 0 00.933-1.175l-.415-.33a3.836 3.836 0 00-1.719-.755V6z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="group-hover:text-gray-700">{{ __('Referrals') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="group flex items-center space-x-4 px-4 py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path class="fill-current text-gray-600 group-hover:text-cyan-600"
+                                d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                            <path class="fill-current text-gray-500 group-hover:text-cyan-300"
+                                d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+                        </svg>
+                        <span class="group-hover:text-gray-700">Other data</span>
                     </a>
                 </li>
 
+
             </ul>
         </div>
-
+        <hr class="mt-2 border-gray-300" />
         <div class="-mx-6 flex items-center justify-between border-t px-6 pt-4">
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="group flex items-center space-x-4 px-4 py-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                    class="h-5 w-5 fill-current dark:text-gray-400">
+                    <path
+                        d="M440,424V88H352V13.005L88,58.522V424H16v32h86.9L352,490.358V120h56V456h88V424ZM320,453.642,120,426.056V85.478L320,51Z">
+                    </path>
+                    <rect width="32" height="64" x="256" y="232"></rect>
                 </svg>
-                <span class="group-hover:text-gray-700">Logout</span>
+                <span class="group-hover:text-gray-700">{{ __('Logout') }}</span>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
         </div>
     </aside>
+
     <div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
-        <div class="sticky top-0 h-16 border-b bg-white lg:py-2.5">
+        <div class="sticky top-0 z-10 h-16 border-b bg-white lg:py-2.5">
             <div class="flex items-center justify-between space-x-4 px-6 2xl:container">
                 <h5 hidden class="text-2xl font-medium text-gray-600 lg:block">Dashboard</h5>
-                <button class="-mr-2 h-16 w-12 border-r lg:hidden">
+                <button class="-mr-2 h-16 w-12 border-r lg:hidden" id="btn-sidebar">
                     <svg xmlns="http://www.w3.org/2000/svg" class="my-auto h-6 w-6" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -179,14 +214,7 @@
                             </path>
                         </svg>
                     </button>
-                    <button aria-label="chat"
-                        class="h-10 w-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="m-auto h-5 w-5 text-gray-600" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                        </svg>
-                    </button>
+                    <livewire:shops.index-shop></livewire:shops.index-shop>
                     <button aria-label="notification"
                         class="h-10 w-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" class="m-auto h-5 w-5 text-gray-600"
@@ -198,16 +226,145 @@
                 </div>
             </div>
         </div>
+        <!-- Responsive Navigation Menu -->
+        <div class="menu-sidebar fixed z-10 hidden w-full bg-teal-50 shadow-2xl lg:hidden">
+            <div class="space-y-1 pt-2 pb-3">
+                <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
+                    {{ __('Products') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('suppliers.index') }}" :active="request()->routeIs('suppliers.index')">
+                    {{ __('Suppliers') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                    {{ __('Categories') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
+                    {{ __('Sales') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('audits.index') }}" :active="request()->routeIs('audits.index')">
+                    {{ __('Audits') }}
+                </x-jet-responsive-nav-link>
+            </div>
+
+            <!-- Responsive Settings Options -->
+            <div class="border-t border-gray-200 pt-4 pb-1">
+                <div class="flex items-center px-4">
+                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                        <div class="mr-3 shrink-0">
+                            <img class="h-10 w-10 rounded-full object-cover"
+                                src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                        </div>
+                    @endif
+
+                    <div>
+                        <div class="text-base font-medium text-gray-800">{{ Auth::user()->name }}</div>
+                        <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
+                    </div>
+                </div>
+
+                <div class="mt-3 space-y-1">
+                    <!-- Account Management -->
+                    <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                        {{ __('Profile') }}
+                    </x-jet-responsive-nav-link>
+
+                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                        <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
+                            {{ __('API Tokens') }}
+                        </x-jet-responsive-nav-link>
+                    @endif
+
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+
+                        <x-jet-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                            {{ __('Log Out') }}
+                        </x-jet-responsive-nav-link>
+                    </form>
+
+                    <!-- Team Management -->
+                    @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                        <div class="border-t border-gray-200"></div>
+
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Manage Team') }}
+                        </div>
+
+                        <!-- Team Settings -->
+                        <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"
+                            :active="request()->routeIs('teams.show')">
+                            {{ __('Team Settings') }}
+                        </x-jet-responsive-nav-link>
+
+                        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                            <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
+                                {{ __('Create New Team') }}
+                            </x-jet-responsive-nav-link>
+                        @endcan
+
+                        <div class="border-t border-gray-200"></div>
+
+                        <!-- Team Switcher -->
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Switch Teams') }}
+                        </div>
+
+                        @foreach (Auth::user()->allTeams() as $team)
+                            <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
+                        @endforeach
+                    @endif
+
+                    {{-- <!-- Cart Shop -->
+                    @if (\Cart::session(auth()->id())->getTotalQuantity())
+                        <div class="border-t border-gray-200"></div>
+
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Cart Shop') }}
+                        </div>
+
+                        <!-- add to cart -->
+                        <x-jet-responsive-nav-link href="#">
+                            <svg width="20" height="20" version="1.1" id="Layer_1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                x="0px" y="0px" viewBox="0 0 20 20"
+                                style="enable-background:new 0 0 20 20;" xml:space="preserve">
+                                <path
+                                    d="M19.61,17.3l-0.52-9.4c-0.06-0.99-0.88-1.77-1.87-1.77h-2.95V4.99c0-2.35-1.91-4.26-4.27-4.26S5.73,2.64,5.73,4.99v1.14
+                                    H2.78c-0.99,0-1.81,0.78-1.87,1.77l-0.52,9.4c-0.03,0.51,0.16,1.02,0.51,1.39c0.35,0.37,0.85,0.59,1.36,0.59h15.48
+                                    c0.51,0,1.01-0.21,1.36-0.58C19.45,18.31,19.63,17.81,19.61,17.3z M7.26,4.99c0-1.51,1.23-2.74,2.74-2.74s2.74,1.23,2.74,2.74v1.14
+                                    H7.26V4.99z M17.99,17.64c-0.04,0.04-0.12,0.11-0.25,0.11H2.26c-0.13,0-0.21-0.07-0.25-0.11c-0.04-0.04-0.1-0.13-0.09-0.26l0.52-9.4
+                                    C2.45,7.8,2.6,7.65,2.78,7.65h2.95v1.83c0,0.42,0.34,0.76,0.76,0.76s0.76-0.34,0.76-0.76V7.65h5.48v1.83c0,0.42,0.34,0.76,0.76,0.76
+                                    s0.76-0.34,0.76-0.76V7.65h2.95c0.18,0,0.34,0.14,0.35,0.33l0.52,9.4C18.09,17.51,18.03,17.6,17.99,17.64z">
+                                </path>
+                            </svg>
+                            <span
+                                class="ml-2 inline-block whitespace-nowrap rounded-full bg-red-600 py-1 px-1.5 text-center align-baseline text-xs font-bold leading-none text-white">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</span>
+                        </x-jet-responsive-nav-link>
+                    @endif --}}
+                </div>
+            </div>
+        </div>
 
         <div class="bg-gray-100 px-6 pt-6 2xl:container">
-            {{-- <div class="flex h-[80vh] items-center justify-center rounded-xl border-2 border-dashed border-gray-300"> --}}
             {{ $slot }}
-            {{-- </div> --}}
         </div>
     </div>
 
 
     @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+    <script>
+        const menuButton = document.querySelector('#btn-sidebar')
+        menuButton.addEventListener('click', e => {
+            const menu = document.querySelector('.menu-sidebar');
+            menu.classList.toggle('hidden');
+        })
+    </script>
 </body>
 
 </html>

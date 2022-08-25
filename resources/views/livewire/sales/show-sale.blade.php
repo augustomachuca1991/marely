@@ -45,7 +45,7 @@
     </section>
         </x-slot>
         <x-slot name=footer>
-            <x-jet-secondary-button wire:click="$set('isOpenShow' , false)">{{ __('Close') }}
+            <x-jet-secondary-button wire:click="resetData">{{ __('Close') }}
             </x-jet-secondary-button>
         </x-slot>
     </x-jet-dialog-modal>

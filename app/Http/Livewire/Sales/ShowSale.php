@@ -20,4 +20,10 @@ class ShowSale extends Component
     {
         return view('livewire.sales.show-sale');
     }
+
+
+    public function resetData(){
+        $this->reset('isOpenShow');
+        $this->emitTo('sales.index-sale','closeModal');
+    }
 }

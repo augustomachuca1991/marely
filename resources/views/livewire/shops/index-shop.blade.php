@@ -1,26 +1,17 @@
 <div>
-
-    <div class="flex justify-center space-x-2">
-        <a href="#" wire:click="show"
-            class="inline-block items-center rounded px-6 py-2.5 text-xs font-medium uppercase leading-tight transition duration-150 ease-in-out">
-            <svg width="20" height="20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20"
-                style="enable-background:new 0 0 20 20;" xml:space="preserve">
-                <path
-                    d="M19.61,17.3l-0.52-9.4c-0.06-0.99-0.88-1.77-1.87-1.77h-2.95V4.99c0-2.35-1.91-4.26-4.27-4.26S5.73,2.64,5.73,4.99v1.14
-                                    H2.78c-0.99,0-1.81,0.78-1.87,1.77l-0.52,9.4c-0.03,0.51,0.16,1.02,0.51,1.39c0.35,0.37,0.85,0.59,1.36,0.59h15.48
-                                    c0.51,0,1.01-0.21,1.36-0.58C19.45,18.31,19.63,17.81,19.61,17.3z M7.26,4.99c0-1.51,1.23-2.74,2.74-2.74s2.74,1.23,2.74,2.74v1.14
-                                    H7.26V4.99z M17.99,17.64c-0.04,0.04-0.12,0.11-0.25,0.11H2.26c-0.13,0-0.21-0.07-0.25-0.11c-0.04-0.04-0.1-0.13-0.09-0.26l0.52-9.4
-                                    C2.45,7.8,2.6,7.65,2.78,7.65h2.95v1.83c0,0.42,0.34,0.76,0.76,0.76s0.76-0.34,0.76-0.76V7.65h5.48v1.83c0,0.42,0.34,0.76,0.76,0.76
-                                    s0.76-0.34,0.76-0.76V7.65h2.95c0.18,0,0.34,0.14,0.35,0.33l0.52,9.4C18.09,17.51,18.03,17.6,17.99,17.64z">
-                </path>
-            </svg>
-            @if ($carts->count())
-                <span
-                    class="ml-2 inline-block whitespace-nowrap rounded-full bg-red-600 py-1 px-1.5 text-center align-baseline font-bold leading-none text-white">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</span>
-            @endif
-        </a>
-    </div>
+    <button aria-label="shopping-bag" wire:click="show"
+        class="flex h-10 w-10 items-center space-x-1.5 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            class="m-auto h-5 w-5 text-gray-600">
+            <path fill-rule="evenodd"
+                d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 004.25 22.5h15.5a1.875 1.875 0 001.865-2.071l-1.263-12a1.875 1.875 0 00-1.865-1.679H16.5V6a4.5 4.5 0 10-9 0zM12 3a3 3 0 00-3 3v.75h6V6a3 3 0 00-3-3zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75z"
+                clip-rule="evenodd" />
+        </svg>
+        @if ($carts->count())
+            <span
+                class="rounded-full bg-red-500 px-1 py-0.5 text-xs text-white">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</span>
+        @endif
+    </button>
 
     <x-jet-dialog-modal wire:model="isOpenShow">
         <x-slot name="title">{{ __('Cart') }}</x-slot>
@@ -70,16 +61,18 @@
                                 <td class="whitespace-nowrap px-6 py-4">
                                     {{-- {{ var_export($quantities) }} --}}
                                     <x-jet-input wire:model="quantities.{{ $index }}" min="1"
-                                        wire:change="update_quantity({{ $item}} , {{ $index }})"
-                                        type="number" class="{{ $errors->has('quantities.'.$index) ? 'border rounded-md border-red-500' : 'w-24' }}">
+                                        wire:change="update_quantity({{ $item }} , {{ $index }})"
+                                        type="number"
+                                        class="{{ $errors->has('quantities.' . $index) ? 'border rounded-md border-red-500' : 'w-24' }}">
                                     </x-jet-input>
-                                    <x-jet-input-error for="quantities.{{$index}}" />
+                                    <x-jet-input-error for="quantities.{{ $index }}" />
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                                     $ {{ \Cart::session(auth()->id())->get($item->id)->getPriceSum() }}
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                                    <a href="#" wire:click="delete_to_cart({{ $item->id }} , {{$index}})">
+                                    <a href="#"
+                                        wire:click="delete_to_cart({{ $item->id }} , {{ $index }})">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="h-5 w-5 text-red-600 hover:text-red-400" viewBox="0 0 20 20"
                                             fill="currentColor">
@@ -124,67 +117,79 @@
             </div>
         </x-slot>
         <x-slot name="content">
-            
             @if ($sale)
-            <div class="mb-4">
-                <div class="flex flex-col">
-                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="inline-block min-w-full py-4 sm:px-6 lg:px-8">
-                            <div class="overflow-hidden">
-                                <table class="min-w-full text-center">
-                                    <thead class="border-b bg-gray-50">
-                                        <tr>
-
-                                            <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
-                                                {{ __('Article') }}
-                                            </th>
-                                            <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
-                                                {{ __('Quantity') }}
-                                            </th>
-                                            <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
-                                                {{ __('Unit Price') }}
-                                            </th>
-                                            <th scope="col" class="px-6 py-4 text-sm font-medium text-gray-900">
-                                                {{ __('SubTotal') }}
-                                            </th>
-                                        </tr>
-                                    </thead class="border-b">
-                                    <tbody>
-                                        @foreach ($sale->products as $product)
-                                            <tr class="border-b bg-white">
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                                                    {{ $product->name }}
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                                                    {{ $product->pivot->quantity }} unidades
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                                                    $ {{ $product->pivot->price_to_date }}
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900">
-                                                    $ {{ $product->pivot->price_to_date * $product->pivot->quantity }}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        <tr>
-                                            <td colspan="4" class="p-2 text-right"> Total:
-                                                ${{ $sale->amount }} </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                <div
+                    class="container mx-auto flex max-w-md flex-col space-y-4 divide-y divide-gray-700 bg-gray-900 p-6 text-gray-100 sm:w-96 sm:p-10">
+                    <h2 class="text-2xl font-semibold">Order items</h2>
+                    <ul class="flex flex-col space-y-2 pt-4">
+                        @foreach ($sale->products as $product)
+                            <li class="flex items-start justify-between">
+                                <h3>{{ $product->name }}, {{ $product->description }}
+                                    <span class="text-sm text-teal-400">x{{ $product->pivot->quantity }}</span>
+                                </h3>
+                                <div class="text-right">
+                                    <span
+                                        class="block">${{ number_format($product->pivot->price_to_date * $product->pivot->quantity, 2, '.', '') }}</span>
+                                    <span class="text-sm text-gray-400">à ${{ $product->pivot->price_to_date }}</span>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <div class="space-y-2 pt-4">
+                        <div>
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span>${{ number_format($sale->amount, 2, '.', '') }}</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                    class="mt-1 h-3 w-3 fill-current text-teal-400">
+                                    <path
+                                        d="M485.887,263.261,248,25.373A31.791,31.791,0,0,0,225.373,16H64A48.055,48.055,0,0,0,16,64V225.078A32.115,32.115,0,0,0,26.091,248.4L279.152,486.125a23.815,23.815,0,0,0,16.41,6.51q.447,0,.9-.017a23.828,23.828,0,0,0,16.79-7.734L486.581,296.479A23.941,23.941,0,0,0,485.887,263.261ZM295.171,457.269,48,225.078V64A16.019,16.019,0,0,1,64,48H225.373L457.834,280.462Z">
+                                    </path>
+                                    <path
+                                        d="M148,96a52,52,0,1,0,52,52A52.059,52.059,0,0,0,148,96Zm0,72a20,20,0,1,1,20-20A20.023,20.023,0,0,1,148,168Z">
+                                    </path>
+                                </svg>
+                                <span class="text-gray-400">Spend $20.00, get 20% off</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Discount</span>
+                            <span>-$0.00</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2 pt-4">
+                        <div class="flex justify-between">
+                            <span>Service fee</span>
+                            <span>$0.00</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="flex justify-between">
+                                <span>Delivery fee</span>
+                                <span>$0.00</span>
+                            </div>
+                            <a rel="noopener noreferrer" href="#"
+                                class="text-xs text-teal-400 hover:underline">How do our fees work?</a>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="flex justify-between">
+                                <span>Total</span>
+                                <span class="font-semibold">${{ number_format($sale->amount, 2, '.', '') }}</span>
+                            </div>
+                            <div class="w-full rounded border border-teal-400 bg-teal-400 py-2 text-center">
+                                <a href="{{ route('reports.pdf', $sale->id) }}" target="_blank"
+                                    class="w-full  font-semibold text-gray-900">Print
+                                    receipt</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endif
+
         </x-slot>
         <x-slot name="footer">
-            <x-jet-secondary-button class="mr-2" wire:click="resetData">{{ __('Close') }}
+            {{-- <x-jet-secondary-button class="mr-2" wire:click="resetData">{{ __('Close') }}
             </x-jet-secondary-button>
             @if ($sale)
                 <a href="{{ route('reports.pdf', $sale->id) }}" target="_blank">
@@ -195,7 +200,7 @@
                     </svg>
                     {{ __('Print') }}
                 </a>
-            @endif
+            @endif --}}
 
         </x-slot>
     </x-jet-dialog-modal>
