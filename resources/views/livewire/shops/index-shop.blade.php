@@ -18,76 +18,80 @@
         <x-slot name="content">
             <div class="mb-4">
                 {{-- {{ $this->cart }} --}}
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead>
-                        <tr>
-                            <th scope="col"
-                                class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                {{ __('Name') }}
-                            </th>
-                            <th scope="col"
-                                class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                {{ __('Quantity') }}
-                            </th>
-                            <th scope="col"
-                                class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                {{ __('Price') }}
-                            </th>
-                            <th scope="col" class="bg-gray-50 px-6 py-3">
-                                <span class="sr-only">{{ __('Actions') }}</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white">
-                        @foreach ($carts->sortBy('id') as $index => $item)
+                @if ($carts->count())
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
                             <tr>
-                                <td class="whitespace-nowrap px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0">
-                                            <img class="h-10 w-10 rounded-full object-cover"
-                                                src="{{ $item->associatedModel->profile_photo_url }}"
-                                                alt="{{ $item->name }}">
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">
-                                                {{ $item->name }}
-                                            </div>
-                                            <div class="text-sm text-gray-500">
-                                                disponible {{ $item->associatedModel->stock }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="whitespace-nowrap px-6 py-4">
-                                    {{-- {{ var_export($quantities) }} --}}
-                                    <x-jet-input wire:model="quantities.{{ $index }}" min="1"
-                                        wire:change="update_quantity({{ $item }} , {{ $index }})"
-                                        type="number"
-                                        class="{{ $errors->has('quantities.' . $index) ? 'border rounded-md border-red-500' : 'w-24' }}">
-                                    </x-jet-input>
-                                    <x-jet-input-error for="quantities.{{ $index }}" />
-                                </td>
-                                <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
-                                    $ {{ \Cart::session(auth()->id())->get($item->id)->getPriceSum() }}
-                                </td>
-                                <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                                    <a href="#"
-                                        wire:click="delete_to_cart({{ $item->id }} , {{ $index }})">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="h-5 w-5 text-red-600 hover:text-red-400" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                </td>
+                                <th scope="col"
+                                    class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    {{ __('Name') }}
+                                </th>
+                                <th scope="col"
+                                    class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    {{ __('Quantity') }}
+                                </th>
+                                <th scope="col"
+                                    class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    {{ __('Price') }}
+                                </th>
+                                <th scope="col" class="bg-gray-50 px-6 py-3">
+                                    <span class="sr-only">{{ __('Actions') }}</span>
+                                </th>
                             </tr>
-                        @endforeach
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 bg-white">
+                            @foreach ($carts->sortBy('id') as $index => $item)
+                                <tr>
+                                    <td class="whitespace-nowrap px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0">
+                                                <img class="h-10 w-10 rounded-full object-cover"
+                                                    src="{{ $item->associatedModel->profile_photo_url }}"
+                                                    alt="{{ $item->name }}">
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    {{ $item->name }}
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    disponible {{ $item->associatedModel->stock }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="whitespace-nowrap px-6 py-4">
+                                        {{-- {{ var_export($quantities) }} --}}
+                                        <x-jet-input wire:model="quantities.{{ $index }}" min="1"
+                                            wire:change="update_quantity({{ $item }} , {{ $index }})"
+                                            type="number"
+                                            class="{{ $errors->has('quantities.' . $index) ? 'border rounded-md border-red-500' : 'w-24' }}">
+                                        </x-jet-input>
+                                        <x-jet-input-error for="quantities.{{ $index }}" />
+                                    </td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                        $ {{ \Cart::session(auth()->id())->get($item->id)->getPriceSum() }}
+                                    </td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                                        <a href="#"
+                                            wire:click="delete_to_cart({{ $item->id }} , {{ $index }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-red-600 hover:text-red-400" viewBox="0 0 20 20"
+                                                fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                        <!-- More rows... -->
-                    </tbody>
-                </table>
+                            <!-- More rows... -->
+                        </tbody>
+                    </table>
+                @else
+                <p class="text-center italic text-gray-500">El Carrito se encuentra vacio</p>
+                @endif
 
             </div>
         </x-slot>
@@ -179,7 +183,7 @@
                             </div>
                             <div class="w-full rounded border border-teal-400 bg-teal-400 py-2 text-center">
                                 <a href="{{ route('reports.pdf', $sale->id) }}" target="_blank"
-                                    class="w-full  font-semibold text-gray-900">Print
+                                    class="w-full font-semibold text-gray-900">Print
                                     receipt</a>
                             </div>
                         </div>
