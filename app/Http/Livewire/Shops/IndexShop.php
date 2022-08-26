@@ -98,9 +98,7 @@ class IndexShop extends Component
             $product->stock -= $item->quantity;
             $product->save();
             $this->sale->products()->attach($product->id, ['quantity' =>  $item->quantity, 'price_to_date' => $item->price]);
-            // if ($product->stock == 0) {
-            //     $product->delete();
-            // }
+            
         }
         $this->alert('success', 'La compra se realizó con exito');
         $this->isOpenNext = true;

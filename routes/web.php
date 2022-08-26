@@ -9,7 +9,6 @@ use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ReportController;
-use App\Models\Sale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,9 +43,9 @@ Route::middleware([
 
     Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
 
+    Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/reports/pdf/{id}', [ReportController::class, 'download'])->name('reports.pdf');
 
-    Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
 });

@@ -31,7 +31,7 @@ class Product extends Model
 
     public function sales()
     {
-        return $this->belongsToMany(Sale::class, 'datails', 'product_id', 'sale_id')->withPivot('quantity', 'price_to_date');
+        return $this->belongsToMany(Sale::class, 'details', 'product_id', 'sale_id')->withPivot('quantity', 'price_to_date');
     }
 
     public function referrals()

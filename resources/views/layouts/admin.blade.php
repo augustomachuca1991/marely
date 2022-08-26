@@ -33,10 +33,10 @@
             </div>
 
             <div class="mt-8 text-center">
-                    <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
-                        class="m-auto h-10 w-10 rounded-full object-cover lg:h-28 lg:w-28">
-                    <h5 class="mt-4 hidden text-xl font-semibold text-gray-600 lg:block">{{ Auth::user()->name }}</h5>
-                    <span class="hidden text-gray-400 lg:block">Admin</span>
+                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
+                    class="m-auto h-10 w-10 rounded-full object-cover lg:h-28 lg:w-28">
+                <h5 class="mt-4 hidden text-xl font-semibold text-gray-600 lg:block">{{ Auth::user()->name }}</h5>
+                <span class="hidden text-gray-400 lg:block">Admin</span>
             </div>
 
             <ul class="mt-8 space-y-2 tracking-wide">
@@ -97,25 +97,77 @@
                         <span class="group-hover:text-gray-700">{{ __('Categories') }}</span>
                     </a>
                 </li>
+                <li>
+                    <div class="relative inline-block">
+                        <a href="#" class="group flex items-center space-x-4 px-4 py-3" id="btn-orders">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path class="fill-current text-gray-600 group-hover:text-cyan-600"
+                                    d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                                <path class="fill-current text-gray-500 group-hover:text-cyan-300"
+                                    d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+                            </svg>
+                            <span class="group-hover:text-gray-700">{{ __('Orders') }}</span>
+                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 15.713L18.01 9.70299L16.597 8.28799L12 12.888L7.40399 8.28799L5.98999 9.70199L12 15.713Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </a>
+                        <!-- Dropdown menu -->
+                        <div
+                            class="menu-orders relative left-0 z-20 mt-2 hidden w-56 overflow-hidden rounded-md bg-white py-2 shadow-xl dark:bg-gray-800">
 
+
+                            <a href="{{ route('reports.index') }}"
+                                class="flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="mx-1 h-5 w-5">
+                                    <path fill-rule="evenodd"
+                                        d="M9.75 6.75h-3a3 3 0 00-3 3v7.5a3 3 0 003 3h7.5a3 3 0 003-3v-7.5a3 3 0 00-3-3h-3V1.5a.75.75 0 00-1.5 0v5.25zm0 0h1.5v5.69l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72V6.75z"
+                                        clip-rule="evenodd" />
+                                    <path
+                                        d="M7.151 21.75a2.999 2.999 0 002.599 1.5h7.5a3 3 0 003-3v-7.5c0-1.11-.603-2.08-1.5-2.599v7.099a4.5 4.5 0 01-4.5 4.5H7.151z" />
+                                </svg>
+                                {{ __('Sales Order') }}
+                            </a>
+
+                            <hr class="border-gray-200 dark:border-gray-700">
+
+                            <a href="{{ route('referrals.index') }}"
+                                class="flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="mx-1 h-5 w-5">
+                                    <path
+                                        d="M9.97.97a.75.75 0 011.06 0l3 3a.75.75 0 01-1.06 1.06l-1.72-1.72v3.44h-1.5V3.31L8.03 5.03a.75.75 0 01-1.06-1.06l3-3zM9.75 6.75v6a.75.75 0 001.5 0v-6h3a3 3 0 013 3v7.5a3 3 0 01-3 3h-7.5a3 3 0 01-3-3v-7.5a3 3 0 013-3h3z" />
+                                    <path
+                                        d="M7.151 21.75a2.999 2.999 0 002.599 1.5h7.5a3 3 0 003-3v-7.5c0-1.11-.603-2.08-1.5-2.599v7.099a4.5 4.5 0 01-4.5 4.5H7.151z" />
+                                </svg>
+                                {{ __('Purchase Order') }}
+                            </a>
+
+
+                        </div>
+                    </div>
+                </li>
                 <li>
                     <a href="{{ route('sales.index') }}"
                         class="group {{ request()->routeIs('sales.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
                             <path class="fill-current text-gray-300 group-hover:text-cyan-300"
                                 d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
                             <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
                                 d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
                                 clip-rule="evenodd" />
                         </svg>
-                        <span class="group-hover:text-gray-700">{{ __('Sales') }}</span>
+                        <span class="group-hover:text-gray-700">{{ __('My Shop') }}</span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('reports.index') }}"
                         class="group {{ request()->routeIs('reports.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                            fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
                                 d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
                                 clip-rule="evenodd" />
@@ -138,19 +190,8 @@
 
                         <span class="group-hover:text-gray-700">{{ __('Referrals') }}</span>
                     </a>
-                </li>
-                <li>
-                    <a href="#" class="group flex items-center space-x-4 px-4 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600"
-                                d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-                            <path class="fill-current text-gray-500 group-hover:text-cyan-300"
-                                d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-                        </svg>
-                        <span class="group-hover:text-gray-700">Other data</span>
-                    </a>
-                </li>
+                </li> --}}
+
 
 
             </ul>
@@ -213,7 +254,7 @@
                         </svg>
                     </button>
                     <livewire:shops.index-shop></livewire:shops.index-shop>
-                    <form action="{{route('profile.show')}}" method="GET">
+                    <form action="{{ route('profile.show') }}" method="GET">
                         <button type="submit" aria-label="notification"
                             class="h-10 w-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -246,11 +287,17 @@
                     {{ __('Categories') }}
                 </x-jet-responsive-nav-link>
                 <x-jet-responsive-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
-                    {{ __('Sales') }}
+                    {{ __('My Shop') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('audits.index') }}" :active="request()->routeIs('audits.index')">
+                <x-jet-responsive-nav-link href="{{ route('reports.index') }}" :active="request()->routeIs('reports.index')">
+                    {{ __('Purchase Order') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('referrals.index') }}" :active="request()->routeIs('referrals.index')">
+                    {{ __('Sales Order') }}
+                </x-jet-responsive-nav-link>
+                {{-- <x-jet-responsive-nav-link href="{{ route('audits.index') }}" :active="request()->routeIs('audits.index')">
                     {{ __('Audits') }}
-                </x-jet-responsive-nav-link>
+                </x-jet-responsive-nav-link> --}}
             </div>
 
             <!-- Responsive Settings Options -->
@@ -367,6 +414,12 @@
         menuButton.addEventListener('click', e => {
             const menu = document.querySelector('.menu-sidebar');
             menu.classList.toggle('hidden');
+        })
+
+        const orderButton = document.querySelector('#btn-orders')
+        orderButton.addEventListener('click', e => {
+            const menuOrder = document.querySelector('.menu-orders');
+            menuOrder.classList.toggle('hidden');
         })
     </script>
 </body>

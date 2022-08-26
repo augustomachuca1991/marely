@@ -51,11 +51,11 @@ class Sale extends Model
     public function scopeFromTo($query, $dateFrom, $dateTo)
     {
         if (!empty($dateFrom) && !empty($dateTo) ) {
-            // $query->whereHas('user' , function ($user) use ($userId){
-            //     $user->where('id', $userId );
-            // });
+            $query->whereBetween('created_at' , [$dateFrom, $dateTo]);
         }
     }
+
+    
 
 
 }

@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
         <!-- text - start -->
         <div class="mb-10 md:mb-16">
-            <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">{{ __('Referrals') }}
+            <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">{{ __('Purchase Order') }}
             </h2>
 
             <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This is a section of some simple

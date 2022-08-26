@@ -4,12 +4,12 @@ namespace App\Http\Livewire\Reports;
 
 use App\Models\Sale;
 use App\Models\User;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
-use PDF;
 
 class IndexReport extends Component
 {
-    
+    use LivewireAlert; 
 
 
     public $search = "";
@@ -29,6 +29,7 @@ class IndexReport extends Component
         ->searchUser($this->perUser)
         ->fromTo($this->from, $this->to)
         ->latest()
+        ->withTrashed()
         ->paginate($this->perPage);
         return view('livewire.reports.index-report', [
             'sales' => $sales
@@ -39,11 +40,10 @@ class IndexReport extends Component
     public function filterDate()
     {
         $this->validate([
-            'from' => 'required|required_with:to|date|lte:to',
-            'to' => 'required_with:from|date|gte:from'
+            'from' => 'required|required_with:to|date',
+            'to' => 'required|required_with:from|date|after:from'
         ]);
-        dd('ok');
-        // $this->emitSelf('render');
+        $this->emitSelf('render');
 
     }
 
@@ -53,6 +53,21 @@ class IndexReport extends Component
         $this->user = $user;
         $this->perUser = $this->user->id;
         $this->selectUser = false;
+    }
+
+
+    public function revert(Sale $sale)
+    {
+        $this->sale = $sale;
+        foreach ($this->sale->products as $key => $product) {
+            $product->stock += $product->pivot->quantity;
+            $product->updated_at = now();
+            $product->save();
+            //$product->sales()->detach($this->sale->id);
+        }
+        $this->sale->delete();
+        $this->alert('success' , 'Se revirtio la venta');
+        //dd($this->sale->products);
     }
 
 }
