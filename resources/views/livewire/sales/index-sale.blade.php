@@ -58,28 +58,29 @@
 
             <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:mt-16 xl:grid-cols-3">
                 @foreach ($products as $item)
-                    <div class="flex flex-col items-center">
-                        <img wire:click="show({{ $item }})"
-                            class="aspect-square w-full cursor-pointer rounded-xl object-cover"
-                            src="{{ $item->profile_photo_url }}" alt="{{ $item->name }}">
+                    @if ($item->stock)
+                        <div class="flex flex-col items-center">
+                            <img wire:click="show({{ $item }})"
+                                class="aspect-square w-full cursor-pointer rounded-xl object-cover"
+                                src="{{ $item->profile_photo_url }}" alt="{{ $item->name }}">
 
-                        <h1 class="mt-4 text-2xl font-semibold capitalize text-gray-700 dark:text-white">
-                            {{ $item->name }}
-                        </h1>
+                            <h1 class="mt-4 text-2xl font-semibold capitalize text-gray-700 dark:text-white">
+                                {{ $item->name }}
+                            </h1>
 
-                        <p class="mt-2 capitalize text-gray-500 dark:text-gray-300">{{ $item->description }}</p>
-                        <p class="mt-2 capitalize text-gray-400 dark:text-gray-300">{{ $item->category->name }}</p>
-
-
-                        <div class="-mx-2 mt-3 flex">
+                            <p class="mt-2 capitalize text-gray-500 dark:text-gray-300">{{ $item->description }}</p>
+                            <p class="mt-2 capitalize text-gray-400 dark:text-gray-300">{{ $item->category->name }}</p>
 
 
-                            <div class="mx-2 text-gray-600 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-300"
-                                aria-label="sale price">
-                                ${{ $item->sale_price }}
-                            </div>
+                            <div class="-mx-2 mt-3 flex">
 
-                            {{-- <a href="#"
+
+                                <div class="mx-2 text-gray-600 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-300"
+                                    aria-label="sale price">
+                                    ${{ $item->sale_price }}
+                                </div>
+
+                                {{-- <a href="#"
                                 class="mx-2 text-gray-600 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-300"
                                 aria-label="Github">
                                 <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24" fill="none"
@@ -89,12 +90,12 @@
                                     </path>
                                 </svg>
                             </a> --}}
-                            @if ($item->stock)
                                 <button wire:click="add_to_cart({{ $item }})"
                                     class="transform rounded bg-gray-800 px-2 py-1 text-xs font-semibold uppercase text-white transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">{{ __('Add to cart') }}</button>
-                            @endif
+
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
 
             </div>

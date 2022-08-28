@@ -66,8 +66,8 @@ class Product extends Model
     {
         if (!empty($text)) {
             $query->where('name', 'like', "%{$text}%")
-                ->orWhere('code', 'like', "%{$text}%")
-                ->orWhere('list_price', 'like', "%{$text}%");
+                ->orWhere('code', 'like', "%{$text}%");
+                //->orWhere('list_price', 'like', "%{$text}%");
         }
     }
 

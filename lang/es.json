@@ -212,5 +212,13 @@
   "All Categories": "Todas las Categorias",
   "My Shop": "Mi Tienda",
   "Reports": "Reportes",
-  "Referrals" : "Remitos"
+  "Referrals" : "Remitos",
+  "Print" : "Imprimir", 
+  "Revert" : "Revertir",
+  "Orders" : "Ordenes",
+  "Rectify" : "Rectificar",
+  "Cancelled" : "Cancelado",
+  "Paid" : "Pagado",
+  "Sales Order" : "Orden de Venta",
+  "Purchase Order" : "Orden de Compra"
 }

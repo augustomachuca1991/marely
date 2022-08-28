@@ -13,43 +13,6 @@
             <x-slot name="title">{{ __('New Referral') }}</x-slot>
             <x-slot name="content">
                 <div class="mb-4">
-                    {{-- <div class="text-gray-500">
-                        <div class="relative bg-transparent text-lg text-gray-800">
-                            <div class="flex items-center border-b-2 border-teal-500 py-2">
-                                <x-jet-input wire:model="supplierText" wire:keydown="$set('suggestionSupplier' , true)"
-                                    class="w-11/12 border-none" type="text" placeholder="Search Supplier"
-                                    autocomplete>
-                                </x-jet-input>
-                                <button type="button" class="absolute right-0 top-0 mt-3 mr-4">
-                                    <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
-                                        x="0px" y="0px" viewBox="0 0 56.966 56.966"
-                                        style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
-                                        width="512px" height="512px">
-                                        <path
-                                            d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        @if ($suggestionSupplier && $supplierText != '')
-                            <ul class="mt-2 w-full border border-gray-100 bg-white">
-                                @foreach ($suppliers as $item)
-                                    <li wire:click="loadSupplier({{ $item }})"
-                                        class="relative cursor-pointer border-b-2 border-gray-100 py-1 pl-8 pr-2 hover:bg-yellow-50 hover:text-gray-900">
-                                        <svg class="absolute left-2 top-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        <b>{{ $item->company_name }}</b>- {{ $item->location }}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-                    </div> --}}
                     <section class="relative w-full max-w-lg rounded-md px-5 py-4">
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -73,7 +36,8 @@
                                     <a wire:click="loadSupplier({{ $item }})" href="#" class="block py-1">
                                         <h3 class="font-medium text-gray-700 hover:underline dark:text-gray-100">
                                             {{ $item->company_name }}</h3>
-                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ $item->location }}</p>
+                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ $item->location }}
+                                        </p>
                                     </a>
                                 @endforeach
                             </div>
@@ -156,7 +120,7 @@
                                     </button>
                                 </span> --}}
 
-                                @if (count($productsAdd))
+                                {{-- @if (count($productsAdd))
                                     <span class="sm:ml-3">
                                         <button type="button" wire:click="store"
                                             class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
@@ -170,29 +134,28 @@
                                             {{ __('Confirm') }}
                                         </button>
                                     </span>
-                                @endif
+                                @endif --}}
                                 <div class="relative ml-3 sm:hidden">
                                     <button type="button"
                                         class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                         id="mobile-menu-button" aria-expanded="false" aria-haspopup="true">
                                         More
                                         <!-- Heroicon name: solid/chevron-down -->
-                                        <svg class="-mr-1 ml-2 h-5 w-5 text-gray-500"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                            fill="currentColor" aria-hidden="true">
+                                        <svg class="-mr-1 ml-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd"
                                                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </button>
                                     <div class="absolute right-0 mt-2 -mr-1 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                        role="menu" aria-orientation="vertical"
-                                        aria-labelledby="mobile-menu-button" tabindex="-1">
+                                        role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button"
+                                        tabindex="-1">
                                         <!-- Active: "bg-gray-100", Not Active: "" -->
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700"
-                                            role="menuitem" tabindex="-1" id="mobile-menu-item-0">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700"
-                                            role="menuitem" tabindex="-1" id="mobile-menu-item-1">View</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                            tabindex="-1" id="mobile-menu-item-0">Edit</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                            tabindex="-1" id="mobile-menu-item-1">View</a>
                                     </div>
                                 </div>
                             </div>
@@ -207,16 +170,7 @@
                                         wire:keydown.debounce.500ms="$set('suggestionProduct' , true)"
                                         class="w-11/12 border-none" type="text" placeholder="Search Product">
                                     </x-jet-input>
-                                    <button type="button" class="absolute right-0 top-0 mt-3 mr-4">
-                                        <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
-                                            x="0px" y="0px" viewBox="0 0 56.966 56.966"
-                                            style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
-                                            width="512px" height="512px">
-                                            <path
-                                                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                                        </svg>
-                                    </button>
+                                    {{-- <livewire:products.create-product></livewire:products.create-product> --}}
                                 </div>
                             </div>
                             @if ($suggestionProduct && $productText != '')
@@ -231,7 +185,7 @@
                                                     d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
                                                     clip-rule="evenodd" />
                                             </svg>
-                                            <b>{{ $itemProduct->code }}</b>- {{ $itemProduct->name }}
+                                            {!! DNS1D::getBarcodeSVG($itemProduct->code, 'UPCE') !!} - {{ $itemProduct->name }}
                                             ({{ $itemProduct->stock }})
                                         </li>
                                     @endforeach
@@ -260,10 +214,18 @@
                                                             <h3>
                                                                 <a href="#"> {{ $add['name'] }} </a>
                                                             </h3>
+                                                            {{-- <fieldset class="w-12 space-y-1 text-gray-800">
+                                                                <label for="price" class="block text-sm font-medium">Precio de Compra</label>
+                                                                <div class="flex">
+                                                                    <input type="text" name="price" id="price" placeholder="99 999,99" class="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset border-gray-300 text-gray-800 bg-gray-100 focus:ring-teal-600">
+                                                                    <span class="flex items-center px-3 pointer-events-none sm:text-sm rounded-r-md bg-gray-300">$</span>
+                                                                </div>
+                                                            </fieldset> --}}
                                                             <p class="ml-4">${{ $add['sale_price'] }}</p>
+
                                                         </div>
-                                                        <p class="mt-1 text-sm text-gray-500">
-                                                            {{ $add['code'] }}</p>
+                                                        <p class="mt-1 text-sm text-gray-500">{!! DNS1D::getBarcodeSVG($add['code'], 'UPCE') !!}
+                                                        </p>
                                                     </div>
                                                     <div class="flex flex-1 items-end justify-between text-sm">
 
@@ -306,6 +268,21 @@
                 {{ $product ? $product->name : '' }} --}}
 
                 {{-- {{var_export($productsAdd)}} --}}
+                @if (count($productsAdd))
+                    <span class="sm:ml-3">
+                        <button type="button" wire:click="store"
+                            class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+
+                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            {{ __('Confirm') }}
+                        </button>
+                    </span>
+                @endif
             </x-slot>
         </x-jet-dialog-modal>
     </form>

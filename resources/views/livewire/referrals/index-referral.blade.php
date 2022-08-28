@@ -10,7 +10,7 @@
                 but is random or otherwise generated.</p>
         </div>
         <section class="rounded-xl shadow-xl ring-1 ring-slate-900/5">
-            <header class="space-y-4 bg-slate-700 rounded-t-xl p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
+            <header class="space-y-4 rounded-t-xl bg-slate-700 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
                 <div class="flex items-center justify-between">
                     <h2 class="font-semibold text-gray-100">Remitos</h2>
                     {{-- <a href="/new"
@@ -30,7 +30,7 @@
                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
                     </svg>
                     <input wire:model="search"
-                        class="w-full appearance-none rounded-md py-2 pl-10 text-sm leading-6 placeholder-slate-400 shadow-sm ring-1 ring-slate-200 focus:outline-none focus:ring-2 bg-slate-600 text-gray-50 focus:bg-gray-700 focus:border-sky-400"
+                        class="w-full appearance-none rounded-md bg-slate-600 py-2 pl-10 text-sm leading-6 text-gray-50 placeholder-slate-400 shadow-sm ring-1 ring-slate-200 focus:border-sky-400 focus:bg-gray-700 focus:outline-none focus:ring-2"
                         type="text" aria-label="Filter referrrals" placeholder="Filter referrrals...">
                 </form>
             </header>
@@ -61,13 +61,31 @@
                             </div>
                             <div class="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4">
                                 <dt class="sr-only">Users</dt>
-                                @foreach ($item->products as $product)
+                                <div class="flex flex-col items-center justify-center">
+                                    <div class="flex -space-x-4">
+                                        @foreach ($item->products as $index => $product)
+                                            @if ($index < 4)
+                                                <img alt="{{ $product->name }}"
+                                                    class="h-12 w-12 rounded-full border border-gray-300 bg-gray-500"
+                                                    src="{{ $product->profile_photo_url }}">
+                                            @endif
+                                        @endforeach
+                                        @if ($item->products->count() > 4)
+                                            <span
+                                                class="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 bg-gray-50 font-semibold text-gray-800">+{{ ($item->products->count()  - 4
+                                                )}}</span>
+                                        @endif
+
+
+                                    </div>
+                                </div>
+                                {{-- @foreach ($item->products as $product)
                                     <div
                                         class="inline-flex justify-end -space-x-1.5 sm:justify-start lg:justify-end xl:justify-start">
                                         <img src="{{ $product->profile_photo_url }}" alt="{{ $product->name }}"
                                             class="h-6 w-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy">
                                     </div>
-                                @endforeach
+                                @endforeach --}}
 
                             </div>
                         </dl>

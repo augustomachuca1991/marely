@@ -72,19 +72,22 @@ class CreateReferral extends Component
     {
         
         $this->validate([
-            'addStock.*' => 'required|integer|min:0',
-            'bonification' => 'numeric'
+            'addStock.*' => 'required|integer|min:1',
+            'bonification' => 'numeric|nullable'
         ]);
         $referral = new Referral();
         $referral->bonification = $this->bonification;
         $referral->supplier_id = $this->supplier->id;
-        $referral->created_at = now();
+        //$referral->created_at = now();
         $referral->save();
         foreach ($this->addStock as $key => $value) {
             $referral->products()->attach( $this->productsAdd[$key]['id'] , [
                 'quantity' => $value,
                 'unit_price' => $this->productsAdd[$key]['list_price'],
             ]);
+            $product = Product::findOrFail($this->productsAdd[$key]['id']);
+            $product->stock += $value;
+            $product->save();
             //$this->productsAdd[$key]['stock'] += $value;
         }
         $this->reset('addStock' , 'productsAdd', 'isOpenCreate');

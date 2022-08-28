@@ -10,10 +10,15 @@ class ShowReferral extends Component
     
     public $referral;
     public $isOpenShow = false;
+    public $total = 0;
 
     public function mount($referral)
     {
         $this->referral = $referral;
+        foreach ($this->referral->products as $key => $value) {
+            $this->total +=  $value->pivot->quantity * $value->pivot->unit_price;
+        }
+        $this->total -= ($this->total * $this->referral->bonification)/100;  
         $this->isOpenShow = true;
     }
     

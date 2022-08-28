@@ -7,19 +7,19 @@
                 d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 004.25 22.5h15.5a1.875 1.875 0 001.865-2.071l-1.263-12a1.875 1.875 0 00-1.865-1.679H16.5V6a4.5 4.5 0 10-9 0zM12 3a3 3 0 00-3 3v.75h6V6a3 3 0 00-3-3zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75z"
                 clip-rule="evenodd" />
         </svg>
-        @if ($carts->count())
+        @if ($carts->getContent()->count())
             <span
                 class="rounded-full bg-red-500 px-1 py-0.5 text-xs text-white">{{ \Cart::session(auth()->id())->getTotalQuantity() }}</span>
         @endif
     </button>
 
     <x-jet-dialog-modal wire:model="isOpenShow">
-        <x-slot name="title">{{ __('Cart') }}</x-slot>
+        <x-slot name="title"></x-slot>
         <x-slot name="content">
             <div class="mb-4">
-                {{-- {{ $this->cart }} --}}
-                @if ($carts->count())
-                    <table class="min-w-full divide-y divide-gray-200">
+                <!-- {{ $this->cart }} -->
+                @if ($carts->getContent()->count())
+                    {{-- <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                             <tr>
                                 <th scope="col"
@@ -60,7 +60,7 @@
                                         </div>
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-4">
-                                        {{-- {{ var_export($quantities) }} --}}
+                                        <!-- {{ var_export($quantities) }} -->
                                         <x-jet-input wire:model="quantities.{{ $index }}" min="1"
                                             wire:change="update_quantity({{ $item }} , {{ $index }})"
                                             type="number"
@@ -88,18 +88,107 @@
 
                             <!-- More rows... -->
                         </tbody>
-                    </table>
+                    </table> --}}
+                    <div class="flex max-w-3xl flex-col space-y-4 bg-gray-50 p-6 text-gray-800 sm:p-10">
+                        <h2 class="text-xl font-semibold">Your cart</h2>
+                        <ul class="flex flex-col divide-y divide-gray-300">
+                            @foreach ($carts->getContent()->sortBy('id') as $index => $item)
+                                <li class="flex flex-col py-6 sm:flex-row sm:justify-between">
+                                    <div class="flex w-full space-x-2 sm:space-x-4">
+                                        <img class="h-20 w-20 flex-shrink-0 rounded border-transparent bg-gray-500 object-cover outline-none sm:h-32 sm:w-32"
+                                            src="{{ $item->associatedModel->profile_photo_url }}"
+                                            alt="{{ $item->associatedModel->name }}">
+                                        <div class="flex w-full flex-col justify-between pb-4">
+                                            <div class="flex w-full justify-between space-x-2 pb-2">
+                                                <div class="space-y-1">
+                                                    <h3 class="text-lg font-semibold capitalize leading-snug sm:pr-8">
+                                                        {{ $item->associatedModel->name }}
+                                                    </h3>
+                                                    <p class="text-sm text-gray-600">
+                                                        {{ $item->associatedModel->stock }} disponible</p>
+                                                </div>
+                                                <div class="text-right">
+                                                    <p class="text-lg font-semibold">$
+                                                        {{ number_format($carts->get($item->id)->getPriceSum(), 2, '.', '') }}
+                                                    </p>
+                                                    <p class="text-sm text-gray-400 line-through">
+                                                        ${{ $item->associatedModel->sale_price }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex divide-x text-sm">
+                                                <button type="button"
+                                                    wire:click="delete_to_cart({{ $item->id }} , {{ $index }})"
+                                                    class="flex items-center space-x-1 px-2 py-1 pl-0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                                        class="h-4 w-4 fill-current">
+                                                        <path
+                                                            d="M96,472a23.82,23.82,0,0,0,23.579,24H392.421A23.82,23.82,0,0,0,416,472V152H96Zm32-288H384V464H128Z">
+                                                        </path>
+                                                        <rect width="32" height="200" x="168"
+                                                            y="216">
+                                                        </rect>
+                                                        <rect width="32" height="200" x="240"
+                                                            y="216">
+                                                        </rect>
+                                                        <rect width="32" height="200" x="312"
+                                                            y="216">
+                                                        </rect>
+                                                        <path
+                                                            d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z">
+                                                        </path>
+                                                    </svg>
+                                                    <span>Remove</span>
+                                                </button>
+                                                <x-jet-input wire:model="quantities.{{ $index }}" min="1"
+                                                    wire:change="update_quantity({{ $item }} , {{ $index }})"
+                                                    type="number"
+                                                    class="{{ $errors->has('quantities.' . $index) ? 'border rounded-md border-red-500' : 'flex items-center space-x-1 px-2 py-1 w-16' }}">
+                                                </x-jet-input>
+                                                <x-jet-input-error for="quantities.{{ $index }}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+
+                        </ul>
+                        <div class="space-y-1 text-right">
+                            <p>Total amount:
+                                <span class="font-semibold">$
+                                    {{ number_format($carts->getTotal(), 2, '.', '') }}</span>
+                            </p>
+                            <p class="text-sm text-gray-600">{{ __('Not including taxes') }}</p>
+                        </div>
+                        <div class="flex justify-end space-x-4">
+                            <button wire:click="resetData" type="button" class="rounded-md border border-teal-600 px-6 py-2">Empty
+                                <span class="sr-only sm:not-sr-only">Cart</span>
+                            </button>
+                            <!--<button type="button"
+                                class="rounded-md border border-teal-600 bg-teal-600 px-6 py-2 text-gray-50">
+                                <span class="sr-only sm:not-sr-only">Continue to</span>Checkout
+                            </button>-->
+                        </div>
+                    </div>
                 @else
-                <p class="text-center italic text-gray-500">El Carrito se encuentra vacio</p>
+                    <p class="text-center italic text-gray-500">El Carrito se encuentra vacio</p>
                 @endif
 
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-secondary-button class="mr-2" wire:click="$set('isOpenShow' , false)">{{ __('Close') }}
+            {{-- <x-jet-secondary-button class="mr-2" wire:click="$set('isOpenShow' , false)">{{ __('Close') }}
             </x-jet-secondary-button>
-            @if ($carts->count())
+            @if ($carts->getContent()->count())
                 <x-jet-button wire:click="confirmSale">{{ __('Confirm') }}</x-jet-button>
+            @endif --}}
+            <button type="button" wire:click="$set('isOpenShow' , false)"
+                class="mr-2 rounded-md border border-teal-600 px-6 py-2">Back
+                <span class="sr-only sm:not-sr-only">to shop</span>
+            </button>
+            @if ($carts->getContent()->count())
+                <button type="button"  wire:click="confirmSale" class="rounded-md border border-teal-600 bg-teal-600 px-6 py-2 text-gray-50">
+                    <span class="sr-only sm:not-sr-only">Continue to</span>Checkout
+                </button>
             @endif
         </x-slot>
     </x-jet-dialog-modal>

@@ -20,7 +20,7 @@ class IndexShop extends Component
     public $sale;
 
 
-    protected $listeners = ['render'];
+    protected $listeners = ['render', 'confirmed'];
 
     protected $messages = [
 
@@ -34,7 +34,8 @@ class IndexShop extends Component
     public function render()
     {
 
-        $carts = Cart::session(auth()->id())->getContent();
+        //$carts = Cart::session(auth()->id())->getContent();
+        $carts = Cart::session(auth()->id());
         return view('livewire.shops.index-shop', [
             'carts' => $carts
         ]);
@@ -89,6 +90,26 @@ class IndexShop extends Component
         $this->validate([
             'quantities.*' => 'required|integer|min:1|lte:articles.*.stock'
         ]);
+        $this->confirm('Desea comfirmar la compra?', [
+            'onConfirmed' => 'confirmed',
+        ]);
+        // $this->sale = new Sale();
+        // $this->sale->user_id = auth()->id();
+        // $this->sale->amount = Cart::session(auth()->id())->getTotal();
+        // $this->sale->save();
+        // foreach (Cart::session(auth()->id())->getContent() as $key => $item) {
+        //     $product = Product::findOrFail($item->associatedModel->id);
+        //     $product->stock -= $item->quantity;
+        //     $product->save();
+        //     $this->sale->products()->attach($product->id, ['quantity' =>  $item->quantity, 'price_to_date' => $item->price]);
+
+        // }
+        // $this->alert('success', 'La compra se realizó con exito');
+        // $this->isOpenNext = true;
+    }
+
+    public function confirmed()
+    {
         $this->sale = new Sale();
         $this->sale->user_id = auth()->id();
         $this->sale->amount = Cart::session(auth()->id())->getTotal();
@@ -98,8 +119,9 @@ class IndexShop extends Component
             $product->stock -= $item->quantity;
             $product->save();
             $this->sale->products()->attach($product->id, ['quantity' =>  $item->quantity, 'price_to_date' => $item->price]);
-            
+
         }
+        Cart::session(auth()->id())->clear();
         $this->alert('success', 'La compra se realizó con exito');
         $this->isOpenNext = true;
     }

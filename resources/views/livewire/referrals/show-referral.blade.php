@@ -20,7 +20,7 @@
                     <div class="px-2">
                         <h2 class="mb-4 text-xl font-bold text-gray-700">{{ $referral->supplier->company_name }}</h2>
                         <p class="capitalize text-gray-500">{{ $referral->supplier->location }} -
-                            {{ $referral->supplier->phone_number }}</p>
+                            +54-{{ $referral->supplier->phone_number }}</p>
                     </div>
                     <div class="px-2">
                         <h4 class="text-right">Nº de remito - #000{{ $referral->id }}</h4>
@@ -39,10 +39,10 @@
                                     <div>
                                         <div class="text-md flex justify-between rounded-md py-2 px-4 font-bold">
                                             <div>
-                                                <span>{{ __('Description') }}</span>
+                                                <span>{{ __('Code') }}</span>
                                             </div>
                                             <div>
-                                                <span>{{ __('Quantity') }}</span>
+                                                <span>{{ __('Article') }}</span>
                                             </div>
                                             <div>
                                                 <span>{{ __('Price Unit') }}</span>
@@ -56,17 +56,16 @@
                                                 <div
                                                     class="mt-4 flex justify-between space-x-4 border-t text-sm font-normal">
                                                     <div class="flex px-2">
-                                                        <span>{{ $product->code }} - {{ $product->name }}</span>
+                                                        <span>{{$product->code}}</span>
                                                     </div>
                                                     <div>
-                                                        <span>{{ $product->pivot->quantity }}</span>
+                                                        <span>{{ $product->name }} x {{ $product->pivot->quantity }}</span>
                                                     </div>
                                                     <div class="px-2">
-                                                        <span>$ {{ $product->pivot->unit_price }}</span>
+                                                        <span>${{ $product->pivot->unit_price }}</span>
                                                     </div>
                                                     <div class="px-2">
-                                                        <span>$
-                                                            {{ $product->pivot->quantity * $product->pivot->unit_price }}</span>
+                                                        <span>${{ number_format($product->pivot->quantity * $product->pivot->unit_price, '2' , '.' , ',') }}</span>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -82,8 +81,9 @@
                                                     
                                                 </div>
                                                 <div class="px-2 py-3">
-                                                    Total $ 
-                                                    <p>Bonificacion {{$referral->bonification}} %</p>
+                                                    <p>{{$referral->bonification >= 0 ? 'Bonificacion: ' : 'Impuesto: '}} {{$referral->bonification}} %</p>
+                                                    
+                                                    <h3 class="text-xl font-semibold">Total $ {{number_format($total , 2 , '.' , ',') }}</h3>
                                                 </div>
                                             </div>
                                         </div>

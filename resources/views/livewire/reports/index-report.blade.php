@@ -219,8 +219,8 @@
                                     Partially Refunded
                                 </strong> --}}
                                 </td>
-                                <td class="whitespace-nowrap p-4 text-gray-700"> {{ $item->deleted_at ? '-' : '' }}
-                                    ${{ $item->amount }}</td>
+                                <td class="whitespace-nowrap p-4 text-gray-700"> {{ $item->deleted_at ? '$ 0.00' : '$ '.$item->amount  }}
+                                    </td>
                                 <td class="whitespace-nowrap p-4 text-gray-700">
                                     @if (!$item->deleted_at)
                                         {{-- <div
