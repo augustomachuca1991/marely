@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <div class="grid gap-2 md:grid-cols-3">
                         <div>
                             <x-jet-label value="{{ __('Stock') }} *" />
@@ -108,6 +108,22 @@
                             <x-jet-input-error for="sale_price" />
                         </div>
                     </div>
+                </div> --}}
+                <div class="mb-4">
+                    {{-- <x-jet-label value="{{ __('Sale Price') }} *" />
+                    <input type="text" name="sale_price" id="sale_price" wire:model="sale_price"
+                        class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-300 focus:ring-indigo-200"
+                        placeholder="0.00"> --}}
+                    <fieldset class="w-full space-y-1 text-gray-800">
+                        <label for="salePrice" class="block text-sm font-medium">{{ __('Sale Price') }} *</label>
+                        <div class="flex">
+                            <input wire:model="sale_price" type="text" name="salePrice" id="salePrice" placeholder="999,99"
+                                class="flex flex-1 rounded-l-md border border-gray-300 bg-gray-100 text-right text-gray-800 focus:ring-inset focus:ring-teal-600 sm:text-sm">
+                            <span
+                                class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm">$</span>
+                        </div>
+                    </fieldset>
+                    <x-jet-input-error for="sale_price" />
                 </div>
                 <div class="mb-4">
                     <x-jet-label value="{{ __('Description') }} *" />

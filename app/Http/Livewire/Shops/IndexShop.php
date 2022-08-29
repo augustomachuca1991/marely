@@ -93,19 +93,6 @@ class IndexShop extends Component
         $this->confirm('Desea comfirmar la compra?', [
             'onConfirmed' => 'confirmed',
         ]);
-        // $this->sale = new Sale();
-        // $this->sale->user_id = auth()->id();
-        // $this->sale->amount = Cart::session(auth()->id())->getTotal();
-        // $this->sale->save();
-        // foreach (Cart::session(auth()->id())->getContent() as $key => $item) {
-        //     $product = Product::findOrFail($item->associatedModel->id);
-        //     $product->stock -= $item->quantity;
-        //     $product->save();
-        //     $this->sale->products()->attach($product->id, ['quantity' =>  $item->quantity, 'price_to_date' => $item->price]);
-
-        // }
-        // $this->alert('success', 'La compra se realizó con exito');
-        // $this->isOpenNext = true;
     }
 
     public function confirmed()

@@ -27,9 +27,9 @@
                             <div class="px-2">
                                 <h2 class="mb-4 text-xl font-bold capitalize text-gray-700">
                                     {{ $referral->supplier->company_name }}</h2>
-                                <p class="text-xs-700 capitalize text-gray-500">{{ $referral->supplier->location }} -
+                                <p class="text-md capitalize text-gray-500">{{ $referral->supplier->location }} -
                                     <br>
-                                    {{ $referral->supplier->phone_number ? '+54-' . $referral->supplier->phone_number : 'No phone' }}
+                                    <span class="text-xs">{{ $referral->supplier->phone_number ? '+54-' . $referral->supplier->phone_number : 'No phone' }}</span>
                                 </p>
                             </div>
                             <div class="px-2">
@@ -128,7 +128,7 @@
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-danger-button>{{ __('Cancelar Orden') }}</x-jet-danger-button>
+            <x-jet-danger-button wire:click="cancelOrder({{$referral}})">{{ __('Cancelar Orden') }}</x-jet-danger-button>
 
         </x-slot>
     </x-jet-dialog-modal>

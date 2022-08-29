@@ -91,10 +91,11 @@ class CreateReferral extends Component
             ]);
             $product = Product::findOrFail($this->productsAdd[$key]['id']);
             $product->stock += $value;
+            $product->list_price = $this->productsAdd[$key]['list_price'];
             $product->save();
             //$this->productsAdd[$key]['stock'] += $value;
         }
-        $this->reset('addStock' , 'productsAdd', 'isOpenCreate');
+        $this->reset('addStock' , 'productsAdd', 'isOpenCreate', 'bonification' , 'supplier' , 'supplierText');
         $this->alert('success' , 'Se ha cargado un nuevo remito');
         $this->emitTo('referrals.index-referral', 'render');
         

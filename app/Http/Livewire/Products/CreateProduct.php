@@ -26,8 +26,8 @@ class CreateProduct extends Component
         'code' => 'required|unique:products,code',
         'name' => 'required|max:50|unique:products,name',
         'description' => 'required|max:255',
-        'stock' => 'required|integer',
-        'list_price' => 'required|numeric',
+        // 'stock' => 'required|integer',
+        // 'list_price' => 'required|numeric',
         'sale_price' => 'required|numeric',
         'category' => 'required',
         'photo' => 'image|max:1024|nullable',
@@ -46,8 +46,8 @@ class CreateProduct extends Component
         $product->code = $this->code;
         $product->name = $this->name;
         $product->description = $this->description;
-        $product->stock = $this->stock;
-        $product->list_price = $this->list_price;
+        $product->stock = 0;
+        $product->list_price = 0;
         $product->sale_price = $this->sale_price;
         if ($this->photo) {
             $product->profile_photo_path = $this->photo->store('products' , 'public');

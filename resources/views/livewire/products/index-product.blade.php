@@ -32,7 +32,7 @@
         <div class="flex w-full md:w-1/6">
             <select wire:model="byCategory" name="imagen_type" id="imagen_type"
                 class="w-full rounded-r-md border-gray-300 bg-transparent text-sm outline-none focus:outline-none">
-                <option value="">{{ __('All Categories') }}</option>
+                <option value="">{{ __('Categories') }}</option>
                 @foreach (\App\Models\Category::all() as $item)
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
@@ -52,7 +52,7 @@
                                 <tr>
                                     <th scope="col"
                                         class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                        {{ __('Article') }}
+                                        <a href="#" wire:click="orderName">{{ __('Article') }}</a>
                                     </th>
                                     <th scope="col"
                                         class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
@@ -141,7 +141,7 @@
                                                             </a>
                                                         </div>
                                                         <div><a href="#"
-                                                                wire:click="delete({{ $item }})">
+                                                                wire:click="confirmDelete({{ $item }})">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                     class="h-5 w-5 text-red-600 hover:text-red-400"
                                                                     viewBox="0 0 20 20" fill="currentColor">

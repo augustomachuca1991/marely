@@ -2,15 +2,20 @@
 
 namespace App\Http\Livewire\Referrals;
 
+use App\Models\Referral;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class ShowReferral extends Component
 {
-    
-    
+    use LivewireAlert;
+
     public $referral;
     public $isOpenShow = false;
     public $total = 0;
+
+
+    protected $listeners = ['confirmed'];
 
     public function mount($referral)
     {
@@ -21,6 +26,8 @@ class ShowReferral extends Component
         $this->total -= ($this->total * $this->referral->bonification)/100;  
         $this->isOpenShow = true;
     }
+
+
     
     public function render()
     {
@@ -32,5 +39,18 @@ class ShowReferral extends Component
     {
         $this->reset(['isOpenShow']); 
         $this->emitTo('referrals.index-referral' , 'closeModal');
+    }
+
+    public function cancelOrder(Referral $referral)
+    {
+        $this->referral = $referral;
+        $this->confirm('Desea cancelar esta orden de compra?', [
+            'onConfirmed' => 'confirmed',
+        ]);
+    }
+
+    public function confirmed()
+    {
+        $this->emitTo('referrals.index-referral' , 'delete' , $this->referral);
     }
 }

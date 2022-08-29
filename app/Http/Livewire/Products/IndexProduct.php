@@ -16,7 +16,8 @@ class IndexProduct extends Component
     public $search = "";
     public $byCategory = "";
     public $byStatus = "";
-    public $bySupplier= "";
+    public $bySupplier = "";
+    public $order = 'ASC';
 
     public $product;
     public $isOpenEdit = false;
@@ -31,15 +32,16 @@ class IndexProduct extends Component
         'perPage' => ['except' => 20]
     ];
 
-    protected $listeners = ['render' , 'closeModal'];
+    protected $listeners = ['render', 'closeModal', 'delete'];
 
     public function render()
     {
-        return view('livewire.products.index-product',[
+        return view('livewire.products.index-product', [
             'products' => Product::searchProduct($this->search)
-            ->searchCategory($this->byCategory)
-            ->searchStatus($this->byStatus)
-            ->latest()->paginate($this->perPage)
+                ->searchCategory($this->byCategory)
+                ->searchStatus($this->byStatus)
+                ->orderBy('name', $this->order)
+                ->paginate($this->perPage)
         ]);
     }
 
@@ -54,20 +56,23 @@ class IndexProduct extends Component
     {
         $this->product = $product;
         $this->isOpenEdit = true;
-
     }
 
-    public function delete(Product $product){
+    public function confirmDelete(Product $product)
+    {
+        $this->product = $product;
+        $this->confirm('Desea dar de baja este articulo?', [
+            'onConfirmed' => 'delete',
+        ]);
         // $this->alert('question', 'Quieres eliminar este articulo?', [
         //     'showConfirmButton' => true
         // ]);
-        $this->product = $product;
-        $this->product->delete();
-        $this->alert('success', 'El Articulo se ha dado de baja');
+        
     }
 
 
-    public function closeModal(){
+    public function closeModal()
+    {
         $this->isOpenShow = false;
         $this->isOpenEdit = false;
     }
@@ -81,5 +86,23 @@ class IndexProduct extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+
+    public function orderName()
+    {
+        if ($this->order == 'ASC') {
+            $this->order = 'DESC';
+        }else{
+            $this->reset('order');
+        }
+    }
+
+
+    public function delete()
+    {
+        
+        $this->product->delete();
+        $this->alert('success', 'El Articulo se ha dado de baja');
     }
 }
