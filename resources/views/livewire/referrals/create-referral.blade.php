@@ -10,24 +10,44 @@
 
     <form wire:submit.prevent="store">
         <x-jet-dialog-modal wire:model='isOpenCreate'>
-            <x-slot name="title">{{ __('New Referral') }}</x-slot>
+            <x-slot name="title">
+                {{-- <x-mark-marely class="mx-3 mt-2 h-auto w-64 rounded-lg bg-gray-200 p-2"></x-mark-marely> --}}
+                <div
+                    class="modal-close absolute top-0 right-0 z-50 mt-4 mr-4 flex cursor-pointer flex-col items-center text-sm text-black">
+                    <button type="button" wire:click="$set('isOpenCreate' , false)">
+                        <svg class="fill-current text-red-700 hover:text-red-500" xmlns="http://www.w3.org/2000/svg"
+                            width="18" height="18" viewBox="0 0 18 18">
+                            <path
+                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </x-slot>
             <x-slot name="content">
                 <div class="mb-4">
-                    <section class="relative w-full max-w-lg rounded-md px-5 py-4">
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none">
-                                    <path
-                                        d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                            </span>
+                    <div class="mb-6 md:mb-10">
+                        <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
+                            {{ __('Purchase Order') }}
+                        </h2>
 
+                        <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Esta sección dará de alta las nuevas ordenes de compra.</p>
+                    </div>
+                    <fieldset class="w-full space-y-1 text-gray-800">
+                        <label for="Search">Search Supplier</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                <button type="button" title="search" class="p-1 focus:outline-none focus:ring">
+                                    <svg fill="currentColor" viewBox="0 0 512 512" class="h-4 w-4 text-gray-800">
+                                        <path
+                                            d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </span>
                             <input wire:model="supplierText" wire:keydown="$set('suggestionSupplier' , true)"
-                                type="text"
-                                class="w-full rounded-md border bg-white py-3 pl-10 pr-4 text-gray-700 focus:border-blue-500 focus:outline-none focus:ring dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-500"
-                                placeholder="Search">
+                                type="search" name="Search" placeholder="Search..."
+                                class="w-32 rounded-md border-gray-300 bg-gray-100 py-2 pl-10 text-sm text-gray-800 focus:border-cyan-600 focus:bg-gray-50 focus:outline-none sm:w-auto">
                         </div>
                         @if ($suggestionSupplier && $supplierText != '')
                             <div
@@ -42,14 +62,14 @@
                                 @endforeach
                             </div>
                         @endif
-                    </section>
+                    </fieldset>
                 </div>
                 @if ($supplier)
                     <div class="mb-4">
                         <div class="lg:flex lg:items-center lg:justify-between">
                             <div class="min-w-0 flex-1">
                                 <h2
-                                    class="text-2xl font-bold capitalize leading-7 text-gray-900 sm:truncate sm:text-3xl">
+                                    class="text-xl font-bold capitalize leading-7 text-gray-700 sm:truncate sm:text-3xl">
                                     {{ $supplier->company_name }}</h2>
                                 <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
 
@@ -136,26 +156,12 @@
                                     </span>
                                 @endif --}}
                                 <div class="relative ml-3 sm:hidden">
-                                    <button type="button"
-                                        class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                        id="mobile-menu-button" aria-expanded="false" aria-haspopup="true">
-                                        More
-                                        <!-- Heroicon name: solid/chevron-down -->
-                                        <svg class="-mr-1 ml-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
                                     <div class="absolute right-0 mt-2 -mr-1 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button"
                                         tabindex="-1">
                                         <!-- Active: "bg-gray-100", Not Active: "" -->
                                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                            tabindex="-1" id="mobile-menu-item-0">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                            tabindex="-1" id="mobile-menu-item-1">View</a>
+                                            tabindex="-1" id="mobile-menu-item-0">{{ __('Remove') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +183,7 @@
                                 <ul class="mt-2 w-full border border-gray-100 bg-white">
                                     @foreach ($products as $itemProduct)
                                         <li wire:click="loadProduct({{ $itemProduct }})"
-                                            class="relative cursor-pointer border-b-2 border-gray-100 py-1 pl-8 pr-2 hover:bg-yellow-50 hover:text-gray-900">
+                                            class="relative inline-flex cursor-pointer border-b-2 border-gray-100 py-1 pl-8 pr-2 hover:bg-indigo-100 hover:text-gray-900">
                                             <svg class="absolute left-2 top-2 h-4 w-4"
                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                 fill="currentColor">
@@ -193,74 +199,139 @@
                             @endif
                         </div>
                     </div>
-                    @if (count($productsAdd))
-                        <div class="mb-4">
-                            <div class="mt-8">
-                                <div class="flow-root">
-                                    <ul role="list" class="-my-6 divide-y divide-gray-200">
-                                        @foreach ($productsAdd as $index => $add)
-                                            <li class="flex py-6">
-                                                <div
-                                                    class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                    <img src="{{ $add['profile_photo_url'] }}"
-                                                        alt="{{ $add['name'] }}"
-                                                        class="h-full w-full object-cover object-center">
-                                                </div>
+                    <div class="mb-4">
+                        <fieldset class="w-full space-y-1 text-gray-800">
+                            <label for="files" class="hidden text-sm font-medium">Cargar los Items</label>
+                            <div class="flex">
+                                <div
+                                    class="rounded-md border-2 border-dashed border-gray-300 bg-gray-100 px-8 py-12 text-gray-600">
 
-                                                <div class="ml-4 flex flex-1 flex-col">
-                                                    <div>
-                                                        <div
-                                                            class="flex justify-between text-base font-medium text-gray-900">
-                                                            <h3>
-                                                                <a href="#"> {{ $add['name'] }} </a>
-                                                            </h3>
-                                                            {{-- <fieldset class="w-12 space-y-1 text-gray-800">
+
+                                    @if (count($productsAdd))
+                                        <div class="w-full">
+                                            <div class="mx-3">
+                                                <div class="flow-root">
+                                                    <ul role="list" class="-my-6 divide-y divide-gray-200">
+                                                        @foreach ($productsAdd as $index => $add)
+                                                            <li class="flex py-6">
+                                                                <div
+                                                                    class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                                    <img src="{{ $add['profile_photo_url'] }}"
+                                                                        alt="{{ $add['name'] }}"
+                                                                        class="h-full w-full object-cover object-center">
+                                                                </div>
+
+                                                                <div class="ml-4 flex flex-1 flex-col">
+                                                                    <div>
+                                                                        <div
+                                                                            class="flex justify-between text-base font-medium text-gray-900">
+                                                                            <h3>
+                                                                                <a href="#"> {{ $add['name'] }}
+                                                                                </a>
+                                                                            </h3>
+                                                                            {{-- <fieldset class="w-12 space-y-1 text-gray-800">
                                                                 <label for="price" class="block text-sm font-medium">Precio de Compra</label>
                                                                 <div class="flex">
                                                                     <input type="text" name="price" id="price" placeholder="99 999,99" class="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset border-gray-300 text-gray-800 bg-gray-100 focus:ring-teal-600">
                                                                     <span class="flex items-center px-3 pointer-events-none sm:text-sm rounded-r-md bg-gray-300">$</span>
                                                                 </div>
                                                             </fieldset> --}}
-                                                            <p class="ml-4">${{ $add['sale_price'] }}</p>
+                                                                            @if ($editMode && $index == $i)
+                                                                                <fieldset
+                                                                                    class="w-full space-y-1 text-gray-800">
+                                                                                    <label for="price"
+                                                                                        class="hidden text-sm font-medium">Total
+                                                                                        price</label>
+                                                                                    <div class="flex">
+                                                                                        <input type="text"
+                                                                                            wire:model="productsAdd.{{ $index }}.list_price"
+                                                                                            name="price"
+                                                                                            id="price"
+                                                                                            placeholder="99,99"
+                                                                                            class="flex w-32 flex-1 rounded-l-md border border-gray-300 bg-gray-100 text-right text-gray-800 focus:ring-inset focus:ring-cyan-600 sm:text-sm">
+                                                                                        <span
+                                                                                            class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm">$</span>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            @else
+                                                                                <p class="ml-4 inline-flex">
+                                                                                    <a wire:click="editPrice({{ $index }} , {{ $add['list_price'] }})"
+                                                                                        href="#"><svg
+                                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            fill="currentColor"
+                                                                                            class="mx-1 mt-1 h-3 w-3 hover:text-yellow-500">
+                                                                                            <path
+                                                                                                d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+                                                                                        </svg>
+                                                                                    </a>${{ $add['list_price'] }}
+                                                                                </p>
+                                                                            @endif
 
-                                                        </div>
-                                                        <p class="mt-1 text-sm text-gray-500">{!! DNS1D::getBarcodeSVG($add['code'], 'UPCE') !!}
-                                                        </p>
-                                                    </div>
-                                                    <div class="flex flex-1 items-end justify-between text-sm">
+                                                                        </div>
+                                                                        {{-- <p class="mt-1 text-sm text-gray-500">
+                                                                            {!! DNS1D::getBarcodeSVG($add['code'], 'UPCE') !!}
+                                                                        </p> --}}
+                                                                    </div>
+                                                                    <div
+                                                                        class="flex flex-1 items-end justify-between text-sm">
 
-                                                        <p class="text-gray-500">
-                                                            {{ __('Current Stock') }}({{ $add['stock'] }}) -
-                                                            <x-jet-input class="w-24"
-                                                                wire:model="addStock.{{ $index }}"
-                                                                type="number" />
-                                                            <x-jet-input-error for="addStock.{{ $index }}" />
-                                                        </p>
+                                                                        <p class="text-gray-500">
+                                                                            {{ __('Current Stock') }}({{ $add['stock'] }})
+                                                                            -
+                                                                            <x-jet-input class="w-24"
+                                                                                wire:model="addStock.{{ $index }}"
+                                                                                type="number" />
+                                                                            <x-jet-input-error
+                                                                                for="addStock.{{ $index }}" />
+                                                                        </p>
 
-                                                        <div class="flex">
-                                                            {{-- <button type="button"
+                                                                        <div class="flex">
+                                                                            {{-- <button type="button"
                                                                 wire:click="sumItem({{ $index }})"
                                                                 class="font-medium text-green-600 hover:text-green-500">{{ __('Add') }}</button> --}}
-                                                            <button type="button"
-                                                                wire:click="removeItem({{ $index }})"
-                                                                class="font-medium text-red-600 hover:text-red-500">Remove</button>
+                                                                            <button type="button"
+                                                                                wire:click="removeItem({{ $index }})"
+                                                                                class="font-medium text-red-600 hover:text-red-500">Remove</button>
 
-                                                        </div>
-                                                    </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
                                                 </div>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                            </div>
+
+                                        </div>
+                                    @else
+                                        <p class="px-3">No hay items seleccionado. Para cargar los items debera
+                                            buscar en
+                                            la
+                                            caja de busqueda "Search Product" y seleccionar el item correspondiente.
+                                            Sino
+                                            debera
+                                            darlo de alta previamente</p>
+                                    @endif
                                 </div>
                             </div>
-
-                        </div>
-                    @endif
+                        </fieldset>
+                    </div>
                 @endif
                 <div class="mb-4">
-                    <x-jet-label value="{{ __('Bonification %') }}" />
+                    {{-- <x-jet-label value="{{ __('Bonification %') }}" />
                     <x-jet-input wire:model="bonification" type="number" min="0" />
-                    <x-jet-input-error for="bonification" />
+                    <x-jet-input-error for="bonification" /> --}}
+                    <fieldset class="w-full space-y-1 text-gray-800">
+                        <label for="boinification" class="block text-sm font-medium">Total Bonification</label>
+                        <div class="flex">
+                            <input wire:model="bonification" min="0" type="text" name="bonification"
+                                id="bonification" placeholder="99,99"
+                                class="flex w-16 flex-1 rounded-l-md border border-gray-300 bg-gray-100 text-right text-gray-800 focus:ring-inset focus:ring-cyan-600 sm:text-sm">
+                            <span
+                                class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm">%</span>
+                        </div>
+                    </fieldset>
                 </div>
             </x-slot>
             <x-slot name="footer">

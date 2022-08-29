@@ -13,7 +13,7 @@ class CreateReferral extends Component
     use LivewireAlert;
 
     public $isOpenCreate = false;
-    public $bonification;
+    public $bonification = 0;
 
     public $supplierText = '';
     public $suggestionSupplier = false;
@@ -24,10 +24,14 @@ class CreateReferral extends Component
     public $product;
 
     public $editMode = false;
+    public $i;
+    public $price;
 
 
     public $productsAdd = [];
     public $addStock = [];
+
+
     
     public function render()
     {
@@ -70,7 +74,7 @@ class CreateReferral extends Component
 
     public function store()
     {
-        
+        //dd($this->productsAdd);
         $this->validate([
             'addStock.*' => 'required|integer|min:1',
             'bonification' => 'numeric|nullable'
@@ -94,5 +98,12 @@ class CreateReferral extends Component
         $this->alert('success' , 'Se ha cargado un nuevo remito');
         $this->emitTo('referrals.index-referral', 'render');
         
+    }
+
+    public function editPrice($i, $price)
+    {
+        $this->i = $i;
+        $this->price = $price;
+        $this->editMode = true;
     }
 }

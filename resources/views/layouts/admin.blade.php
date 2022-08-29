@@ -35,8 +35,8 @@
             <div class="mt-8 text-center">
                 <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
                     class="m-auto h-10 w-10 rounded-full object-cover lg:h-28 lg:w-28">
-                <h5 class="mt-4 hidden text-xl font-semibold text-gray-600 lg:block">{{ Auth::user()->name }}</h5>
-                <span class="hidden text-gray-400 lg:block">Admin</span>
+                <h5 class="mt-4 hidden text-xl font-semibold text-gray-600 lg:block capitalize">{{ Auth::user()->name }}</h5>
+                <span class="hidden text-gray-400 lg:block">{{Auth::user()->email}}</span>
             </div>
 
             <ul class="mt-8 space-y-2 tracking-wide">
