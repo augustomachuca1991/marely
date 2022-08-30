@@ -35,8 +35,9 @@
             <div class="mt-8 text-center">
                 <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
                     class="m-auto h-10 w-10 rounded-full object-cover lg:h-28 lg:w-28">
-                <h5 class="mt-4 hidden text-xl font-semibold text-gray-600 lg:block capitalize">{{ Auth::user()->name }}</h5>
-                <span class="hidden text-gray-400 lg:block">{{Auth::user()->email}}</span>
+                <h5 class="mt-4 hidden text-xl font-semibold capitalize text-gray-600 lg:block">{{ Auth::user()->name }}
+                </h5>
+                <span class="hidden text-gray-400 lg:block">admin</span>
             </div>
 
             <ul class="mt-8 space-y-2 tracking-wide">
@@ -153,14 +154,13 @@
                 <li>
                     <a href="{{ route('sales.index') }}"
                         class="group {{ request()->routeIs('sales.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
-                                d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
-                                d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
-                                clip-rule="evenodd" />
+
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="h-5 w-5">
+                            <path class="text-gray-600 group-hover:text-cyan-600"
+                                d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
                         </svg>
+
                         <span class="group-hover:text-gray-700">{{ __('My Shop') }}</span>
                     </a>
                 </li>

@@ -2,27 +2,24 @@
     <div
         class="w-6/6 flex flex-col items-center space-y-1 overflow-hidden bg-white p-3 shadow-lg sm:rounded-lg md:flex-row md:space-y-0">
         <div class="flex w-full md:w-3/6">
-            <button class="hidden p-1 outline-none focus:outline-none md:block"><svg
-                    class="h-5 w-5 cursor-pointer text-gray-600" fill="none" stroke-linecap="round"
+            <button class="hidden p-1 outline-none focus:outline-none md:block">
+                <svg class="h-5 w-5 cursor-pointer text-gray-600" fill="none" stroke-linecap="round"
                     stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg></button>
-            <input wire:model="search" type="search" name="searchProducts" id="searchProducts"
-                placeholder="Buscar por nombre, categorias, descripcion, etc..."
-                class="w-full border-gray-300 bg-transparent pl-4 text-sm outline-none focus:outline-none">
+                </svg>
+            </button>
+            <input wire:model.debounce.300ms="search" type="search" name="searchProducts" id="searchProducts"
+                placeholder="Buscar por nombre, categorias, descripcion, etc..." class="form-control w-full pl-4">
         </div>
         <div class="flex w-full md:w-1/6">
-
-            <select name="status" id="status" wire:model="byStatus"
-                class="w-full border-gray-300 bg-transparent text-sm outline-none focus:outline-none">
+            <select name="status" id="status" wire:model="byStatus" class="form-control w-full">
                 <option value="">{{ __('Active') }}</option>
                 <option value="1">{{ __('Inactive') }}</option>
                 <option value="2">{{ __('All') }}</option>
             </select>
         </div>
         <div class="flex w-full md:w-1/6">
-            <select name="supplier" id="supplier" wire:model="bySupplier"
-                class="w-full border-gray-300 bg-transparent text-sm outline-none focus:outline-none">
+            <select name="supplier" id="supplier" wire:model="bySupplier" class="form-control w-full">
                 <option value="">{{ __('Suppliers') }}</option>
                 @foreach (\App\Models\Supplier::all() as $item)
                     <option value="{{ $item->id }}">{{ $item->company_name }}</option>
@@ -31,7 +28,7 @@
         </div>
         <div class="flex w-full md:w-1/6">
             <select wire:model="byCategory" name="imagen_type" id="imagen_type"
-                class="w-full rounded-r-md border-gray-300 bg-transparent text-sm outline-none focus:outline-none">
+                class="form-control w-full rounded-r-md">
                 <option value="">{{ __('Categories') }}</option>
                 @foreach (\App\Models\Category::all() as $item)
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -50,28 +47,22 @@
                         <table class="min-w-full table-auto divide-y divide-gray-200 md:table-fixed">
                             <thead>
                                 <tr>
-                                    <th scope="col"
-                                        class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    <th scope="col" class="title-table">
                                         <a href="#" wire:click="orderName">{{ __('Article') }}</a>
                                     </th>
-                                    <th scope="col"
-                                        class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    <th scope="col" class="title-table">
                                         {{ __('Category') }}
                                     </th>
-                                    <th scope="col"
-                                        class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    <th scope="col" class="title-table">
                                         {{ __('Stock') }}
                                     </th>
-                                    <th scope="col"
-                                        class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    <th scope="col" class="title-table">
                                         {{ __('List Price') }}
                                     </th>
-                                    <th scope="col"
-                                        class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    <th scope="col" class="title-table">
                                         {{ __('Sale Price') }}
                                     </th>
-                                    <th scope="col"
-                                        class="bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    <th scope="col" class="title-table">
                                         {{ __('') }}
                                     </th>
                                     <th scope="col" class="bg-gray-50 px-6 py-3">
@@ -80,10 +71,15 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
+                                <tr wire:loading.delay colspan="7">
+                                    <td class="td-style">
+                                        <x-loading></x-loading>
+                                    </td>
+                                </tr>
                                 @if ($products->count())
                                     @foreach ($products as $index => $item)
-                                        <tr>
-                                            <td class="whitespace-nowrap px-6 py-4">
+                                        <tr wire:loading.remove>
+                                            <td class="td-style">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0">
                                                         <a href="#" wire:click="show({{ $item }})">
@@ -107,27 +103,27 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="whitespace-nowrap px-6 py-4">
+                                            <td class="td-style">
                                                 <div class="text-sm capitalize text-gray-500">
-                                                    {{ $item->category->name}}
+                                                    {{ $item->category->name }}
                                                 </div>
                                             </td>
-                                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                            <td class="td-style text-sm text-gray-500">
                                                 {{ $item->stock }}
                                             </td>
-                                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                            <td class="td-style text-sm text-gray-500">
                                                 $ {{ $item->list_price }}
                                             </td>
-                                            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                                            <td class="td-style text-sm text-gray-500">
                                                 $ {{ $item->sale_price }}
                                             </td>
-                                            <td class="whitespace-nowrap px-6 py-4">
+                                            <td class="td-style">
                                                 <span
                                                     class="{{ $item->stock < 1 ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800' }} inline-flex rounded-full px-2 text-xs font-semibold leading-5">
                                                     {{ $item->stock < 1 ? 'Inactive' : 'Active' }}
                                                 </span>
                                             </td>
-                                            <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                                            <td class="td-style text-right text-sm font-medium">
 
                                                 @if (!$item->deleted_at)
                                                     <div class="flex">
@@ -158,7 +154,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="7" class="whitespace-nowrap px-6 py-4">
+                                        <td colspan="7" class="td-style">
                                             <p> No se encontraron resultados para
                                                 "<span class="text-blue-600">
                                                     {{ $search ? $search : ($byStatus ? $byStatus : ($byCategory ? $byCategory : '')) }}
@@ -174,7 +170,10 @@
             </div>
         </div>
     </div>
-    {{ $products->links() }}
+    <div wire:loading.remove>
+
+        {{ $products->links() }}
+    </div>
     {{-- @if ($products->hasMorePages())
         <a wire:click="loadMore" class="cursor-pointer">
             <span class="underline text-blue-500 font-bold">{{ __('Load More') }}</span>

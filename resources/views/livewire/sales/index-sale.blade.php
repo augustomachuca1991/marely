@@ -42,13 +42,13 @@
 
                     <select name="supplier" id="supplier" wire:model="bySupplier"
                         class="w-full border border-gray-300 bg-transparent text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                        <option value="">{{ __('Supliers') }}</option>
+                        <option value="">{{ __('Suppliers') }}</option>
                     </select>
                 </div>
                 <div class="flex w-full md:w-1/6">
                     <select wire:model="byCategory" name="imagen_type" id="imagen_type"
                         class="w-full rounded-r-md border border-gray-300 bg-transparent text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                        <option value="">{{ __('All Categories') }}</option>
+                        <option value="">{{ __('Categories') }}</option>
                         @foreach (\App\Models\Category::all() as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach

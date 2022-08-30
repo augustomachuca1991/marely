@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class IndexReport extends Component
 {
-    use LivewireAlert; 
+    use LivewireAlert;
 
 
     public $search = "";
@@ -21,7 +21,7 @@ class IndexReport extends Component
     public $selectUser = false;
 
 
-    protected $listeners = ['render'];
+    protected $listeners = ['render', 'revert'];
 
     public function render()
     {
@@ -56,9 +56,18 @@ class IndexReport extends Component
     }
 
 
-    public function revert(Sale $sale)
+    public function confirmRevert(Sale $sale)
     {
         $this->sale = $sale;
+        $this->confirm('Esta seguro de revertir la venta?', [
+            'onConfirmed' => 'revert',
+        ]);
+
+        //dd($this->sale->products);
+    }
+
+    public function revert()
+    {
         foreach ($this->sale->products as $key => $product) {
             $product->stock += $product->pivot->quantity;
             $product->updated_at = now();
@@ -66,8 +75,7 @@ class IndexReport extends Component
             //$product->sales()->detach($this->sale->id);
         }
         $this->sale->delete();
-        $this->alert('success' , 'Se revirtio la venta');
-        //dd($this->sale->products);
+        $this->alert('success', 'Se revirtio la venta');
     }
 
 }

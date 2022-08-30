@@ -1,5 +1,5 @@
 <div>
-    <div
+    {{-- <div
         class="xl:mt-18 relative z-0 my-auto mb-12 overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-slate-900/5 dark:bg-slate-800">
         <section>
             <header class="dark:highlight-white/10 space-y-4 rounded-t-xl p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
@@ -21,7 +21,7 @@
             </header>
         </section>
     </div>
-    <div class="bg-white py-6 sm:py-8 lg:py-12 shadow-md rounded-xl ring-1 ring-slate-900/5 dark:bg-slate-800">
+    <div class="rounded-xl bg-white py-6 shadow-md ring-1 ring-slate-900/5 dark:bg-slate-800 sm:py-8 lg:py-12">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <!-- text - start -->
             <div class="mb-10 md:mb-16">
@@ -39,19 +39,14 @@
                     <!-- product - start -->
                     <a href="#"
                         class="group relative flex h-56 items-end overflow-hidden rounded-lg bg-teal-100 p-4 shadow-lg">
-                        {{-- <img src="https://ui-avatars.com/api/?format=svg&name={{ urlencode($item->company_name) }}&background=random"
-                            loading="lazy" alt="Photo by Fakurian Design"
-                            class="absolute inset-0 h-36 w-full object-cover object-center transition duration-200 group-hover:scale-110" /> --}}
+
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-500 via-transparent to-transparent opacity-50">
                         </div>
 
                         <div class="relative flex flex-col">
-                            {{-- <span class="text-gray-200 uppercase">{{$item->company_name}}</span>
-                            <span class="text-lg font-semibold text-white lg:text-xl">{{$item->location}}</span>
-                            <span class="text-lg font-semibold text-white lg:text-xl">{{$item->phone_number}}</span> --}}
-                            <div class="py-6 md:py-0 md:px-6 text-gray-800">
+                            <div class="py-6 text-gray-800 md:py-0 md:px-6">
                                 <h1 class="text-4xl font-bold capitalize">{{ $item->company_name }}</h1>
                                 <p class="pt-2 pb-4">Fill in the form to start a conversation</p>
                                 <div class="space-y-4">
@@ -92,5 +87,43 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
+
+    <section class="body-font text-gray-600">
+        <div class="container mx-auto px-5 py-24">
+            <div class="mb-20 flex w-full flex-col flex-wrap items-center text-center">
+                <h1 class="title-font mb-2 text-2xl font-medium text-gray-900 sm:text-3xl">{{ __('Suppliers') }}</h1>
+                <p class="w-full leading-relaxed text-gray-500 lg:w-1/2">Whatever cardigan tote bag tumblr hexagon
+                    brooklyn asymmetrical gentrify, subway tile poke farm-to-table.</p>
+            </div>
+            <div class="-m-4 flex flex-wrap">
+                @foreach ($suppliers as $item)
+                    <div class="p-4 md:w-1/2 xl:w-1/3">
+                        <div class="rounded-lg border border-gray-200 p-6">
+                            <div
+                                class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-500">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="h-6 w-6">
+                                    <path
+                                        d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25zM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 116 0h3a.75.75 0 00.75-.75V15z" />
+                                    <path
+                                        d="M8.25 19.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0zM15.75 6.75a.75.75 0 00-.75.75v11.25c0 .087.015.17.042.248a3 3 0 015.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 00-3.732-10.104 1.837 1.837 0 00-1.47-.725H15.75z" />
+                                    <path d="M19.5 19.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z" />
+                                </svg>
+
+                            </div>
+                            <h2 class="title-font mb-2 text-lg font-medium text-gray-900">{{$item->company_name}}</h2>
+                            <p class="text-base leading-relaxed">{{$item->location}}</p>
+
+                        </div>
+                    </div>
+                @endforeach
+
+
+            </div>
+            <button
+                class="mx-auto mt-16 flex rounded border-0 bg-green-500 py-2 px-8 text-lg text-white hover:bg-green-600 focus:outline-none">Button</button>
+        </div>
+    </section>
 </div>

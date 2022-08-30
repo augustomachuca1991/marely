@@ -36,6 +36,24 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="mb-4">
+                    <div class="grid gap-2 md:grid-cols-2">
+                        <div>
+                            <x-jet-label value="{{ __('Stock') }}" />
+                            {{-- <x-jet-input wire:model="product.stock" type="number" class="w-full" />
+                            <x-jet-input-error for="product.stock" /> --}}
+                            <p>{{ $product->stock }} unidades</p>
+                        </div>
+                        <div>
+                            <x-jet-label value="{{ __('List Price') }}" />
+                            {{-- <x-jet-input wire:model="product.list_price" type="text" class="w-full"
+                                placeholder="0.00" />
+                            <x-jet-input-error for="product.list_price" /> --}}
+                            <p>$ {{ $product->list_price }}</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="mb-4">
                     <fieldset class="w-full space-y-1 text-gray-800">
                         <label for="price" class="block text-sm font-medium">{{ __('Sale Price') }} *</label>
@@ -49,23 +67,6 @@
                     </fieldset>
                     <x-jet-input-error for="product.sale_price" />
 
-                </div>
-                <div class="mb-4">
-                    <div class="grid gap-2 md:grid-cols-2">
-                        <div>
-                            <x-jet-label value="{{ __('Stock') }} *" />
-                            {{-- <x-jet-input wire:model="product.stock" type="number" class="w-full" />
-                            <x-jet-input-error for="product.stock" /> --}}
-                            <p>{{ $product->stock }}</p>
-                        </div>
-                        <div>
-                            <x-jet-label value="{{ __('List Price') }} *" />
-                            {{-- <x-jet-input wire:model="product.list_price" type="text" class="w-full"
-                                placeholder="0.00" />
-                            <x-jet-input-error for="product.list_price" /> --}}
-                            <p>{{ $product->list_price }}</p>
-                        </div>
-                    </div>
                 </div>
                 <div class="mb-4">
                     <x-jet-label value="{{ __('Description') }} *" />

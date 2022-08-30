@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\Categories;
 
 use App\Models\Category;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class IndexCategory extends Component
 {
-    use WithPagination;
+    use WithPagination, LivewireAlert;
 
 
     public $perPage = 10;
@@ -24,7 +25,7 @@ class IndexCategory extends Component
         'perPage' => ['except' => 10]
     ];
 
-    protected $listeners = ['render' , 'closeModal'];
+    protected $listeners = ['render' , 'closeModal', 'delete'];
 
     public function render()
     {
@@ -45,9 +46,12 @@ class IndexCategory extends Component
         $this->isOpenEdit = true;
     }
 
-    public function delete(Category $category){
+    public function confirmDelete(Category $category){
         $this->category = $category;
-        $this->category->delete();
+        $this->confirm('Desea dar de esta categoria?', [
+            'onConfirmed' => 'delete',
+        ]);
+        //$this->category->delete();
     }
 
     public function closeModal(){
@@ -59,5 +63,19 @@ class IndexCategory extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+
+    public function delete(){
+        $name = $this->category->name;
+        if ($this->category->products()->exists()) {
+            $msj = "La categoria " . $name . " tiene productos asociados esto puede ocasionar problemas en el sistema";
+            $condition = 'error';
+        }else{
+            $this->category->delete();
+            $msj = "La categoria ".$name." ha sido eliminada";
+            $condition = 'success';
+        }
+        $this->alert($condition , $msj);
     }
 }

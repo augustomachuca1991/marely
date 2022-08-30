@@ -36,6 +36,7 @@ class IndexProduct extends Component
 
     public function render()
     {
+        sleep(1);
         return view('livewire.products.index-product', [
             'products' => Product::searchProduct($this->search)
                 ->searchCategory($this->byCategory)
@@ -64,10 +65,7 @@ class IndexProduct extends Component
         $this->confirm('Desea dar de baja este articulo?', [
             'onConfirmed' => 'delete',
         ]);
-        // $this->alert('question', 'Quieres eliminar este articulo?', [
-        //     'showConfirmButton' => true
-        // ]);
-        
+
     }
 
 
@@ -101,7 +99,7 @@ class IndexProduct extends Component
 
     public function delete()
     {
-        
+
         $this->product->delete();
         $this->alert('success', 'El Articulo se ha dado de baja');
     }

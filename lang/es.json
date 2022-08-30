@@ -213,12 +213,17 @@
   "My Shop": "Mi Tienda",
   "Reports": "Reportes",
   "Referrals" : "Remitos",
-  "Print" : "Imprimir", 
+  "Print" : "Imprimir",
   "Revert" : "Revertir",
   "Orders" : "Ordenes",
   "Rectify" : "Rectificar",
   "Cancelled" : "Cancelado",
   "Paid" : "Pagado",
   "Sales Order" : "Orden de Venta",
-  "Purchase Order" : "Orden de Compra"
+  "Purchase Order" : "Orden de Compra",
+  "Filter by user" : "Filtro por usuario",
+  "From" : "Desde",
+  "To" : "Hasta",
+  "Saller" : "Vendedor",
+  "Status" : "Estados"
 }

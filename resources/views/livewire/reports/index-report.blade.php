@@ -1,13 +1,11 @@
 <div>
     <div class="mb-10 md:mb-16">
-        <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">{{ __('Sale Order') }}
+        <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">{{ __('Sales Order') }}
         </h2>
 
-        <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This is a section of some simple
-            filler text, also known as placeholder text. It shares some characteristics of a real written text
-            but is random or otherwise generated.</p>
+        <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Esta sección corresponde al histórico de ventas realizadas por medio del sitio. Reporta vendedor, artículos, el estado de ventas entre otras cosas. También permite imprimir la orden de venta realizada</p>
     </div>
-    <!-- Search by User - start -->
+    {{-- <!-- Search by User - start -->
     <div class="mb-12">
         <div class="mb-2" x-data="{
             open: @entangle('selectUser'),
@@ -101,7 +99,138 @@
             </div>
         </div>
     </div>
-    <!-- Search by User - end -->
+    <!-- Search by User - end --> --}}
+
+
+    <div class="my-4 bg-gray-50 px-8 py-2 text-gray-800">
+        <div class="container mx-auto flex items-center justify-center space-x-2 py-2 md:justify-between">
+            <div x-data="{
+                open: @entangle('selectUser'),
+                toggle() {
+                    this.open = this.open ? this.close() : true
+                },
+                close() {
+                    this.open = false
+                }
+            }" class="w-7/12">
+                <label id="listbox-label" class="block text-sm font-medium text-gray-700"> {{__('Filter by user')}}
+                </label>
+                <div class="relative">
+                    <button type="button" @click="toggle()"
+                        class="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                        aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                        <span wire:model="user" class="flex items-center">
+                            <img src="{{ $user ? $user->profile_photo_url : 'https://ui-avatars.com/api/?name=SelectedUser&color=7F9CF5&background=EBF4FF' }}"
+                                alt="" class="h-6 w-6 flex-shrink-0 rounded-full">
+                            <span class="ml-3 block truncate capitalize">
+                                {{ $user ? $user->name : 'Seleccione Vendedor' }}
+                            </span>
+                        </span>
+                        <span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </button>
+                    <ul x-show="open" @click.outside="close()" style="display: none"
+                        class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                        tabindex="-1" role="listbox" aria-labelledby="listbox-label"
+                        aria-activedescendant="listbox-option-3">
+                        @foreach (App\Models\User::all() as $item)
+                            <li wire:click="selectedUser({{ $item }})"
+                                class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
+                                id="listbox-option-0" role="option">
+                                <div class="flex items-center">
+                                    <img src="{{ $item->profile_photo_url }}" alt="{{ $item->name }}"
+                                        class="h-6 w-6 flex-shrink-0 rounded-full">
+                                    <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                                    <span class="ml-3 block truncate font-normal capitalize">
+                                        {{ $item->name }}
+                                    </span>
+                                </div>
+                                @if ($user && $user->id == $item->id)
+                                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                                        <!-- Heroicon name: solid/check -->
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                @endif
+
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="flex w-5/12 space-x-1">
+                <div>
+                    <fieldset class="w-full space-y-1 text-gray-800">
+                        <label for="from" class="block text-sm font-medium">{{ __('From') }}</label>
+                        <div class="flex">
+                            <input wire:model="from" type="date" name="from" id="from"
+                                class="flex flex-1 rounded-l-md border border-gray-300 text-right text-gray-800 focus:ring-inset focus:ring-green-600 sm:text-sm">
+                            <span
+                                class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm"><svg
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="h-6 w-6">
+                                    <path
+                                        d="M12.75 12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM7.5 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM8.25 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM9.75 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM10.5 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM12.75 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM14.25 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM15 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM16.5 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM15 12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM16.5 13.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.75 2.25A.75.75 0 017.5 3v1.5h9V3A.75.75 0 0118 3v1.5h.75a3 3 0 013 3v11.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V7.5a3 3 0 013-3H6V3a.75.75 0 01.75-.75zm13.5 9a1.5 1.5 0 00-1.5-1.5H5.25a1.5 1.5 0 00-1.5 1.5v7.5a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5v-7.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </div>
+                        <x-jet-input-error for="from" />
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset class="w-full space-y-1 text-gray-800">
+                        <label for="to" class="block text-sm font-medium">{{ __('To') }}</label>
+                        <div class="flex">
+                            <input wire:model="to" type="date" name="to" id="to"
+                                class="flex flex-1 rounded-l-md border border-gray-300 text-right text-gray-800 focus:ring-inset focus:ring-green-600 sm:text-sm">
+                            <span
+                                class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm"><svg
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="h-6 w-6">
+                                    <path
+                                        d="M12.75 12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM7.5 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM8.25 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM9.75 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM10.5 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM12.75 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM14.25 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM15 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM16.5 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM15 12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM16.5 13.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.75 2.25A.75.75 0 017.5 3v1.5h9V3A.75.75 0 0118 3v1.5h.75a3 3 0 013 3v11.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V7.5a3 3 0 013-3H6V3a.75.75 0 01.75-.75zm13.5 9a1.5 1.5 0 00-1.5-1.5H5.25a1.5 1.5 0 00-1.5 1.5v7.5a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5v-7.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </div>
+                        <x-jet-input-error for="to" />
+                    </fieldset>
+                </div>
+                <div class="{{ $errors->has('to') || $errors->has('from') ? 'self-center' : 'self-end' }} flex-none">
+                    <x-jet-secondary-button wire:click="filterDate" >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                            <path fill-rule="evenodd"
+                                d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </x-jet-secondary-button>
+                </div>
+            </div>
+            {{-- <a href="#" rel="noopener noreferrer" class="hidden items-center gap-2 md:flex">
+                <svg role="img" viewBox="0 0 22 22" class="h-4 w-4 fill-current">
+                    <path clip-rule="evenodd"
+                        d="M6.5 1.75a1.75 1.75 0 100 3.5h3.51a8.785 8.785 0 00-.605-1.389C8.762 2.691 7.833 1.75 6.5 1.75zm5.49 3.5h3.51a1.75 1.75 0 000-3.5c-1.333 0-2.262.941-2.905 2.111a8.778 8.778 0 00-.605 1.389zM1.75 6.75v3.5h18.5v-3.5H1.75zm18 5H21a.75.75 0 00.75-.75V6a.75.75 0 00-.75-.75h-2.761a3.25 3.25 0 00-2.739-5c-2.167 0-3.488 1.559-4.22 2.889a9.32 9.32 0 00-.28.553 9.32 9.32 0 00-.28-.553C9.988 1.809 8.667.25 6.5.25a3.25 3.25 0 00-2.739 5H1A.75.75 0 00.25 6v5c0 .414.336.75.75.75h1.25V21c0 .414.336.75.75.75h16a.75.75 0 00.75-.75v-9.25zm-1.5 0H3.75v8.5h14.5v-8.5z"
+                        fill-rule="evenodd"></path>
+                </svg>
+                <span class="hover:underline focus-visible:underline">Gift Cards</span>
+            </a> --}}
+        </div>
+    </div>
 
 
 
@@ -112,10 +241,6 @@
             <div
                 class="order-1 mb-2 inline-block w-11/12 max-w-screen-sm text-sm text-white sm:order-none sm:mb-0 sm:w-auto md:text-base">
                 Este tabla muestra todas las ventas hechas a traves del sistema</div>
-
-            <a href="#"
-                class="order-last inline-block w-full whitespace-nowrap rounded-lg bg-teal-600 px-4 py-2 text-center text-xs font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-teal-700 focus-visible:ring active:bg-teal-800 sm:order-none sm:w-auto md:text-sm">Learn
-                more</a>
         </div>
         <!-- table - start -->
         <div class="overflow-x-auto">
@@ -130,7 +255,7 @@
 
                             <th class="whitespace-nowrap p-4 text-left font-medium text-gray-900">
                                 <div class="flex items-center">
-                                    {{ __('Sold by') }}
+                                    {{ __('Saller') }}
                                     <svg xmlns="http://www.w3.org/2000/svg" class="ml-1.5 h-4 w-4 text-gray-700"
                                         viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd"
@@ -152,7 +277,7 @@
                             </th>
                             <th class="whitespace-nowrap p-4 text-left font-medium text-gray-900">
                                 <div class="flex items-center">
-                                    Status
+                                    {{__('Status')}}
                                     <svg xmlns="http://www.w3.org/2000/svg" class="ml-1.5 h-4 w-4 text-gray-700"
                                         viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd"
@@ -219,8 +344,9 @@
                                     Partially Refunded
                                 </strong> --}}
                                 </td>
-                                <td class="whitespace-nowrap p-4 text-gray-700"> {{ $item->deleted_at ? '$ 0.00' : '$ '.$item->amount  }}
-                                    </td>
+                                <td class="whitespace-nowrap p-4 text-gray-700">
+                                    {{ $item->deleted_at ? '$ 0.00' : '$ ' . $item->amount }}
+                                </td>
                                 <td class="whitespace-nowrap p-4 text-gray-700">
                                     @if (!$item->deleted_at)
                                         {{-- <div
@@ -324,7 +450,7 @@
                                                 </span>
                                             </a>
 
-                                            <button wire:click="revert({{ $item }})"
+                                            <button wire:click="confirmRevert({{ $item }})"
                                                 class="flex w-full transform items-center justify-center rounded-md bg-orange-600 px-2 py-1 text-white transition-colors duration-200 hover:bg-orange-500 focus:bg-orange-500 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-40 sm:mx-1 sm:w-auto">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" class="mx-1 h-5 w-5">
