@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Sales;
+namespace App\Http\Livewire\Shops;
 
 use Livewire\Component;
 
-class ShowSale extends Component
+class ShowShop extends Component
 {
+
+
     public $product;
     public $isOpenShow = false;
 
@@ -18,12 +20,13 @@ class ShowSale extends Component
 
     public function render()
     {
-        return view('livewire.sales.show-sale');
+        return view('livewire.shops.show-shop');
     }
 
 
-    public function resetData(){
+    public function resetData()
+    {
         $this->reset('isOpenShow');
-        $this->emitTo('sales.index-sale','closeModal');
+        $this->emitTo('shops.index-shop', 'closeModal');
     }
 }

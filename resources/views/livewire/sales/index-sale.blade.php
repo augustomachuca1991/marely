@@ -1,112 +1,309 @@
 <div>
+    <div class="mb-10 md:mb-16">
+        <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">{{ __('Sales Order') }}
+        </h2>
 
-    <section class="rounded-xl bg-white shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800">
-        <div class="container mx-auto px-6 py-10">
-            <h1 class="text-center text-3xl font-semibold capitalize text-gray-800 dark:text-white lg:text-4xl">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                    class="my-auto mb-2 inline-flex h-8 w-8 text-teal-300">
-                    <path
-                        d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
-                </svg>
-
-                {{ __('My Shop') }}
-            </h1>
-
-            <p class="mx-auto my-6 max-w-2xl text-center text-gray-500 dark:text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo incidunt ex placeat modi magni quia error
-                alias, adipisci rem similique, at omnis eligendi optio eos harum.
-            </p>
-
-            <div
-                class="w-6/6 my-2 flex flex-col items-center space-y-1 overflow-hidden bg-white p-3 sm:rounded-lg md:flex-row md:space-y-0">
-                <div class="flex w-full md:w-3/6">
-                    <button class="hidden p-1 outline-none focus:outline-none md:block"><svg
-                            class="h-5 w-5 cursor-pointer text-gray-600" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg></button>
-                    <input wire:model="search" type="search" name="searchProducts" id="searchProducts"
-                        placeholder="Buscar por nombre, categorias, descripcion, etc..."
-                        class="w-full border border-gray-300 bg-transparent pl-4 text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                </div>
-                <div class="flex w-full md:w-1/6">
-
-                    <select name="status" id="status" wire:model="byStatus"
-                        class="w-full border border-gray-300 bg-transparent text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                        <option value="">{{ __('Active') }}</option>
-                        <option value="1">{{ __('Inactive') }}</option>
-                        <option value="2">{{ __('All') }}</option>
-                    </select>
-                </div>
-                <div class="flex w-full md:w-1/6">
-
-                    <select name="supplier" id="supplier" wire:model="bySupplier"
-                        class="w-full border border-gray-300 bg-transparent text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                        <option value="">{{ __('Suppliers') }}</option>
-                    </select>
-                </div>
-                <div class="flex w-full md:w-1/6">
-                    <select wire:model="byCategory" name="imagen_type" id="imagen_type"
-                        class="w-full rounded-r-md border border-gray-300 bg-transparent text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
-                        <option value="">{{ __('Categories') }}</option>
-                        @foreach (\App\Models\Category::all() as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:mt-16 xl:grid-cols-3">
-                @foreach ($products as $item)
-                    @if ($item->stock)
-                        <div class="flex flex-col items-center">
-                            <img wire:click="show({{ $item }})"
-                                class="aspect-square w-full cursor-pointer rounded-xl object-cover"
-                                src="{{ $item->profile_photo_url }}" alt="{{ $item->name }}">
-
-                            <h1 class="mt-4 text-2xl font-semibold capitalize text-gray-700 dark:text-white">
-                                {{ $item->name }}
-                            </h1>
-
-                            <p class="mt-2 capitalize text-gray-500 dark:text-gray-300">{{ $item->description }}</p>
-                            <p class="mt-2 capitalize text-gray-400 dark:text-gray-300">{{ $item->category->name }}</p>
+        <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Esta sección corresponde al histórico de
+            ventas realizadas por medio del sitio. Reporta vendedor, artículos, el estado de ventas entre otras cosas.
+            También permite imprimir la orden de venta realizada</p>
+    </div>
 
 
-                            <div class="-mx-2 mt-3 flex">
-
-
-                                <div class="mx-2 text-gray-600 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-300"
-                                    aria-label="sale price">
-                                    ${{ $item->sale_price }}
-                                </div>
-
-                                {{-- <a href="#"
-                                class="mx-2 text-gray-600 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-300"
-                                aria-label="Github">
-                                <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.026 2C7.13295 1.99937 2.96183 5.54799 2.17842 10.3779C1.395 15.2079 4.23061 19.893 8.87302 21.439C9.37302 21.529 9.55202 21.222 9.55202 20.958C9.55202 20.721 9.54402 20.093 9.54102 19.258C6.76602 19.858 6.18002 17.92 6.18002 17.92C5.99733 17.317 5.60459 16.7993 5.07302 16.461C4.17302 15.842 5.14202 15.856 5.14202 15.856C5.78269 15.9438 6.34657 16.3235 6.66902 16.884C6.94195 17.3803 7.40177 17.747 7.94632 17.9026C8.49087 18.0583 9.07503 17.99 9.56902 17.713C9.61544 17.207 9.84055 16.7341 10.204 16.379C7.99002 16.128 5.66202 15.272 5.66202 11.449C5.64973 10.4602 6.01691 9.5043 6.68802 8.778C6.38437 7.91731 6.42013 6.97325 6.78802 6.138C6.78802 6.138 7.62502 5.869 9.53002 7.159C11.1639 6.71101 12.8882 6.71101 14.522 7.159C16.428 5.868 17.264 6.138 17.264 6.138C17.6336 6.97286 17.6694 7.91757 17.364 8.778C18.0376 9.50423 18.4045 10.4626 18.388 11.453C18.388 15.286 16.058 16.128 13.836 16.375C14.3153 16.8651 14.5612 17.5373 14.511 18.221C14.511 19.555 14.499 20.631 14.499 20.958C14.499 21.225 14.677 21.535 15.186 21.437C19.8265 19.8884 22.6591 15.203 21.874 10.3743C21.089 5.54565 16.9181 1.99888 12.026 2Z">
-                                    </path>
+    <div class="my-4 bg-gray-50 px-8 py-2 text-gray-800">
+        <div class="container mx-auto flex items-center justify-center space-x-2 py-2 md:justify-between">
+            <div x-data="{
+                open: @entangle('selectUser'),
+                toggle() {
+                    this.open = this.open ? this.close() : true
+                },
+                close() {
+                    this.open = false
+                }
+            }" class="w-5/12">
+                <div>
+                    <label id="listbox-label" class="mb-1 block text-sm font-medium text-gray-700">
+                        {{ __('Filter by user') }}
+                    </label>
+                    <div class="relative">
+                        <button type="button" @click="toggle()"
+                            class="relative w-full cursor-default rounded-md border border-gray-300 bg-white pt-1 pb-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+                            aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                            <span wire:model="user" class="flex items-center">
+                                <img src="{{ $user ? $user->profile_photo_url : 'https://ui-avatars.com/api/?name=SelectedUser&color=7F9CF5&background=EBF4FF' }}"
+                                    alt="" class="h-6 w-6 flex-shrink-0 rounded-full">
+                                <span class="ml-3 block truncate capitalize">
+                                    {{ $user ? $user->name : 'Seleccione Vendedor' }}
+                                </span>
+                            </span>
+                            <span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
                                 </svg>
-                            </a> --}}
-                                <button wire:click="add_to_cart({{ $item }})"
-                                    class="transform rounded bg-gray-800 px-2 py-1 text-xs font-semibold uppercase text-white transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">{{ __('Add to cart') }}</button>
+                            </span>
+                        </button>
+                        <ul x-show="open" @click.outside="close()" style="display: none"
+                            class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                            tabindex="-1" role="listbox" aria-labelledby="listbox-label"
+                            aria-activedescendant="listbox-option-3">
+                            @foreach (App\Models\User::all() as $item)
+                                <li wire:click="selectedUser({{ $item }})"
+                                    class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
+                                    id="listbox-option-0" role="option">
+                                    <div class="flex items-center">
+                                        <img src="{{ $item->profile_photo_url }}" alt="{{ $item->name }}"
+                                            class="h-6 w-6 flex-shrink-0 rounded-full">
+                                        <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                                        <span class="ml-3 block truncate font-normal capitalize">
+                                            {{ $item->name }}
+                                        </span>
+                                    </div>
+                                    @if ($user && $user->id == $item->id)
+                                        <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                                            <!-- Heroicon name: solid/check -->
+                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    @endif
 
-                            </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex w-7/12 space-x-1">
+                <div>
+                    <fieldset class="w-full space-y-1 text-gray-800">
+                        <label for="from" class="block text-sm font-medium">{{ __('From') }}</label>
+                        <div class="flex">
+                            <input wire:model="from" type="date" name="from" id="from"
+                                class="flex flex-1 rounded-l-md border border-gray-300 text-right text-gray-800 focus:ring-inset focus:ring-green-600 sm:text-sm">
+                            <span
+                                class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm"><svg
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="h-6 w-6">
+                                    <path
+                                        d="M12.75 12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM7.5 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM8.25 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM9.75 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM10.5 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM12.75 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM14.25 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM15 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM16.5 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM15 12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM16.5 13.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.75 2.25A.75.75 0 017.5 3v1.5h9V3A.75.75 0 0118 3v1.5h.75a3 3 0 013 3v11.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V7.5a3 3 0 013-3H6V3a.75.75 0 01.75-.75zm13.5 9a1.5 1.5 0 00-1.5-1.5H5.25a1.5 1.5 0 00-1.5 1.5v7.5a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5v-7.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
                         </div>
-                    @endif
-                @endforeach
-
+                        <x-jet-input-error for="from" />
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset class="w-full space-y-1 text-gray-800">
+                        <label for="to" class="block text-sm font-medium">{{ __('To') }}</label>
+                        <div class="flex">
+                            <input wire:model="to" type="date" name="to" id="to"
+                                class="flex flex-1 rounded-l-md border border-gray-300 text-right text-gray-800 focus:ring-inset focus:ring-green-600 sm:text-sm">
+                            <span
+                                class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm"><svg
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="h-6 w-6">
+                                    <path
+                                        d="M12.75 12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM7.5 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM8.25 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM9.75 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM10.5 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM12.75 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM14.25 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM15 17.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM16.5 15.75a.75.75 0 100-1.5.75.75 0 000 1.5zM15 12.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM16.5 13.5a.75.75 0 100-1.5.75.75 0 000 1.5z" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.75 2.25A.75.75 0 017.5 3v1.5h9V3A.75.75 0 0118 3v1.5h.75a3 3 0 013 3v11.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V7.5a3 3 0 013-3H6V3a.75.75 0 01.75-.75zm13.5 9a1.5 1.5 0 00-1.5-1.5H5.25a1.5 1.5 0 00-1.5 1.5v7.5a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5v-7.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </div>
+                        <x-jet-input-error for="to" />
+                    </fieldset>
+                </div>
+                <div class="{{ $errors->has('to') || $errors->has('from') ? 'self-center' : 'self-end' }}">
+                    <x-jet-secondary-button wire:click="filterDate">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="h-5 w-5">
+                            <path fill-rule="evenodd"
+                                d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </x-jet-secondary-button>
+                </div>
             </div>
         </div>
-    </section>
-    @if ($products->count())
+    </div>
+
+
+
+    <div class="overflow-hidden bg-white pb-6 shadow-xl sm:rounded-lg sm:pb-8 lg:pb-12">
+        <!-- banner - start -->
+        <div
+            class="ms:px-8 relative flex flex-wrap bg-teal-500 px-4 py-3 sm:flex-nowrap sm:items-center sm:justify-center sm:gap-3 sm:pr-8">
+            <div
+                class="order-1 mb-2 inline-block w-11/12 max-w-screen-sm text-sm text-white sm:order-none sm:mb-0 sm:w-auto md:text-base">
+                Este tabla muestra todas las ventas hechas a traves del sistema</div>
+        </div>
+        <!-- table - start -->
+        <div class="overflow-x-auto">
+            @if ($sales->count())
+                <table class="min-w-full divide-y divide-gray-200 text-sm">
+                    <thead>
+                        <tr>
+
+                            <th class="whitespace-nowrap p-4 text-left font-medium text-gray-900">
+                                <div class="flex items-center">
+                                    {{ __('Saller') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1.5 h-4 w-4 text-gray-700"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </th>
+                            <th class="whitespace-nowrap p-4 text-left font-medium text-gray-900">
+                                <div class="flex items-center">
+                                    {{ __('Article') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1.5 h-4 w-4 text-gray-700"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </th>
+                            <th class="whitespace-nowrap p-4 text-left font-medium text-gray-900">
+                                <div class="flex items-center">
+                                    {{ __('Status') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1.5 h-4 w-4 text-gray-700"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </th>
+                            <th class="whitespace-nowrap p-4 text-left font-medium text-gray-900">
+                                <div class="flex items-center">
+                                    {{ __('Total') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1.5 h-4 w-4 text-gray-700"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </th>
+                            <th class="whitespace-nowrap p-4 text-left font-medium text-gray-900">
+                                <div class="sr-only flex items-center">
+                                    {{ __('Actions') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1.5 h-4 w-4 text-gray-700"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-100">
+                        @foreach ($sales as $index => $item)
+                            <tr>
+
+                                <td class="whitespace-nowrap p-4 text-gray-700">
+                                    <p class="capitalize">{{ $item->user->name }}</p>
+                                    <p class="text-xs text-gray-500">{{ $item->created_at->format('d/m/Y h:ia') }}</p>
+                                </td>
+                                <td class="whitespace-nowrap p-4 font-medium text-gray-900">
+                                    <ul class="text-gray-700">
+                                        @foreach ($item->products as $i => $product)
+                                            <li>{{ $product->name }} x{{ $product->pivot->quantity }}</li>
+                                        @endforeach
+                                    </ul>
+
+                                </td>
+                                <td class="whitespace-nowrap p-4 text-gray-700">
+                                    <strong
+                                        class="{{ $item->deleted_at ? 'text-red-700 bg-red-100' : 'text-green-700 bg-green-100' }} rounded px-3 py-1.5 text-xs font-medium">
+                                        {{ $item->deleted_at ? __('Cancelled') : __('Paid') }}
+                                    </strong>
+                                </td>
+                                <td class="whitespace-nowrap p-4 text-gray-700">
+                                    {{ $item->deleted_at ? '$ 0.00' : '$ ' . $item->amount }}
+                                </td>
+                                <td class="whitespace-nowrap p-4 text-gray-700">
+                                    @if (!$item->deleted_at)
+                                        <div class="space-y-2 lg:-mx-1 lg:flex lg:space-y-0">
+                                            <a href="{{ route('reports.pdf', $item->id) }}" target="_blank"
+                                                class="flex w-full transform items-center justify-center rounded-md bg-slate-600 px-2 py-1 text-white transition-colors duration-200 hover:bg-slate-500 focus:bg-slate-500 focus:outline-none focus:ring focus:ring-slate-300 focus:ring-opacity-40 sm:mx-1 sm:w-auto">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="mx-1 h-5 w-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z" />
+                                                </svg>
+
+                                                <span class="mx-1">
+                                                    {{ __('Print') }}
+                                                </span>
+                                            </a>
+
+                                            <button wire:click="confirmRevert({{ $item }})"
+                                                class="flex w-full transform items-center justify-center rounded-md bg-orange-600 px-2 py-1 text-white transition-colors duration-200 hover:bg-orange-500 focus:bg-orange-500 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-40 sm:mx-1 sm:w-auto">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="currentColor" class="mx-1 h-5 w-5">
+                                                    <path fill-rule="evenodd"
+                                                        d="M9.53 2.47a.75.75 0 010 1.06L4.81 8.25H15a6.75 6.75 0 010 13.5h-3a.75.75 0 010-1.5h3a5.25 5.25 0 100-10.5H4.81l4.72 4.72a.75.75 0 11-1.06 1.06l-6-6a.75.75 0 010-1.06l6-6a.75.75 0 011.06 0z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+
+
+                                                <span class="mx-1">
+                                                    {{ __('Revert') }}
+                                                </span>
+                                            </button>
+
+                                            <button
+                                                class="flex w-full transform items-center justify-center rounded-md bg-yellow-600 px-2 py-1 text-slate-900 transition-colors duration-200 hover:bg-yellow-500 hover:text-slate-700 focus:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-opacity-40 sm:mx-1 sm:w-auto">
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="mx-1 h-5 w-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                                </svg>
+
+                                                <span class="mx-1">
+                                                    {{ __('Rectify') }}
+                                                </span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <div class="mt-6 w-full">
+                    <p class="text-center text-gray-500"><strong>{{ __('No Data') }}</strong></p>
+                </div>
+            @endif
+        </div>
+        <!-- table - end -->
+        <!-- banner - end -->
+    </div>
+    <!-- paginate - start -->
+    @if ($sales->count())
         <div class="mt-2">
-            {{ $products->links() }}
+            {{ $sales->links() }}
         </div>
     @endif
-    @if ($isOpenShow)
-        <livewire:sales.show-sale :product="$product"></livewire:sales.show-sale>
-    @endif
+    <!-- paginate - end -->
+
+
 </div>

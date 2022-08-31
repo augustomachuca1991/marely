@@ -36,14 +36,19 @@ class IndexProduct extends Component
 
     public function render()
     {
-        sleep(1);
+
         return view('livewire.products.index-product', [
-            'products' => Product::searchProduct($this->search)
-                ->searchCategory($this->byCategory)
-                ->searchStatus($this->byStatus)
-                ->orderBy('name', $this->order)
-                ->paginate($this->perPage)
+            'products' => $this->getProducts()
         ]);
+    }
+
+    public function getProducts()
+    {
+        return Product::searchProduct($this->search)
+            ->searchCategory($this->byCategory)
+            ->searchStatus($this->byStatus)
+            ->orderBy('name', $this->order)
+            ->paginate($this->perPage);
     }
 
     public function show(Product $product)

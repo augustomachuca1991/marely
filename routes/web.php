@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuditController;
+
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SupplierController;
@@ -35,17 +35,18 @@ Route::middleware([
 
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
+    Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
+
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
     Route::get('/sales', [SaleController::class, 'index'])->name('sales.index');
 
-    Route::get('/audits', [AuditController::class, 'index'])->name('audits.index');
-
-    Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
-
     Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
 
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
+
+
+
     Route::get('/reports/pdf/{id}', [ReportController::class, 'download'])->name('reports.pdf');
 
 });

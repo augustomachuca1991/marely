@@ -120,8 +120,8 @@
                             class="menu-orders relative left-0 z-20 mt-2 hidden w-56 overflow-hidden rounded-md bg-white py-2 shadow-xl dark:bg-gray-800">
 
 
-                            <a href="{{ route('reports.index') }}"
-                                class="flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
+                            <a href="{{ route('sales.index') }}"
+                                class="{{ request()->routeIs('sales.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="mx-1 h-5 w-5">
                                     <path fill-rule="evenodd"
@@ -136,7 +136,7 @@
                             <hr class="border-gray-200 dark:border-gray-700">
 
                             <a href="{{ route('referrals.index') }}"
-                                class="flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
+                                class="{{ request()->routeIs('referrals.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="mx-1 h-5 w-5">
                                     <path
@@ -152,8 +152,8 @@
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('sales.index') }}"
-                        class="group {{ request()->routeIs('sales.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+                    <a href="{{ route('shops.index') }}"
+                        class="group {{ request()->routeIs('shops.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="h-5 w-5">
@@ -164,33 +164,6 @@
                         <span class="group-hover:text-gray-700">{{ __('My Shop') }}</span>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="{{ route('reports.index') }}"
-                        class="group {{ request()->routeIs('reports.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
-                                d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-                                clip-rule="evenodd" />
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
-                                d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
-                        </svg>
-                        <span class="group-hover:text-gray-700">{{ __('Reports') }}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('referrals.index') }}" class="group flex items-center space-x-4 px-4 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24" fill="currentColor"
-                            class="h-5 w-5">
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300"
-                                d="M10.464 8.746c.227-.18.497-.311.786-.394v2.795a2.252 2.252 0 01-.786-.393c-.394-.313-.546-.681-.546-1.004 0-.323.152-.691.546-1.004zM12.75 15.662v-2.824c.347.085.664.228.921.421.427.32.579.686.579.991 0 .305-.152.671-.579.991a2.534 2.534 0 01-.921.42z" />
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
-                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v.816a3.836 3.836 0 00-1.72.756c-.712.566-1.112 1.35-1.112 2.178 0 .829.4 1.612 1.113 2.178.502.4 1.102.647 1.719.756v2.978a2.536 2.536 0 01-.921-.421l-.879-.66a.75.75 0 00-.9 1.2l.879.66c.533.4 1.169.645 1.821.75V18a.75.75 0 001.5 0v-.81a4.124 4.124 0 001.821-.749c.745-.559 1.179-1.344 1.179-2.191 0-.847-.434-1.632-1.179-2.191a4.122 4.122 0 00-1.821-.75V8.354c.29.082.559.213.786.393l.415.33a.75.75 0 00.933-1.175l-.415-.33a3.836 3.836 0 00-1.719-.755V6z"
-                                clip-rule="evenodd" />
-                        </svg>
-
-                        <span class="group-hover:text-gray-700">{{ __('Referrals') }}</span>
-                    </a>
-                </li> --}}
 
 
 
@@ -219,7 +192,7 @@
     <div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
         <div class="sticky top-0 z-10 h-16 border-b bg-white lg:py-2.5">
             <div class="flex items-center justify-between space-x-4 px-6 2xl:container">
-                <h5 hidden class="text-2xl font-medium text-gray-600 lg:block">Dashboard</h5>
+                <h5 hidden class="text-2xl font-medium text-gray-600 lg:block">{{$title}}</h5>
                 <button class="-mr-2 h-16 w-12 border-r lg:hidden" id="btn-sidebar">
                     <svg xmlns="http://www.w3.org/2000/svg" class="my-auto h-6 w-6" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
@@ -253,7 +226,7 @@
                             </path>
                         </svg>
                     </button>
-                    <livewire:shops.index-shop></livewire:shops.index-shop>
+                    <livewire:shops.cart-shop></livewire:shops.cart-shop>
                     <form action="{{ route('profile.show') }}" method="GET">
                         <button type="submit" aria-label="notification"
                             class="h-10 w-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
@@ -286,13 +259,13 @@
                 <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
                     {{ __('Categories') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
+                <x-jet-responsive-nav-link href="{{ route('shops.index') }}" :active="request()->routeIs('shops.index')">
                     {{ __('My Shop') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('reports.index') }}" :active="request()->routeIs('reports.index')">
+                <x-jet-responsive-nav-link href="{{ route('referrals.index') }}" :active="request()->routeIs('referrals.index')">
                     {{ __('Purchase Order') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('referrals.index') }}" :active="request()->routeIs('referrals.index')">
+                <x-jet-responsive-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
                     {{ __('Sales Order') }}
                 </x-jet-responsive-nav-link>
                 {{-- <x-jet-responsive-nav-link href="{{ route('audits.index') }}" :active="request()->routeIs('audits.index')">

@@ -59,8 +59,8 @@
     <div id="app">
         {{-- <div class="container-fluid">
             <div class="d-flex">
-                <img class="img-thumbnail" src="image/logoMarely1.svg" alt="" 
-                
+                <img class="img-thumbnail" src="image/logoMarely1.svg" alt=""
+
                     class="d-inline-block align-text-top">
             </div>
         </div> --}}
@@ -86,23 +86,27 @@
                 <caption>List of Article</caption>
                 <thead class="align-middle">
                     <tr>
-                        <th>Cant.</th>
+                        <th>Cod.</th>
                         <th>Articulo</th>
-                        <th>Descripcion</th>
+                        <th>Cantidad</th>
                         <th>Precio Unitario</th>
                         <th>Importe</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($sale->products as $item)
+
                         <tr>
-                            <td>{{ $item->pivot->quantity }}</td>
+                            {{-- <td> {!! DNS1D::getBarcodeSVG($item->code, 'UPCE') !!}</td> --}}
+                            <td> {!!'<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($item->code, 'UPCE') . '" alt="barcode"   />'!!} <br> {{$item->code}}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->description }}</td>
+                            <td>{{ $item->pivot->quantity }}</td>
                             <td>$ {{ $item->pivot->price_to_date }}</td>
                             <td>$ {{ number_format(($item->pivot->price_to_date * $item->pivot->quantity) , 2,',','') }}</td>
                         </tr>
+                        <br><br>
                     @endforeach
+
                 </tbody>
                 <tfoot>
                     <tr>

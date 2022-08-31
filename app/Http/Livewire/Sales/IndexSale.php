@@ -2,86 +2,98 @@
 
 namespace App\Http\Livewire\Sales;
 
-use App\Models\Product;
+
+use App\Models\Sale;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class IndexSale extends Component
 {
-    use WithPagination;
     use LivewireAlert;
+    use WithPagination;
 
-    public $perPage = 20;
+
     public $search = "";
-    public $byCategory = "";
-    public $byStatus = "";
-    public $bySupplier= "";
-
-    public $product;
-    //public $isOpenEdit = false;
-    public $isOpenShow = false;
+    public $perUser = "";
+    public $from = "";
+    public $to = "";
+    public $perPage = 10;
+    public $user;
+    public $selectUser = false;
 
 
     protected $queryString = [
         'search' => ['except' => ''],
-        'byCategory' => ['except' => ''],
-        'byStatus' => ['except' => ''],
-        'bySupplier' => ['except' => ''],
-        'perPage' => ['except' => 20]
+        'perUser' => ['except' => ''],
+        'from' => ['except' => ''],
+        'to' => ['except' => ''],
+        'perPage' => ['except' => 10]
     ];
 
-    protected $listeners = ['closeModal'];
+
+    protected $listeners = ['render', 'revert'];
 
     public function render()
     {
-        $products = Product::searchProduct($this->search)
-        ->searchCategory($this->byCategory)
-        ->searchStatus($this->byStatus)
-        ->latest()
-        ->paginate($this->perPage);
         return view('livewire.sales.index-sale', [
-            'products' => $products
+            'sales' => $this->getSales()
         ]);
     }
+
+
+    public function getSales()
+    {
+        return Sale::searchSale($this->search)
+            ->searchUser($this->perUser)
+            ->fromTo($this->from, $this->to)
+            ->latest()
+            ->withTrashed()
+            ->paginate($this->perPage);
+    }
+
+
+    public function filterDate()
+    {
+        $this->validate([
+            'from' => 'required|required_with:to|date',
+            'to' => 'required|required_with:from|date|after:from'
+        ]);
+        $this->emitSelf('render');
+    }
+
+
+    public function selectedUser(User $user)
+    {
+        $this->user = $user;
+        $this->perUser = $this->user->id;
+        $this->selectUser = false;
+    }
+
+
+    public function confirmRevert(Sale $sale)
+    {
+        $this->sale = $sale;
+        $this->confirm('Esta seguro de revertir la venta?', [
+            'onConfirmed' => 'revert',
+        ]);
+    }
+
+    public function revert()
+    {
+        foreach ($this->sale->products as $key => $product) {
+            $product->stock += $product->pivot->quantity;
+            $product->updated_at = now();
+            $product->save();
+        }
+        $this->sale->delete();
+        $this->alert('success', 'Se revirtio la venta');
+    }
+
 
     public function updatingSearch()
     {
         $this->resetPage();
-    }
-
-
-    public function add_to_cart(Product $product)
-    {
-        
-        \Cart::session(auth()->id())->add(array(
-            'id' => $product->id,
-            'name' => $product->name,
-            'price' => $product->sale_price,
-            'quantity' => 1,
-            'attributes' => array(),
-            'associatedModel' => $product
-        ));
-        $this->alert('success' , 'Se agregó un articulo al carrito',[
-            'position' => 'bottom-end'
-        ]);
-        $this->emitTo('shops.index-shop' , 'render');
-    }
-
-
-    public function loadMore()
-    {
-        $this->perPage += $this->perPage;
-    }
-
-    public function closeModal(){
-        $this->isOpenShow = false;
-    }
-
-    public function show(Product $product)
-    {
-        $this->product = $product;
-        $this->isOpenShow = true;
-
     }
 }

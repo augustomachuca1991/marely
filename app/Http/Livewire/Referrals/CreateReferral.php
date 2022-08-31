@@ -32,7 +32,7 @@ class CreateReferral extends Component
     public $addStock = [];
 
 
-    
+
     public function render()
     {
         $suppliers = Supplier::search($this->supplierText)->take(5)->get();
@@ -70,6 +70,7 @@ class CreateReferral extends Component
 
     public function removeItem($index){
         unset($this->productsAdd[$index]);
+        unset($this->addStock[$index]);
     }
 
     public function store()
@@ -98,7 +99,7 @@ class CreateReferral extends Component
         $this->reset('addStock' , 'productsAdd', 'isOpenCreate', 'bonification' , 'supplier' , 'supplierText');
         $this->alert('success' , 'Se ha cargado un nuevo remito');
         $this->emitTo('referrals.index-referral', 'render');
-        
+
     }
 
     public function editPrice($i, $price)
