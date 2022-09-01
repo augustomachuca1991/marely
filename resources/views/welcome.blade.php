@@ -90,26 +90,29 @@
                 <div class="flex flex-wrap gap-12">
                     <div class="lg:w-6/12 lg:pt-32 lg:pb-20">
                         <div class="mt-8 space-y-8 lg:-mr-24 xl:-mr-0">
-                            <h1 class="text-4xl font-bold text-gray-800 md:text-5xl lg:leading-tight">Uncompromised
-                                Versatility –When it Matters the Most.</h1>
-                            <p class="text-lg text-gray-600">Quod rerum dolor ab harum facere quo nihil labore
-                                necessitatibus tempora?</p>
+                            <h1 class="text-4xl font-bold text-gray-800 md:text-5xl lg:leading-tight">Tienda Marely – Tu
+                                tienda Online.</h1>
+                            <p class="text-lg text-gray-600">Aquí encontraras todo lo que buscas en art Escolares,
+                                Bazar, Libreria, etc.</p>
 
                             <div class="flex space-x-4">
-                                <button type="button" title="Start buying"
-                                    class="w-full rounded-xl bg-teal-600 py-3 px-6 text-center transition hover:bg-teal-700 focus:bg-teal-500 active:bg-teal-800 sm:w-max">
-                                    <span class="block font-semibold text-white">
-                                        Book Demo
-                                    </span>
-                                </button>
-                                <button type="button" title="Start buying"
+                                <form action="{{ route('login') }}">
+                                    <button type="submit" title="Start buying"
+                                        class="w-full rounded-xl bg-teal-600 py-3 px-6 text-center transition hover:bg-teal-700 focus:bg-teal-500 active:bg-teal-800 sm:w-max">
+                                        <span class="block font-semibold text-white">
+                                            Ingresar
+                                        </span>
+                                    </button>
+                                </form>
+
+                                {{-- <button type="button" title="Start buying"
                                     class="w-full rounded-xl py-3 px-6 text-center transition focus:bg-teal-100 active:bg-teal-200 sm:w-max">
                                     <div class="flex">
                                         <span class="block font-semibold text-teal-700">
                                             Our showreel
                                         </span>
                                     </div>
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                     </div>
