@@ -51,7 +51,7 @@
                     <div class="flex space-x-6">
                         <img alt="{{ $item->name }}"
                             class="mb-4 h-56 flex-1 flex-shrink-0 rounded-md bg-gray-500 bg-center object-cover"
-                            src="https://ui-avatars.com/api/?name={{ urlencode($item->name) }}&background=random">
+                            src="https://ui-avatars.com/api/?name={{ urlencode($item->name) }}&background=cef2ef&color=269a8f&format=svg">
                         <div class="flex flex-col">
                             <h4 class="text-xl font-semibold capitalize">{{ $item->name }}</h4>
                             <p class="text-sm text-gray-600">{{ $item->description }}</p>

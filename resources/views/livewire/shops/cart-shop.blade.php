@@ -90,7 +90,7 @@
                         </tbody>
                     </table> --}}
                     <div class="flex max-w-3xl flex-col space-y-4 bg-gray-50 p-6 text-gray-800 sm:p-10">
-                        <h2 class="text-xl font-semibold">Your cart</h2>
+                        <h2 class="text-center text-2xl font-semibold">{{ __('Shopping cart') }}</h2>
                         <ul class="flex flex-col divide-y divide-gray-300">
                             @foreach ($carts->getContent()->sortBy('id') as $index => $item)
                                 <li class="flex flex-col py-6 sm:flex-row sm:justify-between">
@@ -111,8 +111,8 @@
                                                     <p class="text-lg font-semibold">$
                                                         {{ number_format($carts->get($item->id)->getPriceSum(), 2, '.', '') }}
                                                     </p>
-                                                    <p class="text-sm text-gray-400 line-through">
-                                                        ${{ $item->associatedModel->sale_price }}</p>
+                                                    <p class="text-sm text-gray-400">
+                                                        ${{ $item->associatedModel->sale_price }} x unidad</p>
                                                 </div>
                                             </div>
                                             <div class="flex divide-x text-sm">
@@ -153,16 +153,65 @@
 
                         </ul>
                         <div class="space-y-1 text-right">
-                            <p>Total amount:
+                            <p>{{ __('Total amount') }}:
                                 <span class="font-semibold">$
                                     {{ number_format($carts->getTotal(), 2, '.', '') }}</span>
                             </p>
                             <p class="text-sm text-gray-600">{{ __('Not including taxes') }}</p>
+                            <div class="form-control">
+                                <label class="label cursor-pointer">
+                                    <span class="label-text">{{ __('Cash') }}</span>
+                                    {{-- <input type="checkbox" checked="checked" class="checkbox checkbox-accent" /> --}}
+                                    <x-jet-checkbox wire:model='isCash'></x-jet-checkbox>
+                                </label>
+                            </div>
+                            @if ($isCash)
+                                <div class="my-4">
+                                    <fieldset
+                                        class="w-full space-y-1 rounded-md border border-gray-100 bg-gray-100 px-4 py-3 text-gray-800 shadow-md">
+                                        <label for="price"
+                                            class="block text-sm font-medium">{{ __('Pays with') }}</label>
+                                        <div class="flex">
+                                            <input wire:model='pay' type="text" name="price" id="price"
+                                                placeholder="999,99"
+                                                class="flex flex-1 rounded-l-md border border-gray-300 bg-gray-100 text-right text-gray-800 focus:ring-inset focus:ring-green-600 sm:text-sm">
+                                            <span
+                                                class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm">$</span>
+
+                                        </div>
+                                        <x-jet-input-error for="pay" />
+                                        <label class="mt-3 block">
+                                            {{-- <input type="email" name="email" id="email" placeholder="user@email.xyz"
+                                            class="block w-full rounded-md border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" /> --}}
+                                            <span class="text-xs">{{ __('Return') }} $ {{ $returned }}</span>
+                                        </label>
+
+                                        <button type="button" wire:click='calculate({{ $carts->getTotal() }})'
+                                            class="mt-2 flex items-center rounded py-1.5 px-2 text-sm text-blue-600 transition-colors duration-300 hover:text-blue-400 focus:outline-none dark:text-blue-400 dark:hover:text-blue-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="h-4 w-4">
+                                                <path fill-rule="evenodd"
+                                                    d="M6.32 1.827a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V19.5a3 3 0 01-3 3H6.75a3 3 0 01-3-3V4.757c0-1.47 1.073-2.756 2.57-2.93zM7.5 11.25a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H8.25a.75.75 0 01-.75-.75v-.008zm.75 1.5a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H8.25zm-.75 3a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H8.25a.75.75 0 01-.75-.75v-.008zm.75 1.5a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V18a.75.75 0 00-.75-.75H8.25zm1.748-6a.75.75 0 01.75-.75h.007a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.007a.75.75 0 01-.75-.75v-.008zm.75 1.5a.75.75 0 00-.75.75v.008c0 .414.335.75.75.75h.007a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75h-.007zm-.75 3a.75.75 0 01.75-.75h.007a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.007a.75.75 0 01-.75-.75v-.008zm.75 1.5a.75.75 0 00-.75.75v.008c0 .414.335.75.75.75h.007a.75.75 0 00.75-.75V18a.75.75 0 00-.75-.75h-.007zm1.754-6a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.008a.75.75 0 01-.75-.75v-.008zm.75 1.5a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75h-.008zm-.75 3a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.008a.75.75 0 01-.75-.75v-.008zm.75 1.5a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V18a.75.75 0 00-.75-.75h-.008zm1.748-6a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.008a.75.75 0 01-.75-.75v-.008zm.75 1.5a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75h-.008zm-8.25-6A.75.75 0 018.25 6h7.5a.75.75 0 01.75.75v.75a.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75v-.75zm9 9a.75.75 0 00-1.5 0V18a.75.75 0 001.5 0v-2.25z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+
+
+                                            <span class="mx-2">{{ __('Calculate') }}</span>
+                                        </button>
+                                    </fieldset>
+
+                                    {{-- <label class="mt-3 block" for="email">
+                                        <input type="email" name="email" id="email" placeholder="user@email.xyz"
+                                            class="block w-full rounded-md border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" />
+                                    </label> --}}
+
+
+                                </div>
+                            @endif
                         </div>
                         <div class="flex justify-end space-x-4">
                             <button wire:click="resetData" type="button"
-                                class="rounded-md border border-teal-600 px-6 py-2">Empty
-                                <span class="sr-only sm:not-sr-only">Cart</span>
+                                class="rounded-md border border-teal-600 px-6 py-2">{{ __('Empty Cart') }}
                             </button>
                             <!--<button type="button"
                                 class="rounded-md border border-teal-600 bg-teal-600 px-6 py-2 text-gray-50">
@@ -183,13 +232,11 @@
                 <x-jet-button wire:click="confirmSale">{{ __('Confirm') }}</x-jet-button>
             @endif --}}
             <button type="button" wire:click="$set('isOpenShow' , false)"
-                class="mr-2 rounded-md border border-teal-600 px-6 py-2">Back
-                <span class="sr-only sm:not-sr-only">to shop</span>
+                class="mr-2 rounded-md border border-teal-600 px-6 py-2">{{ __('Back to shop') }}
             </button>
             @if ($carts->getContent()->count())
                 <button type="button" wire:click="confirmSale"
-                    class="rounded-md border border-teal-600 bg-teal-600 px-6 py-2 text-gray-50">
-                    <span class="sr-only sm:not-sr-only">Continue to</span>Checkout
+                    class="rounded-md border border-teal-600 bg-teal-600 px-6 py-2 text-gray-50">{{ __('Continue to checkout') }}
                 </button>
             @endif
         </x-slot>
