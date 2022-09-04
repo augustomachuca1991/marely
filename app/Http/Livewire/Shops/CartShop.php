@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Shops;
 use App\Models\Product;
 use App\Models\Sale;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Illuminate\Support\Facades\Validator;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -19,6 +20,11 @@ class CartShop extends Component
     public $isOpenShow = false;
     public $isOpenNext = false;
     public $sale;
+
+    public $returned = 0;
+    public $pay = "";
+
+    public $isCash = false;
 
 
     protected $listeners = ['render', 'confirmed'];
@@ -120,5 +126,17 @@ class CartShop extends Component
             'isOpenShow',
         ]);
         Cart::session(auth()->id())->clear();
+    }
+
+
+    public function calculate($total)
+    {
+        // $validatedData = Validator::make(
+        //     ['pay' => 'required|number|min:0'],
+        // )->validate();
+        $this->validate([
+            'pay' => 'required|numeric|min:0'
+        ]);
+        $this->returned =  $this->pay - $total;
     }
 }

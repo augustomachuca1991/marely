@@ -90,6 +90,8 @@
             </div>
         </div>
     </section>
+
+
     @if ($products->count())
         <div class="mt-2">
             {{ $products->links() }}
