@@ -14,14 +14,16 @@ class IndexReferral extends Component
     public $perPage = 20;
     public $search = "";
     public $isOpenShow = false;
+    public $isOpenEdit = false;
+    public $referral;
 
-    protected $listeners = ['render' , 'closeModal', 'delete'];
+    protected $listeners = ['render' , 'closeModal', 'delete', 'editRererral'];
 
     protected $queryString = [
         'search' => ['except' => ''],
         'perPage' => ['except' => 20]
     ];
-    
+
     public function render()
     {
         return view('livewire.referrals.index-referral' , [
@@ -36,8 +38,8 @@ class IndexReferral extends Component
 
     public function closeModal()
     {
-        $this->reset(['isOpenShow']);
-        
+        $this->reset(['isOpenShow', 'isOpenEdit']);
+
     }
 
 
@@ -58,5 +60,11 @@ class IndexReferral extends Component
         $this->referral->delete();
         $this->alert('success', 'La orden nº "#000'.$this->referral->id .'" se dio de baja');
         $this->closeModal();
+    }
+
+    public function editRererral(Referral $referral)
+    {
+        $this->referral = $referral;
+        $this->isOpenEdit = true;
     }
 }

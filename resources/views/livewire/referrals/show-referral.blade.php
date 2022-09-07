@@ -128,8 +128,8 @@
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-danger-button wire:click="cancelOrder({{$referral}})">{{ __('Cancelar Orden') }}</x-jet-danger-button>
-
+            <x-jet-danger-button wire:click="cancelOrder({{$referral}})">{{ __('Cancel Order') }}</x-jet-danger-button>
+            <x-jet-button class="ml-1" wire:click="editOrder({{$referral}})">{{ __('Rectify Order') }}</x-jet-button>
         </x-slot>
     </x-jet-dialog-modal>
 </div>

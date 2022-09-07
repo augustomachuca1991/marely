@@ -15,7 +15,7 @@ class ShowReferral extends Component
     public $total = 0;
 
 
-    protected $listeners = ['confirmed'];
+    protected $listeners = ['confirmed', 'confirmedEdit', 'resetData'];
 
     public function mount($referral)
     {
@@ -23,12 +23,12 @@ class ShowReferral extends Component
         foreach ($this->referral->products as $key => $value) {
             $this->total +=  $value->pivot->quantity * $value->pivot->unit_price;
         }
-        $this->total -= ($this->total * $this->referral->bonification)/100;  
+        $this->total -= ($this->total * $this->referral->bonification)/100;
         $this->isOpenShow = true;
     }
 
 
-    
+
     public function render()
     {
         return view('livewire.referrals.show-referral');
@@ -37,7 +37,7 @@ class ShowReferral extends Component
 
     public function resetData()
     {
-        $this->reset(['isOpenShow']); 
+        $this->reset(['isOpenShow']);
         $this->emitTo('referrals.index-referral' , 'closeModal');
     }
 
@@ -49,8 +49,23 @@ class ShowReferral extends Component
         ]);
     }
 
+
+    public function editOrder(Referral $referral)
+    {
+        $this->referral = $referral;
+        $this->emitTo('referrals.index-referral', 'editRererral' , $this->referral);
+    }
+
+
     public function confirmed()
     {
         $this->emitTo('referrals.index-referral' , 'delete' , $this->referral);
+    }
+
+
+    public function confirmedEdit()
+    {
+        dd('editado');
+        // $this->emitTo('referrals.index-referral', 'delete', $this->referral);
     }
 }

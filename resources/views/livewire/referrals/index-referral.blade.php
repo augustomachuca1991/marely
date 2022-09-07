@@ -102,4 +102,8 @@
     @if ($isOpenShow)
         <livewire:referrals.show-referral :referral="$referral"></livewire:referrals.show-referral>
     @endif
+
+    @if ($isOpenEdit)
+        <livewire:referrals.edit-referral :referral="$referral"></livewire:referrals.edit-referral>
+    @endif
 </div>
