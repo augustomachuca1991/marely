@@ -23,6 +23,14 @@
     @apply bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500;
 }
 
-.td-style{
-    @apply whitespace-nowrap px-6 py-4;
+.tdetail{
+    @apply whitespace-nowrap p-3 text-sm text-gray-700;
+}
+
+.thead{
+    @apply p-3 text-left text-sm font-semibold tracking-wide;
+}
+
+.span-badge{
+    @apply inline-flex rounded-full px-2 text-xs font-semibold leading-5;
 }

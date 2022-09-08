@@ -18,13 +18,33 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        .journal-scroll::-webkit-scrollbar {
+            width: 4px;
+            cursor: pointer;
+            /*background-color: rgba(229, 231, 235, var(--bg-opacity));*/
+
+        }
+
+        .journal-scroll::-webkit-scrollbar-track {
+            background-color: rgba(229, 231, 235, var(--bg-opacity));
+            cursor: pointer;
+            /*background: red;*/
+        }
+
+        .journal-scroll::-webkit-scrollbar-thumb {
+            cursor: pointer;
+            background-color: #a0aec0;
+            /*outline: 1px solid slategrey;*/
+        }
+    </style>
 </head>
 
 <body>
 
 
     <aside
-        class="fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between overflow-auto border-r bg-gradient-to-r from-gray-100 to-gray-300 px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+        class="fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between overflow-auto border-r bg-gradient-to-r from-gray-100 to-gray-300 px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] journal-scroll">
         <div>
             <div class="-mx-6 px-6 py-4">
                 <a href="{{ route('dashboard') }}" title="home">
@@ -192,7 +212,7 @@
     <div class="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
         <div class="sticky top-0 z-10 h-16 border-b bg-white lg:py-2.5">
             <div class="flex items-center justify-between space-x-4 px-6 2xl:container">
-                <h5 hidden class="text-2xl font-medium text-gray-600 lg:block">{{$title}}</h5>
+                <h5 hidden class="text-2xl font-medium text-gray-600 lg:block">{{ $title }}</h5>
                 <button class="-mr-2 h-16 w-12 border-r lg:hidden" id="btn-sidebar">
                     <svg xmlns="http://www.w3.org/2000/svg" class="my-auto h-6 w-6" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">

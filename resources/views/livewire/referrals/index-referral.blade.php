@@ -13,14 +13,6 @@
             <header class="space-y-4 rounded-t-xl bg-slate-700 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
                 <div class="flex items-center justify-between">
                     <h2 class="font-semibold text-gray-100">Remitos</h2>
-                    {{-- <a href="/new"
-                    class="group flex items-center rounded-md bg-sky-500 py-2 pl-2 pr-3 text-sm font-medium text-white shadow-sm hover:bg-sky-400">
-                    <svg width="20" height="20" fill="currentColor" class="mr-2" aria-hidden="true">
-                        <path
-                            d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
-                    </svg>
-                    New
-                </a> --}}
                 </div>
                 <form class="group relative">
                     <svg width="20" height="20" fill="currentColor"

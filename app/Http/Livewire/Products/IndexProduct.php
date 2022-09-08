@@ -12,7 +12,7 @@ class IndexProduct extends Component
     use WithPagination;
     use LivewireAlert;
 
-    public $perPage = 20;
+    public $perPage = 10;
     public $search = "";
     public $byCategory = "";
     public $byStatus = "";
@@ -29,7 +29,7 @@ class IndexProduct extends Component
         'byCategory' => ['except' => ''],
         'byStatus' => ['except' => ''],
         'bySupplier' => ['except' => ''],
-        'perPage' => ['except' => 20]
+        'perPage' => ['except' => 10]
     ];
 
     protected $listeners = ['render', 'closeModal', 'delete'];

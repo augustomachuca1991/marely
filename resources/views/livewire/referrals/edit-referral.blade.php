@@ -4,7 +4,7 @@
             <x-slot name="title"></x-slot>
             <x-slot name="content">
                 <div class="mb-4">
-                   
+
                         <h2 class="capitalize text-center text-3xl font-semibold text-gray-800 dark:text-white">{{$referral->supplier->company_name}}</h2>
 
                         {{-- <p class="mt-3 text-center text-gray-600 dark:text-gray-400">
@@ -56,8 +56,6 @@
                         <div class="flex">
                             <div
                                 class="rounded-md border-2 border-dashed border-gray-300 bg-gray-100 px-8 py-12 text-gray-600">
-
-
                                 @if (count($products))
                                     <div class="w-full">
                                         <div class="mx-3">

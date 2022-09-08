@@ -14,9 +14,6 @@ class CreateReferral extends Component
 
     public $isOpenCreate = false;
     public $bonification = 0;
-
-    public $supplierText = '';
-    public $suggestionSupplier = false;
     public $supplier;
     public $product;
 
@@ -28,20 +25,16 @@ class CreateReferral extends Component
     public $productsAdd = [];
     public $addStock = [];
 
-    protected $listeners = ['loadProduct'];
+    protected $listeners = ['loadProduct', 'loadSupplier'];
 
     public function render()
     {
-        $suppliers = Supplier::search($this->supplierText)->take(5)->get();
-        return view('livewire.referrals.create-referral',[
-            'suppliers' => $suppliers
-        ]);
+
+        return view('livewire.referrals.create-referral');
     }
 
     public function loadSupplier(Supplier $supplier)
     {
-        $this->supplierText = $supplier->company_name;
-        $this->suggestionSupplier = false;
         $this->supplier = $supplier;
     }
 
@@ -51,23 +44,24 @@ class CreateReferral extends Component
         $this->product = $product;
         array_push($this->productsAdd, $this->product);
         array_push($this->addStock, 0);
-       
+
     }
 
 
     public function quit()
     {
-        $this->reset(['supplier' , 'supplierText']);
+        $this->reset(['supplier']);
     }
+
 
     public function removeItem($index){
         unset($this->productsAdd[$index]);
         unset($this->addStock[$index]);
     }
 
+
     public function store()
     {
-        //dd($this->productsAdd);
         $this->validate([
             'addStock.*' => 'required|integer|min:1',
             'bonification' => 'numeric|nullable'
@@ -75,7 +69,6 @@ class CreateReferral extends Component
         $referral = new Referral();
         $referral->bonification = $this->bonification;
         $referral->supplier_id = $this->supplier->id;
-        //$referral->created_at = now();
         $referral->save();
         foreach ($this->addStock as $key => $value) {
             $referral->products()->attach( $this->productsAdd[$key]['id'] , [
@@ -86,9 +79,8 @@ class CreateReferral extends Component
             $product->stock += $value;
             $product->list_price = $this->productsAdd[$key]['list_price'];
             $product->save();
-            //$this->productsAdd[$key]['stock'] += $value;
         }
-        $this->reset('addStock' , 'productsAdd', 'isOpenCreate', 'bonification' , 'supplier' , 'supplierText');
+        $this->reset('addStock' , 'productsAdd', 'isOpenCreate', 'bonification' , 'supplier' );
         $this->alert('success' , 'Se ha cargado un nuevo remito');
         $this->emitTo('referrals.index-referral', 'render');
 

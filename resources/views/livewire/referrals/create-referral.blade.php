@@ -32,36 +32,8 @@
 
                         <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Esta sección dará de alta las nuevas ordenes de compra.</p>
                     </div>
-                    <fieldset class="w-full space-y-1 text-gray-800">
-                        <label for="Search">{{__('Search Supplier')}}</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                                <button type="button" title="search" class="p-1 focus:outline-none focus:ring">
-                                    <svg fill="currentColor" viewBox="0 0 512 512" class="h-4 w-4 text-gray-800">
-                                        <path
-                                            d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z">
-                                        </path>
-                                    </svg>
-                                </button>
-                            </span>
-                            <input wire:model="supplierText" wire:keyup="$set('suggestionSupplier' , true)"
-                                type="search" name="Search" placeholder="Search..."
-                                class="w-32 rounded-md border-gray-300 bg-gray-100 py-2 pl-10 text-sm text-gray-800 focus:border-cyan-600 focus:bg-gray-50 focus:outline-none sm:w-auto">
-                        </div>
-                        @if ($suggestionSupplier && $supplierText != '')
-                            <div
-                                class="absolute inset-x-0 mx-5 mt-4 max-h-72 overflow-y-auto rounded-md border bg-white px-6 py-3 dark:border-transparent dark:bg-gray-800">
-                                @foreach ($suppliers as $item)
-                                    <a wire:click="loadSupplier({{ $item }})" href="#" class="block py-1">
-                                        <h3 class="font-medium text-gray-700 hover:underline dark:text-gray-100">
-                                            {{ $item->company_name }}</h3>
-                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ $item->location }}
-                                        </p>
-                                    </a>
-                                @endforeach
-                            </div>
-                        @endif
-                    </fieldset>
+                    <!-- ### componente para buscar proveedor ### -->
+                    <livewire:components.search-supplier></livewire:components.search-supplier>
                 </div>
                 @if ($supplier)
                     <div class="mb-4">
@@ -102,17 +74,11 @@
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
                                         </svg>
-                                        {{-- <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                            fill="currentColor" aria-hidden="true">
-                                            <path
-                                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                        </svg> --}}
                                         {{ __('Remove') }}
                                     </button>
                                 </span>
 
-                                
+
                                 <div class="relative ml-3 sm:hidden">
                                     <div class="absolute right-0 mt-2 -mr-1 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button"
@@ -127,8 +93,8 @@
 
                     </div>
                     <div class="mb-4">
+                        <!-- ### componente para buscar producto ### -->
                         <livewire:components.search-product></livewire:components.search-product>
-                        
                     </div>
                     <div class="mb-4">
                         <fieldset class="w-full space-y-1 text-gray-800">
@@ -136,8 +102,6 @@
                             <div class="flex">
                                 <div
                                     class="rounded-md border-2 border-dashed border-gray-300 bg-gray-100 px-8 py-12 text-gray-600">
-
-
                                     @if (count($productsAdd))
                                         <div class="w-full">
                                             <div class="mx-3">
@@ -160,13 +124,6 @@
                                                                                 <a href="#"> {{ $add['name'] }}
                                                                                 </a>
                                                                             </h3>
-                                                                            {{-- <fieldset class="w-12 space-y-1 text-gray-800">
-                                                                <label for="price" class="block text-sm font-medium">Precio de Compra</label>
-                                                                <div class="flex">
-                                                                    <input type="text" name="price" id="price" placeholder="99 999,99" class="flex flex-1 text-right border sm:text-sm rounded-l-md focus:ring-inset border-gray-300 text-gray-800 bg-gray-100 focus:ring-teal-600">
-                                                                    <span class="flex items-center px-3 pointer-events-none sm:text-sm rounded-r-md bg-gray-300">$</span>
-                                                                </div>
-                                                            </fieldset> --}}
                                                                             @if ($editMode && $index == $i)
                                                                                 <fieldset
                                                                                     class="w-full space-y-1 text-gray-800">
@@ -250,9 +207,6 @@
                     </div>
                 @endif
                 <div class="mb-4">
-                    {{-- <x-jet-label value="{{ __('Bonification %') }}" />
-                    <x-jet-input wire:model="bonification" type="number" min="0" />
-                    <x-jet-input-error for="bonification" /> --}}
                     <fieldset class="w-full space-y-1 text-gray-800">
                         <label for="boinification" class="block text-sm font-medium">Total Bonification</label>
                         <div class="flex">
@@ -266,10 +220,6 @@
                 </div>
             </x-slot>
             <x-slot name="footer">
-                {{-- {{ $supplier ? $supplier->company_name : '' }}
-                {{ $product ? $product->name : '' }} --}}
-
-                {{-- {{var_export($productsAdd)}} --}}
                 @if (count($productsAdd))
                     <span class="sm:ml-3">
                         <button type="button" wire:click="store"
