@@ -5,13 +5,12 @@
             aria-hidden="true">
             <path d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
         </svg>
-        New Referral
+        {{__('New Referral')}}
     </a>
 
     <form wire:submit.prevent="store">
         <x-jet-dialog-modal wire:model='isOpenCreate'>
             <x-slot name="title">
-                {{-- <x-mark-marely class="mx-3 mt-2 h-auto w-64 rounded-lg bg-gray-200 p-2"></x-mark-marely> --}}
                 <div
                     class="modal-close absolute top-0 right-0 z-50 mt-4 mr-4 flex cursor-pointer flex-col items-center text-sm text-black">
                     <button type="button" wire:click="$set('isOpenCreate' , false)">
@@ -34,7 +33,7 @@
                         <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Esta sección dará de alta las nuevas ordenes de compra.</p>
                     </div>
                     <fieldset class="w-full space-y-1 text-gray-800">
-                        <label for="Search">Search Supplier</label>
+                        <label for="Search">{{__('Search Supplier')}}</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                                 <button type="button" title="search" class="p-1 focus:outline-none focus:ring">
@@ -45,7 +44,7 @@
                                     </svg>
                                 </button>
                             </span>
-                            <input wire:model="supplierText" wire:keydown="$set('suggestionSupplier' , true)"
+                            <input wire:model="supplierText" wire:keyup="$set('suggestionSupplier' , true)"
                                 type="search" name="Search" placeholder="Search..."
                                 class="w-32 rounded-md border-gray-300 bg-gray-100 py-2 pl-10 text-sm text-gray-800 focus:border-cyan-600 focus:bg-gray-50 focus:outline-none sm:w-auto">
                         </div>
@@ -84,18 +83,6 @@
                                         </svg>
                                         {{ $supplier->location }}
                                     </div>
-                                    {{-- <div class="mt-2 flex items-center text-sm text-gray-500">
-                                        <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                            fill="currentColor" aria-hidden="true">
-                                            <path
-                                                d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
-                                            <path fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        $120k &ndash; $140k
-                                    </div> --}}
                                     <div class="mt-2 flex items-center text-sm text-gray-500">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20"
@@ -125,36 +112,7 @@
                                     </button>
                                 </span>
 
-                                {{-- <span class="ml-3 hidden sm:block">
-                                    <button type="button"
-                                        class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-
-                                        <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                            fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd"
-                                                d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        View
-                                    </button>
-                                </span> --}}
-
-                                {{-- @if (count($productsAdd))
-                                    <span class="sm:ml-3">
-                                        <button type="button" wire:click="store"
-                                            class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-
-                                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd"
-                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                            {{ __('Confirm') }}
-                                        </button>
-                                    </span>
-                                @endif --}}
+                                
                                 <div class="relative ml-3 sm:hidden">
                                     <div class="absolute right-0 mt-2 -mr-1 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button"
@@ -169,35 +127,8 @@
 
                     </div>
                     <div class="mb-4">
-                        <div class="text-gray-500">
-                            <div class="relative bg-transparent text-lg text-gray-800">
-                                <div class="flex items-center border-b-2 border-teal-500 py-2">
-                                    <x-jet-input wire:model="productText"
-                                        wire:keydown.debounce.500ms="$set('suggestionProduct' , true)"
-                                        class="w-11/12 border-none" type="text" placeholder="Search Product">
-                                    </x-jet-input>
-                                    {{-- <livewire:products.create-product></livewire:products.create-product> --}}
-                                </div>
-                            </div>
-                            @if ($suggestionProduct && $productText != '')
-                                <ul class="mt-2 w-full border border-gray-100 bg-white">
-                                    @foreach ($products as $itemProduct)
-                                        <li wire:click="loadProduct({{ $itemProduct }})"
-                                            class="relative inline-flex cursor-pointer border-b-2 border-gray-100 py-1 pl-8 pr-2 hover:bg-indigo-100 hover:text-gray-900">
-                                            <svg class="absolute left-2 top-2 h-4 w-4"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                            {{ $itemProduct->code }} - {{ $itemProduct->name }}
-                                            ({{ $itemProduct->stock }})
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div>
+                        <livewire:components.search-product></livewire:components.search-product>
+                        
                     </div>
                     <div class="mb-4">
                         <fieldset class="w-full space-y-1 text-gray-800">

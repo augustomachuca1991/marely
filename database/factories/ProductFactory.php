@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'code' => $this->faker->numberBetween(1000000000000, 9999999999999),
             'name' => $this->faker->sentence(2),
             'description' => $this->faker->sentence(5),
-            'stock' => $this->faker->numberBetween(5, 30),
+            'stock' => 0,
             'list_price' => $this->faker->numberBetween(50, 3000),
             'sale_price' => $this->faker->numberBetween(50, 2000),
             'category_id' => $this->faker->numberBetween(1, 4),

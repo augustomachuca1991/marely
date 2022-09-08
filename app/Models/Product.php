@@ -66,8 +66,8 @@ class Product extends Model
     {
         if (!empty($text)) {
             $query->where('name', 'like', "%{$text}%")
+                ->orWhere('description', 'like', "%{$text}%")
                 ->orWhere('code', 'like', "%{$text}%");
-                //->orWhere('list_price', 'like', "%{$text}%");
         }
     }
 
@@ -85,9 +85,9 @@ class Product extends Model
     {
         if (!empty($byStatus)) {
             if ($byStatus == '1') {
-                $query->onlyTrashed();
+                $query->where('stock' , '>' , 0);
             } elseif ($byStatus == '2') {
-                $query->withTrashed();
+                $query->where('stock' , 0);
             }
         }
     }

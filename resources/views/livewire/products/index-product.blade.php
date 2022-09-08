@@ -13,9 +13,9 @@
         </div>
         <div class="flex w-full md:w-1/6">
             <select name="status" id="status" wire:model="byStatus" class="form-control w-full">
-                <option value="">{{ __('Active') }}</option>
-                <option value="1">{{ __('Inactive') }}</option>
-                <option value="2">{{ __('All') }}</option>
+                <option value="">{{ __('All') }}</option>
+                <option value="1">{{ __('Active') }}</option>
+                <option value="2">{{ __('Inactive') }}</option>
             </select>
         </div>
         <div class="flex w-full md:w-1/6">
@@ -120,7 +120,7 @@
                                             <td class="td-style">
                                                 <span
                                                     class="{{ $item->stock < 1 ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800' }} inline-flex rounded-full px-2 text-xs font-semibold leading-5">
-                                                    {{ $item->stock < 1 ? 'Inactive' : 'Active' }}
+                                                    {{ $item->stock < 1 ? __('Inactive') : __('Active') }}
                                                 </span>
                                             </td>
                                             <td class="td-style text-right text-sm font-medium">

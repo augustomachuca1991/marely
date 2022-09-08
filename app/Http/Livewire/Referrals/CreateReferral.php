@@ -18,9 +18,6 @@ class CreateReferral extends Component
     public $supplierText = '';
     public $suggestionSupplier = false;
     public $supplier;
-
-    public $productText = '';
-    public $suggestionProduct = false;
     public $product;
 
     public $editMode = false;
@@ -31,15 +28,13 @@ class CreateReferral extends Component
     public $productsAdd = [];
     public $addStock = [];
 
-
+    protected $listeners = ['loadProduct'];
 
     public function render()
     {
         $suppliers = Supplier::search($this->supplierText)->take(5)->get();
-        $products = Product::searchProduct($this->productText)->take(5)->get();
         return view('livewire.referrals.create-referral',[
-            'suppliers' => $suppliers,
-            'products' => $products
+            'suppliers' => $suppliers
         ]);
     }
 
@@ -53,13 +48,10 @@ class CreateReferral extends Component
 
     public function loadProduct(Product $product)
     {
-        $this->productText = $product->name;
-        $this->suggestionProduct = false;
         $this->product = $product;
-        array_push($this->productsAdd, $product);
+        array_push($this->productsAdd, $this->product);
         array_push($this->addStock, 0);
-        $this->reset(['productText']);
-        //$this->listProducts = Product::whereIn('id' , $this->productsAdd)->get();
+       
     }
 
 
