@@ -16,8 +16,9 @@ class IndexReferral extends Component
     public $isOpenShow = false;
     public $isOpenEdit = false;
     public $referral;
+    public $total;
 
-    protected $listeners = ['render' , 'closeModal', 'delete', 'editRererral'];
+    protected $listeners = ['render', 'closeModal', 'delete', 'editRererral'];
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -26,9 +27,18 @@ class IndexReferral extends Component
 
     public function render()
     {
-        return view('livewire.referrals.index-referral' , [
-            'referrals' => Referral::searchSupplier($this->search)->latest()->paginate($this->perPage)
+        return view('livewire.referrals.index-referral', [
+            'referrals' => $this->getReferrals(),
         ]);
+    }
+
+
+    public function getReferrals()
+    {
+
+        return Referral::searchSupplier($this->search)
+            ->latest()
+            ->paginate($this->perPage);
     }
 
     public function updatingSearch()
@@ -39,7 +49,6 @@ class IndexReferral extends Component
     public function closeModal()
     {
         $this->reset(['isOpenShow', 'isOpenEdit']);
-
     }
 
 
@@ -58,7 +67,7 @@ class IndexReferral extends Component
             $product->referrals()->detach($this->referral->id);
         }
         $this->referral->delete();
-        $this->alert('success', 'La orden nº "#000'.$this->referral->id .'" se dio de baja');
+        $this->alert('success', 'La orden nº "#000' . $this->referral->id . '" se dio de baja');
         $this->closeModal();
     }
 

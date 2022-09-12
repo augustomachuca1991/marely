@@ -50,6 +50,8 @@ class EditReferral extends Component
 
         $data = $this->updatingItem();
         $this->referral->products()->sync($data);
+        $this->referral->total_amount = $this->referral->getTotalAmount();
+        $this->referral->save();
         $this->emitTo('referrals.show-referral', 'resetData');
         $this->alert('success', 'La orden de compra se actualizo de forma correcta');
         $this->resetData();
@@ -65,7 +67,7 @@ class EditReferral extends Component
 
     public function removeItem($i)
     {
-        
+
         $product = $this->referral->products()->where('products.id', $this->products[$i]['id']);
         if ($product->exists()) {
             $product1 = $product->get()->first();
@@ -87,7 +89,6 @@ class EditReferral extends Component
     protected function updatingItem()
     {
         foreach ($this->products as $key => $value) {
-
             $product = $this->referral->products()->where('products.id', $value['id']);
             if ($product->exists()) {
                 $product1 = $product->get()->first();

@@ -15,6 +15,7 @@ class Referral extends Model
     protected $fillable = [
         'supplier_id',
         'bonification',
+        'total_amount'
     ];
 
 
@@ -26,15 +27,25 @@ class Referral extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity','unit_price');
+        return $this->belongsToMany(Product::class)->withPivot('quantity', 'unit_price');
     }
 
     public function scopeSearchSupplier($query, $text)
     {
         if (!empty($text)) {
-            $query->whereHas('supplier', function($supplier) use ($text) {
-                $supplier->where('company_name' , 'LIKE', "%{$text}%");
+            $query->whereHas('supplier', function ($supplier) use ($text) {
+                $supplier->where('company_name', 'LIKE', "%{$text}%");
             });
         }
+    }
+
+
+    public function getTotalAmount()
+    {
+
+        $neto  = $this->products->sum('pivot.quantity') * $this->products->sum('pivot.unit_price');
+        $porcentaje  =  ($neto * $this->bonification) / 100;
+        $total_amount = $neto - $porcentaje;
+        return $total_amount;
     }
 }

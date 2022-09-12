@@ -44,7 +44,6 @@ class CreateReferral extends Component
         $this->product = $product;
         array_push($this->productsAdd, $this->product);
         array_push($this->addStock, 0);
-
     }
 
 
@@ -54,7 +53,8 @@ class CreateReferral extends Component
     }
 
 
-    public function removeItem($index){
+    public function removeItem($index)
+    {
         unset($this->productsAdd[$index]);
         unset($this->addStock[$index]);
     }
@@ -71,7 +71,7 @@ class CreateReferral extends Component
         $referral->supplier_id = $this->supplier->id;
         $referral->save();
         foreach ($this->addStock as $key => $value) {
-            $referral->products()->attach( $this->productsAdd[$key]['id'] , [
+            $referral->products()->attach($this->productsAdd[$key]['id'], [
                 'quantity' => $value,
                 'unit_price' => $this->productsAdd[$key]['list_price'],
             ]);
@@ -80,10 +80,11 @@ class CreateReferral extends Component
             $product->list_price = $this->productsAdd[$key]['list_price'];
             $product->save();
         }
-        $this->reset('addStock' , 'productsAdd', 'isOpenCreate', 'bonification' , 'supplier' );
-        $this->alert('success' , 'Se ha cargado un nuevo remito');
+        $referral->total_amount = $referral->getTotalAmount();
+        $referral->save();
+        $this->reset('addStock', 'productsAdd', 'isOpenCreate', 'bonification', 'supplier');
+        $this->alert('success', 'Se ha cargado un nuevo remito');
         $this->emitTo('referrals.index-referral', 'render');
-
     }
 
     public function editPrice($i, $price)

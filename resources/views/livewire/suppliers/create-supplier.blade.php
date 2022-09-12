@@ -7,20 +7,9 @@
         this.open = false
     }
 }">
-    {{-- <div @click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-buuton')"
-        class="mx-auto mt-16 flex cursor-pointer rounded border-0 bg-green-500 py-2 px-8 text-lg text-white hover:bg-green-600 focus:outline-none">
-
-        <svg class="mx-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd"
-                d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                clip-rule="evenodd" />
-        </svg>
-
-        <span class="mx-1">Refresh</span>
-    </div> --}}
 
     <div @click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-buuton')"
-        class="flex transform cursor-pointer items-center rounded-md bg-green-500 px-4 py-2 font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-80">
+        class="flex transform cursor-pointer items-center rounded-md bg-green-500 px-4 py-2 font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-80">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mx-1 h-5 w-5">
             <path
                 d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25zM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 116 0h3a.75.75 0 00.75-.75V15z" />
@@ -54,7 +43,8 @@
                                     <div class="-mx-2 items-center md:flex">
                                         <div class="mx-2 w-full">
                                             <label
-                                                class="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200">{{ __('Company Name') }}</label>
+                                                class="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200">{{
+                                                __('Company Name') }}</label>
 
                                             <input wire:model.defer="company_name"
                                                 class="block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
@@ -64,7 +54,8 @@
 
                                         <div class="mx-2 mt-4 w-full md:mt-0">
                                             <label
-                                                class="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200">{{ __('Phone Number') }}</label>
+                                                class="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200">{{
+                                                __('Phone Number') }}</label>
 
                                             <input wire:model.defer="phone_number"
                                                 class="block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"
@@ -74,7 +65,8 @@
                                     </div>
                                     <div class="mt-4 w-full">
                                         <label
-                                            class="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200">{{ __('Location') }}</label>
+                                            class="mb-2 block text-sm font-medium text-gray-600 dark:text-gray-200">{{
+                                            __('Location') }}</label>
 
                                         <textarea wire:model.defer="location"
                                             class="block h-40 w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300"></textarea>

@@ -47,8 +47,7 @@
                     </div>
                     <div class="flex overflow-hidden rounded-lg bg-gray-900 text-gray-100">
                         <div class="flex items-center justify-center bg-blue-400 px-4 text-gray-800">
-                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M16.9498 5.96781L15.5356 7.38203L13 4.84646V17.0421H11V4.84653L8.46451 7.38203L7.05029 5.96781L12 1.01807L16.9498 5.96781Z"
                                     fill="currentColor" />
@@ -141,8 +140,8 @@
                                 d="M74 82.8332C68.0167 82.8332 63.1666 77.9831 63.1666 71.9998C63.1666 66.0166 68.0167 61.1665 74 61.1665C79.9832 61.1665 84.8333 66.0166 84.8333 71.9998C84.8333 77.9831 79.9832 82.8332 74 82.8332ZM74 80.6665C76.2985 80.6665 78.5029 79.7534 80.1282 78.1281C81.7535 76.5028 82.6666 74.2984 82.6666 71.9998C82.6666 69.7013 81.7535 67.4969 80.1282 65.8716C78.5029 64.2463 76.2985 63.3332 74 63.3332C71.7014 63.3332 69.497 64.2463 67.8717 65.8716C66.2464 67.4969 65.3333 69.7013 65.3333 71.9998C65.3333 74.2984 66.2464 76.5028 67.8717 78.1281C69.497 79.7534 71.7014 80.6665 74 80.6665ZM70.75 67.6665H77.25L79.9583 71.4582L74 77.4165L68.0416 71.4582L70.75 67.6665ZM71.8658 69.8332L70.8691 71.2307L74 74.3615L77.1308 71.2307L76.1341 69.8332H71.8658Z"
                                 fill="#6A6A9F" />
                             <defs>
-                                <linearGradient id="paint0_linear_622:13617" x1="45.9997" y1="19"
-                                    x2="46.0897" y2="124.308" gradientUnits="userSpaceOnUse">
+                                <linearGradient id="paint0_linear_622:13617" x1="45.9997" y1="19" x2="46.0897"
+                                    y2="124.308" gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#E323FF" />
                                     <stop offset="1" stop-color="#7517F8" />
                                 </linearGradient>
@@ -151,8 +150,8 @@
                                     <stop stop-color="#4DFFDF" />
                                     <stop offset="1" stop-color="#4DA1FF" />
                                 </linearGradient>
-                                <linearGradient id="paint2_linear_622:13617" x1="36.4997" y1="5.07257e-06"
-                                    x2="36.6213" y2="142.36" gradientUnits="userSpaceOnUse">
+                                <linearGradient id="paint2_linear_622:13617" x1="36.4997" y1="5.07257e-06" x2="36.6213"
+                                    y2="142.36" gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#FFD422" />
                                     <stop offset="1" stop-color="#FF7D05" />
                                 </linearGradient>
@@ -168,8 +167,7 @@
                             <div class="mt-2 flex justify-center gap-4">
                                 <h3 class="text-3xl font-bold text-gray-700">$23,988</h3>
                                 <div class="flex items-end gap-1 text-green-500">
-                                    <svg class="w-3" viewBox="0 0 12 15" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-3" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6.00001 0L12 8H-3.05176e-05L6.00001 0Z" fill="currentColor" />
                                     </svg>
                                     <span>2%</span>
@@ -185,22 +183,17 @@
                                     <td>
                                         <svg class="ml-auto w-16" viewBox="0 0 68 21" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect opacity="0.4" width="17" height="21" rx="1"
-                                                fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="19" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="35" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="51" width="17" height="21"
-                                                rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2" />
                                             <path
                                                 d="M0 7C8.62687 7 7.61194 16 17.7612 16C27.9104 16 25.3731 9 34 9C42.6269 9 44.5157 5 51.2537 5C57.7936 5 59.3731 14.5 68 14.5"
                                                 stroke="url(#paint0_linear_622:13631)" stroke-width="2"
                                                 stroke-linejoin="round" />
                                             <defs>
-                                                <linearGradient id="paint0_linear_622:13631" x1="68"
-                                                    y1="7.74997" x2="1.69701" y2="8.10029"
-                                                    gradientUnits="userSpaceOnUse">
+                                                <linearGradient id="paint0_linear_622:13631" x1="68" y1="7.74997"
+                                                    x2="1.69701" y2="8.10029" gradientUnits="userSpaceOnUse">
                                                     <stop stop-color="#E323FF" />
                                                     <stop offset="1" stop-color="#7517F8" />
                                                 </linearGradient>
@@ -214,22 +207,17 @@
                                     <td>
                                         <svg class="ml-auto w-16" viewBox="0 0 68 21" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect opacity="0.4" width="17" height="21" rx="1"
-                                                fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="19" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="35" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="51" width="17" height="21"
-                                                rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2" />
                                             <path
                                                 d="M0 12.929C8.69077 12.929 7.66833 9.47584 17.8928 9.47584C28.1172 9.47584 25.5611 15.9524 34.2519 15.9524C42.9426 15.9524 44.8455 10.929 51.6334 10.929C58.2217 10.929 59.3092 5 68 5"
                                                 stroke="url(#paint0_linear_622:13640)" stroke-width="2"
                                                 stroke-linejoin="round" />
                                             <defs>
-                                                <linearGradient id="paint0_linear_622:13640" x1="34"
-                                                    y1="5" x2="34" y2="15.9524"
-                                                    gradientUnits="userSpaceOnUse">
+                                                <linearGradient id="paint0_linear_622:13640" x1="34" y1="5" x2="34"
+                                                    y2="15.9524" gradientUnits="userSpaceOnUse">
                                                     <stop stop-color="#8AFF6C" />
                                                     <stop offset="1" stop-color="#02C751" />
                                                 </linearGradient>
@@ -243,22 +231,17 @@
                                     <td>
                                         <svg class="ml-auto w-16" viewBox="0 0 68 21" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect opacity="0.4" width="17" height="21" rx="1"
-                                                fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="19" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="35" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="51" width="17" height="21"
-                                                rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2" />
                                             <path
                                                 d="M0 6C8.62687 6 6.85075 12.75 17 12.75C27.1493 12.75 25.3731 9 34 9C42.6269 9 42.262 13.875 49 13.875C55.5398 13.875 58.3731 6 67 6"
                                                 stroke="url(#paint0_linear_622:13649)" stroke-width="2"
                                                 stroke-linejoin="round" />
                                             <defs>
-                                                <linearGradient id="paint0_linear_622:13649" x1="67"
-                                                    y1="7.96873" x2="1.67368" y2="8.44377"
-                                                    gradientUnits="userSpaceOnUse">
+                                                <linearGradient id="paint0_linear_622:13649" x1="67" y1="7.96873"
+                                                    x2="1.67368" y2="8.44377" gradientUnits="userSpaceOnUse">
                                                     <stop stop-color="#FFD422" />
                                                     <stop offset="1" stop-color="#FF7D05" />
                                                 </linearGradient>
@@ -285,13 +268,13 @@
                                 d="M0 67.5C27.2601 67.5 30.7399 31 58 31C85.2601 31 80.7399 2 108 2C135.26 2 134.74 43 162 43C189.26 43 190.74 63.665 218 63.665"
                                 stroke="url(#paint1_linear_622:13664)" stroke-width="3" stroke-linecap="round" />
                             <defs>
-                                <linearGradient id="paint0_linear_622:13664" x1="217.027" y1="15"
-                                    x2="7.91244" y2="15" gradientUnits="userSpaceOnUse">
+                                <linearGradient id="paint0_linear_622:13664" x1="217.027" y1="15" x2="7.91244" y2="15"
+                                    gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#4DFFDF" />
                                     <stop offset="1" stop-color="#4DA1FF" />
                                 </linearGradient>
-                                <linearGradient id="paint1_linear_622:13664" x1="218" y1="18.3748"
-                                    x2="5.4362" y2="18.9795" gradientUnits="userSpaceOnUse">
+                                <linearGradient id="paint1_linear_622:13664" x1="218" y1="18.3748" x2="5.4362"
+                                    y2="18.9795" gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#E323FF" />
                                     <stop offset="1" stop-color="#7517F8" />
                                 </linearGradient>
@@ -305,22 +288,17 @@
                                     <td>
                                         <svg class="ml-auto w-16" viewBox="0 0 68 21" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect opacity="0.4" width="17" height="21" rx="1"
-                                                fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="19" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="35" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="51" width="17" height="21"
-                                                rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2" />
                                             <path
                                                 d="M0 7C8.62687 7 7.61194 16 17.7612 16C27.9104 16 25.3731 9 34 9C42.6269 9 44.5157 5 51.2537 5C57.7936 5 59.3731 14.5 68 14.5"
                                                 stroke="url(#paint0_linear_622:13631)" stroke-width="2"
                                                 stroke-linejoin="round" />
                                             <defs>
-                                                <linearGradient id="paint0_linear_622:13631" x1="68"
-                                                    y1="7.74997" x2="1.69701" y2="8.10029"
-                                                    gradientUnits="userSpaceOnUse">
+                                                <linearGradient id="paint0_linear_622:13631" x1="68" y1="7.74997"
+                                                    x2="1.69701" y2="8.10029" gradientUnits="userSpaceOnUse">
                                                     <stop stop-color="#E323FF" />
                                                     <stop offset="1" stop-color="#7517F8" />
                                                 </linearGradient>
@@ -334,22 +312,17 @@
                                     <td>
                                         <svg class="ml-auto w-16" viewBox="0 0 68 21" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect opacity="0.4" width="17" height="21" rx="1"
-                                                fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="19" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="35" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="51" width="17" height="21"
-                                                rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2" />
                                             <path
                                                 d="M0 12.929C8.69077 12.929 7.66833 9.47584 17.8928 9.47584C28.1172 9.47584 25.5611 15.9524 34.2519 15.9524C42.9426 15.9524 44.8455 10.929 51.6334 10.929C58.2217 10.929 59.3092 5 68 5"
                                                 stroke="url(#paint0_linear_622:13640)" stroke-width="2"
                                                 stroke-linejoin="round" />
                                             <defs>
-                                                <linearGradient id="paint0_linear_622:13640" x1="34"
-                                                    y1="5" x2="34" y2="15.9524"
-                                                    gradientUnits="userSpaceOnUse">
+                                                <linearGradient id="paint0_linear_622:13640" x1="34" y1="5" x2="34"
+                                                    y2="15.9524" gradientUnits="userSpaceOnUse">
                                                     <stop stop-color="#8AFF6C" />
                                                     <stop offset="1" stop-color="#02C751" />
                                                 </linearGradient>
@@ -363,8 +336,7 @@
                 </div>
                 <div>
                     <div class="rounded-xl border border-gray-200 bg-white py-8 px-6 text-gray-600 lg:h-full">
-                        <svg class="m-auto w-40" viewBox="0 0 56 56" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg class="m-auto w-40" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M27.9985 2.84071C31.2849 2.84071 34.539 3.488 37.5752 4.74562C40.6113 6.00324 43.3701 7.84657 45.6938 10.1703C48.0176 12.4941 49.861 15.2529 51.1186 18.289C52.3762 21.3252 53.0235 24.5793 53.0235 27.8657C53.0235 31.152 52.3762 34.4061 51.1186 37.4423C49.861 40.4785 48.0176 43.2372 45.6938 45.561C43.3701 47.8848 40.6113 49.7281 37.5752 50.9857C34.539 52.2433 31.2849 52.8906 27.9985 52.8906C24.7122 52.8906 21.4581 52.2433 18.4219 50.9857C15.3857 49.7281 12.627 47.8848 10.3032 45.561C7.97943 43.2372 6.1361 40.4785 4.87848 37.4423C3.62086 34.4061 2.97357 31.152 2.97357 27.8657C2.97357 24.5793 3.62086 21.3252 4.87848 18.289C6.13611 15.2529 7.97943 12.4941 10.3032 10.1703C12.627 7.84656 15.3857 6.00324 18.4219 4.74562C21.4581 3.488 24.7122 2.84071 27.9985 2.84071L27.9985 2.84071Z"
                                 stroke="#e4e4f2" stroke-width="3" />
@@ -381,8 +353,8 @@
                                 d="M23.5776 18.4198H25.5424V22.8407H23.5776V18.4198ZM30.4545 16.455H32.4193V22.8407H30.4545V16.455ZM27.0161 13.5078H28.9809V22.8407H27.0161V13.5078Z"
                                 fill="#6A6A9F" />
                             <defs>
-                                <linearGradient id="paint0_linear_622:13696" x1="5.54791e-07" y1="42.0001"
-                                    x2="54.6039" y2="41.9535" gradientUnits="userSpaceOnUse">
+                                <linearGradient id="paint0_linear_622:13696" x1="5.54791e-07" y1="42.0001" x2="54.6039"
+                                    y2="41.9535" gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#E323FF" />
                                     <stop offset="1" stop-color="#7517F8" />
                                 </linearGradient>
@@ -393,8 +365,7 @@
                             <div class="mt-2 flex justify-center gap-4">
                                 <h3 class="text-3xl font-bold text-gray-700">28</h3>
                                 <div class="flex items-end gap-1 text-green-500">
-                                    <svg class="w-3" viewBox="0 0 12 15" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="w-3" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6.00001 0L12 8H-3.05176e-05L6.00001 0Z" fill="currentColor" />
                                     </svg>
                                     <span>2%</span>
@@ -410,22 +381,17 @@
                                     <td>
                                         <svg class="ml-auto w-16" viewBox="0 0 68 21" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect opacity="0.4" width="17" height="21" rx="1"
-                                                fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="19" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="35" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="51" width="17" height="21"
-                                                rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2" />
                                             <path
                                                 d="M0 7C8.62687 7 7.61194 16 17.7612 16C27.9104 16 25.3731 9 34 9C42.6269 9 44.5157 5 51.2537 5C57.7936 5 59.3731 14.5 68 14.5"
                                                 stroke="url(#paint0_linear_622:13631)" stroke-width="2"
                                                 stroke-linejoin="round" />
                                             <defs>
-                                                <linearGradient id="paint0_linear_622:13631" x1="68"
-                                                    y1="7.74997" x2="1.69701" y2="8.10029"
-                                                    gradientUnits="userSpaceOnUse">
+                                                <linearGradient id="paint0_linear_622:13631" x1="68" y1="7.74997"
+                                                    x2="1.69701" y2="8.10029" gradientUnits="userSpaceOnUse">
                                                     <stop stop-color="#E323FF" />
                                                     <stop offset="1" stop-color="#7517F8" />
                                                 </linearGradient>
@@ -439,22 +405,17 @@
                                     <td>
                                         <svg class="ml-auto w-16" viewBox="0 0 68 21" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect opacity="0.4" width="17" height="21" rx="1"
-                                                fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="19" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="35" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="51" width="17" height="21"
-                                                rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2" />
                                             <path
                                                 d="M0 12.929C8.69077 12.929 7.66833 9.47584 17.8928 9.47584C28.1172 9.47584 25.5611 15.9524 34.2519 15.9524C42.9426 15.9524 44.8455 10.929 51.6334 10.929C58.2217 10.929 59.3092 5 68 5"
                                                 stroke="url(#paint0_linear_622:13640)" stroke-width="2"
                                                 stroke-linejoin="round" />
                                             <defs>
-                                                <linearGradient id="paint0_linear_622:13640" x1="34"
-                                                    y1="5" x2="34" y2="15.9524"
-                                                    gradientUnits="userSpaceOnUse">
+                                                <linearGradient id="paint0_linear_622:13640" x1="34" y1="5" x2="34"
+                                                    y2="15.9524" gradientUnits="userSpaceOnUse">
                                                     <stop stop-color="#8AFF6C" />
                                                     <stop offset="1" stop-color="#02C751" />
                                                 </linearGradient>
@@ -468,22 +429,17 @@
                                     <td>
                                         <svg class="ml-auto w-16" viewBox="0 0 68 21" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <rect opacity="0.4" width="17" height="21" rx="1"
-                                                fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="19" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="35" width="14" height="21"
-                                                rx="1" fill="#e4e4f2" />
-                                            <rect opacity="0.4" x="51" width="17" height="21"
-                                                rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2" />
+                                            <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2" />
                                             <path
                                                 d="M0 6C8.62687 6 6.85075 12.75 17 12.75C27.1493 12.75 25.3731 9 34 9C42.6269 9 42.262 13.875 49 13.875C55.5398 13.875 58.3731 6 67 6"
                                                 stroke="url(#paint0_linear_622:13649)" stroke-width="2"
                                                 stroke-linejoin="round" />
                                             <defs>
-                                                <linearGradient id="paint0_linear_622:13649" x1="67"
-                                                    y1="7.96873" x2="1.67368" y2="8.44377"
-                                                    gradientUnits="userSpaceOnUse">
+                                                <linearGradient id="paint0_linear_622:13649" x1="67" y1="7.96873"
+                                                    x2="1.67368" y2="8.44377" gradientUnits="userSpaceOnUse">
                                                     <stop stop-color="#FFD422" />
                                                     <stop offset="1" stop-color="#FF7D05" />
                                                 </linearGradient>

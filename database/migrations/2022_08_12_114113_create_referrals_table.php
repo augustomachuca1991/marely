@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->decimal('bonification')->default(0)->nullable();
+            $table->decimal('total_amount')->default(0)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -51,6 +51,11 @@
                                 <dt class="sr-only">{{ __('Phone Number') }}</dt>
                                 <div class="group-hover:text-sky-100">{{ $item->supplier->phone_number }}</div>
                             </div>
+                            <div>
+                                <dt class="sr-only">{{ __('Total') }}</dt>
+                                <div class="group-hover:text-sky-100">
+                                    $ {{ number_format($item->total_amount, 2, '.', ',') }}</div>
+                            </div>
                             <div class="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4">
                                 <dt class="sr-only">Users</dt>
                                 <div class="flex flex-col items-center justify-center">
@@ -64,27 +69,14 @@
                                         @endforeach
                                         @if ($item->products->count() > 4)
                                             <span
-                                                class="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 bg-gray-50 font-semibold text-gray-800">+{{ ($item->products->count()  - 4
-                                                )}}</span>
+                                                class="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 bg-gray-50 font-semibold text-gray-800">+{{ $item->products->count() - 4 }}</span>
                                         @endif
-
-
                                     </div>
                                 </div>
-                                {{-- @foreach ($item->products as $product)
-                                    <div
-                                        class="inline-flex justify-end -space-x-1.5 sm:justify-start lg:justify-end xl:justify-start">
-                                        <img src="{{ $product->profile_photo_url }}" alt="{{ $product->name }}"
-                                            class="h-6 w-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy">
-                                    </div>
-                                @endforeach --}}
-
                             </div>
                         </dl>
                     </a>
                 @endforeach
-
-
             </div>
             @if ($referrals->count())
                 {{ $referrals->links() }}
