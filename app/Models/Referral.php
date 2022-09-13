@@ -42,8 +42,10 @@ class Referral extends Model
 
     public function getTotalAmount()
     {
-
-        $neto  = $this->products->sum('pivot.quantity') * $this->products->sum('pivot.unit_price');
+        $neto = 0;
+        foreach ($this->products as $product) {
+            $neto += $product->pivot->quantity * $product->pivot->unit_price;
+        }
         $porcentaje  =  ($neto * $this->bonification) / 100;
         $total_amount = $neto - $porcentaje;
         return $total_amount;

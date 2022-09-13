@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -55,7 +56,14 @@ class Sale extends Model
         }
     }
 
-    
+    protected function amount(): Attribute
+    {
+        return new Attribute(
+            get: function ($value) {
+                return number_format($value, 2, '.', ',');
+            }
+        );
+    }
 
 
 }

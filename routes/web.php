@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -44,6 +44,8 @@ Route::middleware([
     Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
 
     Route::get('/shops', [ShopController::class, 'index'])->name('shops.index');
+
+    Route::get('/audits', [AuditController::class, 'index'])->name('audits.index');
 
 
 

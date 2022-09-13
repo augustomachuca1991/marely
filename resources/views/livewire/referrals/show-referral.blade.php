@@ -29,7 +29,8 @@
                                     {{ $referral->supplier->company_name }}</h2>
                                 <p class="text-md capitalize text-gray-500">{{ $referral->supplier->location }} -
                                     <br>
-                                    <span class="text-xs">{{ $referral->supplier->phone_number ? '+54-' . $referral->supplier->phone_number : 'No phone' }}</span>
+                                    <span
+                                        class="text-xs">{{ $referral->supplier->phone_number ? '+54-' . $referral->supplier->phone_number : 'No phone' }}</span>
                                 </p>
                             </div>
                             <div class="px-2">
@@ -43,7 +44,7 @@
 
                             <div>
                                 <div>
-                                    <div class="text-md flex justify-between rounded-md py-2 px-4 font-bold">
+                                    {{-- <div class="text-md flex justify-between rounded-md py-2 px-4 font-bold">
                                         <div>
                                             <span>{{ __('Items') }}</span>
                                         </div>
@@ -59,24 +60,27 @@
                                         <div>
                                             <span>{{ __('Importe') }}</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         @foreach ($referral->products as $index => $product)
                                             <div
                                                 class="mt-4 flex justify-between space-x-4 border-t text-sm font-normal">
                                                 <div><span>{{ $index + 1 }}</span></div>
                                                 <div class="justify-self-start">
-                                                    <span> {!! DNS1D::getBarcodeSVG($product->code, 'UPCE') !!}</span>
+                                                    <span> {!! '<img width="110" src="data:image/png;base64,' .
+                                                        DNS1D::getBarcodePNG($product->code, 'C39', 1, 96) .
+                                                        '" alt="barcode"   />' !!}{{ $product->code }}</span>
                                                 </div>
                                                 <div class="flex px-2">
-                                                    <span>{{ $product->name }} x
-                                                        {{ $product->pivot->quantity }}</span>
+                                                    <span>{{ $product->name }}</span>
                                                 </div>
                                                 <div class="px-2">
-                                                    <span>${{ $product->pivot->unit_price }}</span>
+                                                    <span>${{ number_format($product->pivot->unit_price, 2, '.', '') }}
+                                                        <i>x{{ $product->pivot->quantity }} unit</i></span>
                                                 </div>
                                                 <div class="px-2">
-                                                    <span>${{ number_format($product->pivot->quantity * $product->pivot->unit_price, '2', '.', ',') }}</span>
+                                                    <span
+                                                        class="font-semibold text-gray-700">${{ number_format($product->subTotal(), '2', '.', ',') }}</span>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -95,7 +99,7 @@
                                                     {{ $referral->bonification }} %</p>
 
                                                 <h3 class="text-xl font-semibold">Total $
-                                                    {{ number_format($total, 2, '.', ',') }}</h3>
+                                                    {{ number_format($referral->getTotalAmount(), 2, '.', ',') }}</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -128,8 +132,10 @@
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-danger-button wire:click="cancelOrder({{$referral}})">{{ __('Cancel Order') }}</x-jet-danger-button>
-            <x-jet-button class="ml-1" wire:click="editOrder({{$referral}})">{{ __('Rectify Order') }}</x-jet-button>
+            <x-jet-danger-button wire:click="cancelOrder({{ $referral }})">{{ __('Cancel Order') }}
+            </x-jet-danger-button>
+            <x-jet-button class="ml-1" wire:click="editOrder({{ $referral }})">{{ __('Rectify Order') }}
+            </x-jet-button>
         </x-slot>
     </x-jet-dialog-modal>
 </div>

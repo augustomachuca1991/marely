@@ -48,13 +48,13 @@
                             </div>
 
                             <div>
-                                <dt class="sr-only">{{ __('Phone Number') }}</dt>
-                                <div class="group-hover:text-sky-100">{{ $item->supplier->phone_number }}</div>
+                                <dt class="sr-only">{{ __('Number referral') }}</dt>
+                                <div class="group-hover:text-sky-100">Nº de remito - #000{{ $item->id }}</div>
                             </div>
                             <div>
                                 <dt class="sr-only">{{ __('Total') }}</dt>
-                                <div class="group-hover:text-sky-100">
-                                    $ {{ number_format($item->total_amount, 2, '.', ',') }}</div>
+                                <div class="group-hover:text-sky-100 font-serif font-bold text-xl text-cyan-800">
+                                    $ {{ number_format($item->getTotalAmount(), 2, '.', ',') }}</div>
                             </div>
                             <div class="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4">
                                 <dt class="sr-only">Users</dt>

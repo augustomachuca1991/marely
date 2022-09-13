@@ -40,7 +40,7 @@
                         <div class="lg:flex lg:items-center lg:justify-between">
                             <div class="min-w-0 flex-1">
                                 <h2
-                                    class="text-xl font-bold capitalize leading-7 text-gray-700 sm:truncate sm:text-3xl">
+                                    class="text-xl font-bold uppercase leading-7 text-gray-700 sm:truncate sm:text-3xl">
                                     {{ $supplier->company_name }}</h2>
                                 <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
 
@@ -158,7 +158,7 @@
 
                                                                         </div>
                                                                         {{-- <p class="mt-1 text-sm text-gray-500">
-                                                                            {!! DNS1D::getBarcodeSVG($add['code'], 'UPCE') !!}
+                                                                            {!!'<img width="96" src="data:image/png;base64,' . DNS1D::getBarcodePNG($add['code'], 'C39' , 1, 48) . '" alt="barcode"   />'!!} <br> {{$add['code']}}
                                                                         </p> --}}
                                                                     </div>
                                                                     <div

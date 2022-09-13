@@ -12,7 +12,6 @@ class ShowReferral extends Component
 
     public $referral;
     public $isOpenShow = false;
-    public $total = 0;
 
 
     protected $listeners = ['confirmed', 'confirmedEdit', 'resetData'];
@@ -20,13 +19,8 @@ class ShowReferral extends Component
     public function mount($referral)
     {
         $this->referral = $referral;
-        foreach ($this->referral->products as $key => $value) {
-            $this->total +=  $value->pivot->quantity * $value->pivot->unit_price;
-        }
-        $this->total -= ($this->total * $this->referral->bonification)/100;
         $this->isOpenShow = true;
     }
-
 
 
     public function render()
@@ -38,7 +32,7 @@ class ShowReferral extends Component
     public function resetData()
     {
         $this->reset(['isOpenShow']);
-        $this->emitTo('referrals.index-referral' , 'closeModal');
+        $this->emitTo('referrals.index-referral', 'closeModal');
     }
 
     public function cancelOrder(Referral $referral)
@@ -53,13 +47,13 @@ class ShowReferral extends Component
     public function editOrder(Referral $referral)
     {
         $this->referral = $referral;
-        $this->emitTo('referrals.index-referral', 'editRererral' , $this->referral);
+        $this->emitTo('referrals.index-referral', 'editRererral', $this->referral);
     }
 
 
     public function confirmed()
     {
-        $this->emitTo('referrals.index-referral' , 'delete' , $this->referral);
+        $this->emitTo('referrals.index-referral', 'delete', $this->referral);
     }
 
 

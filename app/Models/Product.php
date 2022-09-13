@@ -44,9 +44,28 @@ class Product extends Model
         return new Attribute(
             set: function ($value) {
                 return strtolower($value);
+            },
+            get: function ($value) {
+                return ucwords($value);
             }
         );
     }
+
+
+    protected function description(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+                return strtolower($value);
+            },
+            get: function ($value) {
+                return ucfirst($value);
+            }
+        );
+    }
+
+
+
 
     protected function stock(): Attribute
     {
@@ -90,5 +109,10 @@ class Product extends Model
                 $query->where('stock' , 0);
             }
         }
+    }
+
+
+    public function subTotal(){
+        return $this->pivot->quantity * $this->pivot->unit_price;
     }
 }

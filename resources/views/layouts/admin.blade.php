@@ -44,7 +44,7 @@
 
 
     <aside
-        class="fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between overflow-auto border-r bg-gradient-to-r from-gray-100 to-gray-300 px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] journal-scroll">
+        class="journal-scroll fixed top-0 z-10 ml-[-100%] flex h-screen w-full flex-col justify-between overflow-auto border-r bg-gradient-to-r from-gray-100 to-gray-300 px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
         <div>
             <div class="-mx-6 px-6 py-4">
                 <a href="{{ route('dashboard') }}" title="home">
@@ -184,6 +184,18 @@
                         <span class="group-hover:text-gray-700">{{ __('My Shop') }}</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('audits.index') }}"
+                        class="group {{ request()->routeIs('audits.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                            style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <path  d="M9 6h2v14H9zm4 2h2v12h-2zm4-4h2v16h-2zM5 12h2v8H5z"></path>
+                        </svg>
+
+                        <span class="group-hover:text-gray-700">{{ __('Audits') }}</span>
+                    </a>
+                </li>
 
 
 
@@ -288,9 +300,9 @@
                 <x-jet-responsive-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
                     {{ __('Sales Order') }}
                 </x-jet-responsive-nav-link>
-                {{-- <x-jet-responsive-nav-link href="{{ route('audits.index') }}" :active="request()->routeIs('audits.index')">
+                <x-jet-responsive-nav-link href="{{ route('audits.index') }}" :active="request()->routeIs('audits.index')">
                     {{ __('Audits') }}
-                </x-jet-responsive-nav-link> --}}
+                </x-jet-responsive-nav-link>
             </div>
 
             <!-- Responsive Settings Options -->

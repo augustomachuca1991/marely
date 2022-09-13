@@ -91,7 +91,7 @@
                         </div>
                         <div class="flex flex-1 items-center justify-between p-3">
                             <p class="text-2xl font-semibold">99,9 %</p>
-                            <p>Uptime</p>
+                            <p>{{__('Historical Expenses')}}</p>
                         </div>
                     </div>
                     <div class="flex overflow-hidden rounded-lg bg-gray-900 text-gray-100">

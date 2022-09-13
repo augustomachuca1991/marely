@@ -58,7 +58,7 @@
 
             <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:mt-16 xl:grid-cols-3">
                 @foreach ($products as $item)
-                    @if ($item->stock)
+                    @if ($item->stock > 0)
                         <div class="flex flex-col items-center">
                             <img wire:click="show({{ $item }})"
                                 class="aspect-square w-full cursor-pointer rounded-xl object-cover"

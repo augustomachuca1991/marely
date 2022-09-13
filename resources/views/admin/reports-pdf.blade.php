@@ -97,8 +97,9 @@
                     @foreach ($sale->products as $item)
 
                         <tr>
+
                             {{-- <td> {!! DNS1D::getBarcodeSVG($item->code, 'UPCE') !!}</td> --}}
-                            <td> {!!'<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($item->code, 'UPCE') . '" alt="barcode"   />'!!} <br> {{$item->code}}</td>
+                            <td> {!!'<img width="96" src="data:image/png;base64,' . DNS1D::getBarcodePNG($item->code, 'C39' , 1, 48) . '" alt="barcode"   />'!!} <br> {{$item->code}}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->pivot->quantity }}</td>
                             <td>$ {{ $item->pivot->price_to_date }}</td>

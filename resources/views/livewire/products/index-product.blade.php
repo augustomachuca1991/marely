@@ -200,7 +200,7 @@
 
                                         </div>
                                         <div class="ml-4">
-                                            <div class="text-sm font-medium capitalize">
+                                            <div class="text-sm font-medium">
 
                                                 {{ $item->name }}
                                             </div>
