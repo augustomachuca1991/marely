@@ -20,8 +20,6 @@ class IndexSale extends Component
     public $from = "";
     public $to = "";
     public $perPage = 10;
-    public $user;
-    public $selectUser = false;
 
 
     protected $queryString = [
@@ -33,7 +31,7 @@ class IndexSale extends Component
     ];
 
 
-    protected $listeners = ['render', 'revert'];
+    protected $listeners = ['render', 'revert', 'selectedUser'];
 
     public function render()
     {
@@ -66,9 +64,8 @@ class IndexSale extends Component
 
     public function selectedUser(User $user)
     {
-        $this->user = $user;
-        $this->perUser = $this->user->id;
-        $this->selectUser = false;
+
+        $this->perUser = $user->id;
     }
 
 

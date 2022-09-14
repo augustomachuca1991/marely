@@ -120,6 +120,7 @@
                                                                 </div>
                                                             </div>
                                                         </li>
+                                                        <x-jet-input-error for="products.{{ $i }}.id" />
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -127,6 +128,18 @@
                                     </div>
                                 @endif
                             </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="mb-4">
+                    <fieldset class="w-full space-y-1 text-gray-800">
+                        <label for="boinification" class="block text-sm font-medium">Total Bonification</label>
+                        <div class="flex">
+                            <input wire:model="referral.bonification" min="0" type="text" name="bonification"
+                                id="bonification" placeholder="99,99"
+                                class="flex w-16 flex-1 rounded-l-md border border-gray-300 bg-gray-100 text-right text-gray-800 focus:ring-inset focus:ring-cyan-600 sm:text-sm">
+                            <span
+                                class="pointer-events-none flex items-center rounded-r-md bg-gray-300 px-3 sm:text-sm">%</span>
                         </div>
                     </fieldset>
                 </div>

@@ -5,7 +5,7 @@
             aria-hidden="true">
             <path d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z" />
         </svg>
-        {{__('New Referral')}}
+        {{ __('New Referral') }}
     </a>
 
     <form wire:submit.prevent="store">
@@ -30,7 +30,8 @@
                             {{ __('Purchase Order') }}
                         </h2>
 
-                        <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Esta sección dará de alta las nuevas ordenes de compra.</p>
+                        <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Esta sección dará de
+                            alta las nuevas ordenes de compra.</p>
                     </div>
                     <!-- ### componente para buscar proveedor ### -->
                     <livewire:components.search-supplier></livewire:components.search-supplier>
@@ -39,8 +40,7 @@
                     <div class="mb-4">
                         <div class="lg:flex lg:items-center lg:justify-between">
                             <div class="min-w-0 flex-1">
-                                <h2
-                                    class="text-xl font-bold uppercase leading-7 text-gray-700 sm:truncate sm:text-3xl">
+                                <h2 class="text-xl font-bold uppercase leading-7 text-gray-700 sm:truncate sm:text-3xl">
                                     {{ $supplier->company_name }}</h2>
                                 <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
 
@@ -186,6 +186,8 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
+                                                            <x-jet-input-error
+                                                                for="productsAdd.{{ $index }}.id" />
                                                         @endforeach
                                                     </ul>
                                                 </div>

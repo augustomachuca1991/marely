@@ -281,7 +281,7 @@
                         <div>
                             <div class="flex justify-between">
                                 <span>Subtotal</span>
-                                <span>${{ number_format($sale->amount, 2, '.', '') }}</span>
+                                <span>${{ $sale->amount}}</span>
                             </div>
                             <div class="flex items-center space-x-2 text-xs">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -317,7 +317,7 @@
                         <div class="space-y-6">
                             <div class="flex justify-between">
                                 <span>Total</span>
-                                <span class="font-semibold">${{ number_format($sale->amount, 2, '.', '') }}</span>
+                                <span class="font-semibold">${{ $sale->amount}}</span>
                             </div>
                             <div class="w-full rounded border border-teal-400 bg-teal-400 py-2 text-center">
                                 <a href="{{ route('reports.pdf', $sale->id) }}" target="_blank"

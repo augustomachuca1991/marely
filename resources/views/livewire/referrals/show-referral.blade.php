@@ -15,10 +15,6 @@
             </div>
         </x-slot>
         <x-slot name="content">
-
-            {{-- <div class="container mx-auto">
-
-            </div> --}}
             <div class="min-h-screen bg-gray-50">
                 <div class="p-4">
                     <div class="rounded-md bg-white p-4">
@@ -41,7 +37,6 @@
                         </div>
                         <!-- body-->
                         <div class="mt-6">
-
                             <div>
                                 <div>
                                     {{-- <div class="text-md flex justify-between rounded-md py-2 px-4 font-bold">
@@ -85,20 +80,10 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        <div class="mt-4 flex justify-between space-x-4 border-t text-sm font-normal">
-                                            <div class="flex px-2">
-
-                                            </div>
-                                            <div>
-
-                                            </div>
-                                            <div class="px-2">
-
-                                            </div>
+                                        <div class="mt-4 flex justify-end space-x-4 border-t text-sm font-normal">
                                             <div class="px-2 py-3">
-                                                <p>{{ $referral->bonification >= 0 ? 'Bonificacion: ' : 'Impuesto: ' }}
-                                                    {{ $referral->bonification }} %</p>
-
+                                                <p class="text-right">{{ $referral->bonification >= 0 ? 'Bonificacion: ' : 'IVA: ' }}
+                                                    {{ abs($referral->bonification) }} %</p>
                                                 <h3 class="text-xl font-semibold">Total $
                                                     {{ number_format($referral->getTotalAmount(), 2, '.', ',') }}</h3>
                                             </div>

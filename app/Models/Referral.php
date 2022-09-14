@@ -14,8 +14,7 @@ class Referral extends Model
 
     protected $fillable = [
         'supplier_id',
-        'bonification',
-        'total_amount'
+        'bonification'
     ];
 
 

@@ -25,6 +25,18 @@ class CreateReferral extends Component
     public $productsAdd = [];
     public $addStock = [];
 
+    protected $messages = [
+
+
+        'addStock.*.required' => 'Este campo es obligatorio',
+        'addStock.*.integer' => 'El valor ingresado debe ser un numero entero',
+        'addStock.*.min' => 'Debe cargar al menos un articulo',
+        'productsAdd.*.id.distinct' => 'Debe cargar al menos un articulo',
+
+
+    ];
+
+
     protected $listeners = ['loadProduct', 'loadSupplier'];
 
     public function render()
@@ -64,7 +76,8 @@ class CreateReferral extends Component
     {
         $this->validate([
             'addStock.*' => 'required|integer|min:1',
-            'bonification' => 'numeric|nullable'
+            'bonification' => 'numeric|nullable',
+            'productsAdd.*.id' => 'distinct'
         ]);
         $referral = new Referral();
         $referral->bonification = $this->bonification;
@@ -80,8 +93,6 @@ class CreateReferral extends Component
             $product->list_price = $this->productsAdd[$key]['list_price'];
             $product->save();
         }
-        //$referral->total_amount = $referral->getTotalAmount();
-        $referral->save();
         $this->reset('addStock', 'productsAdd', 'isOpenCreate', 'bonification', 'supplier');
         $this->alert('success', 'Se ha cargado un nuevo remito');
         $this->emitTo('referrals.index-referral', 'render');
