@@ -80,7 +80,7 @@ class CreateReferral extends Component
             $product->list_price = $this->productsAdd[$key]['list_price'];
             $product->save();
         }
-        $referral->total_amount = $referral->getTotalAmount();
+        //$referral->total_amount = $referral->getTotalAmount();
         $referral->save();
         $this->reset('addStock', 'productsAdd', 'isOpenCreate', 'bonification', 'supplier');
         $this->alert('success', 'Se ha cargado un nuevo remito');
