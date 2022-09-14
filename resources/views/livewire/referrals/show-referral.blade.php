@@ -67,9 +67,10 @@
                                                 class="mt-4 flex justify-between space-x-4 border-t text-sm font-normal">
                                                 <div><span>{{ $index + 1 }}</span></div>
                                                 <div class="justify-self-start">
-                                                    <span> {!! '<img width="110" src="data:image/png;base64,' .
+                                                    {{-- <span> {!! '<img width="110" src="data:image/png;base64,' .
                                                         DNS1D::getBarcodePNG($product->code, 'C39', 1, 96) .
-                                                        '" alt="barcode"   />' !!}{{ $product->code }}</span>
+                                                        '" alt="barcode"   />' !!}{{ $product->code }}</span> --}}
+                                                     {{$product->code}}
                                                 </div>
                                                 <div class="flex px-2">
                                                     <span>{{ $product->name }}</span>

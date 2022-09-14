@@ -21,6 +21,9 @@ class Category extends Model
         return new Attribute(
             set: function($value){
                 return strtolower($value);
+            },
+            get: function ($value) {
+                return ucfirst($value);
             }
         );
     }

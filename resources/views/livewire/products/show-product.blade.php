@@ -22,44 +22,43 @@
                 </div>
                 <div class="border-t border-gray-200">
                     <dl>
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">{{ __('Code') }}</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{!!
-                                DNS1D::getBarcodeSVG($product->code, 'C39' , 1 , 48) !!}</dd>
+                        <div class="group-list bg-white">
+                            <dt class="title-list">{{ __('Code') }}</dt>
+                            <dd class="item-list">{!! DNS1D::getBarcodeSVG($product->code, 'C39', 1, 48) !!}</dd>
                         </div>
-                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">{{ __('Name') }}</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 capitalize">{{ $product->name }}
+                        <div class="group-list bg-gray-50">
+                            <dt class="title-list">{{ __('Name') }}</dt>
+                            <dd class="item-list capitalize">{{ $product->name }}
                             </dd>
                         </div>
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">{{ __('Description') }}</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $product->description }}
+                        <div class="group-list bg-white">
+                            <dt class="title-list">{{ __('Description') }}</dt>
+                            <dd class="item-list">{{ $product->description }}
                             </dd>
                         </div>
-                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">{{ __('Category') }}</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $product->category->name }}
+                        <div class="group-list bg-gray-50">
+                            <dt class="title-list">{{ __('Category') }}</dt>
+                            <dd class="item-list">{{ $product->category->name }}
                             </dd>
                         </div>
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">{{ __('Sale Price') }}</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">${{ $product->sale_price }}
+                        <div class="group-list bg-white">
+                            <dt class="title-list">{{ __('Sale Price') }}</dt>
+                            <dd class="item-list">${{ $product->sale_price }}
                             </dd>
                         </div>
-                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">{{ __('Stock') }}</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $product->stock }}
+                        <div class="group-list bg-gray-50">
+                            <dt class="title-list">{{ __('Stock') }}</dt>
+                            <dd class="item-list">{{ $product->stock }}
                                 Unidad/es</dd>
                         </div>
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">{{ __('More') }}</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                        <div class="group-list bg-white">
+                            <dt class="title-list">{{ __('More') }}</dt>
+                            <dd class="item-list">
                                 <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
                                     <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
                                         <div class="flex w-0 flex-1 items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="h-5 w-5 flex-shrink-0 {{$product->stock ? 'text-green-500' : 'text-red-500'}}"
+                                                class="{{ $product->stock ? 'text-green-500' : 'text-red-500' }} h-5 w-5 flex-shrink-0"
                                                 viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd"
                                                     d="M3 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2V5h1v1H5zM3 13a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3zm2 2v-1h1v1H5zM13 3a1 1 0 00-1 1v3a1 1 0 001 1h3a1 1 0 001-1V4a1 1 0 00-1-1h-3zm1 2v1h1V5h-1z"
@@ -67,8 +66,8 @@
                                                 <path
                                                     d="M11 4a1 1 0 10-2 0v1a1 1 0 002 0V4zM10 7a1 1 0 011 1v1h2a1 1 0 110 2h-3a1 1 0 01-1-1V8a1 1 0 011-1zM16 9a1 1 0 100 2 1 1 0 000-2zM9 13a1 1 0 011-1h1a1 1 0 110 2v2a1 1 0 11-2 0v-3zM7 11a1 1 0 100-2H4a1 1 0 100 2h3zM17 13a1 1 0 01-1 1h-2a1 1 0 110-2h2a1 1 0 011 1zM16 17a1 1 0 100-2h-3a1 1 0 100 2h3z" />
                                             </svg>
-                                            <span class="ml-2 w-0 flex-1 truncate"> {{ $product->stock ? 'Active' :
-                                                'Inactive' }}
+                                            <span class="ml-2 w-0 flex-1 truncate">
+                                                {{ $product->stock ? 'Active' : 'Inactive' }}
                                             </span>
                                         </div>
                                     </li>
@@ -83,8 +82,9 @@
                                                     d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                                             </svg>
                                             <span class="ml-2 w-0 flex-1 truncate">
-                                                {{$product->referrals->count() ? $product->referrals->pluck('supplier'):
-                                                'No Especificado' }}
+                                                {{ $product->referrals->count()
+                                                    ? implode(',', $product->referrals->pluck('supplier.company_name')->all())
+                                                    : 'No Especificado' }}
                                             </span>
                                         </div>
                                         <div class="ml-4 flex-shrink-0">

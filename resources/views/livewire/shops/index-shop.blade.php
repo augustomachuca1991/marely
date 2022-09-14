@@ -68,7 +68,7 @@
                                 {{ $item->name }}
                             </h1>
 
-                            <p class="mt-2 capitalize text-gray-500 dark:text-gray-300">{{ $item->description }}</p>
+                            <p class="mt-2 text-gray-500 dark:text-gray-300">{{ $item->description }}</p>
                             <p class="mt-2 capitalize text-gray-400 dark:text-gray-300">{{ $item->category->name }}</p>
 
 
