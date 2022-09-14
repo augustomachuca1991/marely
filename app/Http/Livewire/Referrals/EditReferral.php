@@ -50,7 +50,7 @@ class EditReferral extends Component
 
         $data = $this->updatingItem();
         $this->referral->products()->sync($data);
-        $this->referral->total_amount = $this->referral->getTotalAmount();
+        //$this->referral->total_amount = $this->referral->getTotalAmount();
         $this->referral->save();
         $this->emitTo('referrals.show-referral', 'resetData');
         $this->alert('success', 'La orden de compra se actualizo de forma correcta');
