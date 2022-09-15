@@ -7,7 +7,7 @@
         close() {
             this.open = false
         }
-    }" class="w-full">
+    }" class="ml-4">
         <div>
             <label id="listbox-label" class="mb-1 block text-sm font-medium text-gray-700">
                 {{ __('Filter by user') }}
@@ -36,6 +36,18 @@
                     class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                     tabindex="-1" role="listbox" aria-labelledby="listbox-label"
                     aria-activedescendant="listbox-option-3">
+                    <li wire:click="resetUser"
+                        class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900" id="listbox-option-0"
+                        role="option">
+                        <div class="flex items-center">
+                            <img src="https://ui-avatars.com/api/?name=SelectedUser&color=7F9CF5&background=EBF4FF" alt="select user"
+                                class="h-6 w-6 flex-shrink-0 rounded-full">
+                            <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                            <span class="ml-3 block truncate font-normal capitalize">
+                                Seleccione Vendedor
+                            </span>
+                        </div>
+                    </li>
                     @foreach ($users as $item)
                         <li wire:click="selectedUser({{ $item }})"
                             class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"

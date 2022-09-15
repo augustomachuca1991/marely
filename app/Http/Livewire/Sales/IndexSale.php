@@ -17,21 +17,30 @@ class IndexSale extends Component
 
     public $search = "";
     public $perUser = "";
-    public $from = "";
-    public $to = "";
+    public $from;
+    public $to;
     public $perPage = 10;
 
 
     protected $queryString = [
         'search' => ['except' => ''],
         'perUser' => ['except' => ''],
-        'from' => ['except' => ''],
-        'to' => ['except' => ''],
         'perPage' => ['except' => 10]
     ];
 
+    protected $rules = [
+        'from' => 'required_with:to|date',
+        'to' => 'required_with:from|date|after:from'
+    ];
 
-    protected $listeners = ['render', 'revert', 'selectedUser'];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+
+    protected $listeners = ['render', 'revert', 'selectedUser', 'selectedFrom', 'selectedTo'];
 
     public function render()
     {
@@ -52,21 +61,41 @@ class IndexSale extends Component
     }
 
 
-    public function filterDate()
-    {
-        $this->validate([
-            'from' => 'required|required_with:to|date',
-            'to' => 'required|required_with:from|date|after:from'
-        ]);
-        $this->emitSelf('render');
-    }
+    // public function filterDate()
+    // {
+    //     $this->validate();
+    //     $this->emitSelf('render');
+    // }
 
 
     public function selectedUser(User $user)
     {
-
         $this->perUser = $user->id;
     }
+
+
+
+    public function selectedFrom($from)
+    {
+        $this->from = $this->strToDate($from);
+        $this->validate();
+    }
+
+
+    public function selectedTo($to)
+    {
+        $this->to = $this->strToDate($to);
+        $this->validate();
+    }
+
+
+    public function refresh()
+    {
+        $this->reset(['to', 'from', 'perUser']);
+        $this->resetErrorBag();
+        $this->resetValidation();
+    }
+
 
 
     public function confirmRevert(Sale $sale)
@@ -92,5 +121,12 @@ class IndexSale extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+
+    public function strToDate($str)
+    {
+        $time = strtotime($str);
+        return date('Y-m-d', $time);
     }
 }

@@ -32,4 +32,9 @@ class SelectUser extends Component
         $this->selectUser = false;
         $this->emitUp('selectedUser' , $this->user);
     }
+
+    public function resetUser()
+    {
+        $this->reset(['user' , 'selectUser']);
+    }
 }

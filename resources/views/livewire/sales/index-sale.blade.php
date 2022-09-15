@@ -2,17 +2,24 @@
     <div class="mb-10 md:mb-16">
         <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">{{ __('Sales Order') }}
         </h2>
-
         <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">Esta sección corresponde al histórico de
             ventas realizadas por medio del sitio. Reporta vendedor, artículos, el estado de ventas entre otras cosas.
             También permite imprimir la orden de venta realizada</p>
     </div>
-
-
-
-
     <livewire:components.select-user></livewire:components.select-user>
-    <livewire:components.select-period></livewire:components.select-period>
+    <div class="flex items-center lg:justify-start flex-wrap">
+
+        <div>
+            <livewire:components.select-period></livewire:components.select-period>
+        </div>
+        <div>
+            <button type="button" wire:click='refresh'
+                class="rounded bg-gray-800 ml-4 px-4 py-2 font-semibold text-gray-100 hover:bg-gray-600">Refresh</button>
+            <x-jet-input-error for="from" />
+            <x-jet-input-error for="to" />
+        </div>
+    </div>
+
     {{-- <div class="flex w-7/12 space-x-1">
                 <div>
                     <fieldset class="w-full space-y-1 text-gray-800">
@@ -73,7 +80,7 @@
 
 
 
-    <div class="overflow-hidden bg-white pb-6 shadow-xl sm:rounded-lg sm:pb-8 lg:pb-12">
+    <div class="mt-3 overflow-hidden bg-white pb-6 shadow-xl sm:rounded-lg sm:pb-8 lg:pb-12">
         <!-- banner - start -->
         <div
             class="ms:px-8 relative flex flex-wrap bg-teal-500 px-4 py-3 sm:flex-nowrap sm:items-center sm:justify-center sm:gap-3 sm:pr-8">
@@ -231,54 +238,6 @@
             @endif
         </div>
         <!-- table - end -->
-    </div>
-
-
-    <div class="bg-gray-200 dark:bg-gray-800">
-        <div class="container mx-auto flex items-center overflow-y-auto whitespace-nowrap px-6 py-4">
-            <a href="#" class="text-gray-600 dark:text-gray-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                </svg>
-            </a>
-
-            <span class="mx-5 text-gray-500 rtl:-scale-x-100 dark:text-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd" />
-                </svg>
-            </span>
-
-            <a href="#" class="text-gray-600 hover:underline dark:text-gray-200">
-                Account
-            </a>
-
-            <span class="mx-5 text-gray-500 rtl:-scale-x-100 dark:text-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd" />
-                </svg>
-            </span>
-
-            <a href="#" class="text-gray-600 hover:underline dark:text-gray-200">
-                Profile
-            </a>
-
-            <span class="mx-5 text-gray-500 rtl:-scale-x-100 dark:text-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd" />
-                </svg>
-            </span>
-
-            <a href="#" class="text-blue-600 hover:underline dark:text-blue-400">
-                Settings
-            </a>
-        </div>
     </div>
 
     <!-- paginate - start -->
