@@ -1,5 +1,4 @@
 <a href="/">
-    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
     <svg class="h-30 w-30" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
         xmlns="http://www.w3.org/2000/svg" width="218.38242" zoomAndPan="magnify" viewBox="0 0 163.78681 79.781284"
