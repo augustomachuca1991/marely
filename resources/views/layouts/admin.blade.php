@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Marely') }}</title>
+    <title>{{ config('app.name', 'Luan Boutique') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -48,7 +48,7 @@
         <div>
             <div class="-mx-6 px-6 py-4">
                 <a href="{{ route('dashboard') }}" title="home">
-                    <img src="{{ asset('image/logoMarely4.svg') }}" class="w-full" alt="marely logo">
+                    <img src="{{ asset('image/logo_header_luan.svg') }}" class="w-full" alt="marely logo">
                 </a>
             </div>
 
@@ -57,33 +57,33 @@
                     class="m-auto h-10 w-10 rounded-full object-cover lg:h-28 lg:w-28">
                 <h5 class="mt-4 hidden text-xl font-semibold capitalize text-gray-600 lg:block">{{ Auth::user()->name }}
                 </h5>
-                <span class="hidden text-gray-400 lg:block">admin</span>
+                <span class="hidden text-gray-400 lg:block">{{Auth::user()->email}}</span>
             </div>
 
             <ul class="mt-8 space-y-2 tracking-wide">
                 <li>
                     <a href="{{ route('dashboard') }}" aria-label="dashboard"
-                        class="{{ request()->routeIs('dashboard') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} relative flex items-center space-x-4 px-4 py-3">
+                        class="{{ request()->routeIs('dashboard') ? 'rounded-xl bg-gradient-to-r from-luanYellow to-luanFucsia  text-white' : 'rounded-md text-gray-600' }} relative flex items-center space-x-4 px-4 py-3">
                         <svg class="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                             <path
                                 d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-                                class="fill-current text-cyan-400 dark:fill-slate-600"></path>
+                                class="fill-current text-luanFucsia dark:fill-slate-600"></path>
                             <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-                                class="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
+                                class="fill-current text-luanFucsia group-hover:text-luanFucsia"></path>
                             <path d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-                                class="fill-current group-hover:text-sky-300"></path>
+                                class="fill-current group-hover:text-luanYellow"></path>
                         </svg>
                         <span class="-mr-1 font-medium">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('products.index') }}"
-                        class="group {{ request()->routeIs('products.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+                        class="group {{ request()->routeIs('products.index') ? 'rounded-xl bg-gradient-to-r from-luanYellow to-luanFucsia  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd"
+                            <path class="fill-current text-gray-300 group-hover:text-luanFucsia" fill-rule="evenodd"
                                 d="M7.502 6h7.128A3.375 3.375 0 0118 9.375v9.375a3 3 0 003-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 00-.673-.05A3 3 0 0015 1.5h-1.5a3 3 0 00-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6zM13.5 3A1.5 1.5 0 0012 4.5h4.5A1.5 1.5 0 0015 3h-1.5z"
                                 clip-rule="evenodd" />
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd"
+                            <path class="fill-current text-gray-600 group-hover:text-luanFucsia" fill-rule="evenodd"
                                 d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 013 20.625V9.375zM6 12a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V12zm2.25 0a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H9a.75.75 0 01-.75-.75zM6 15a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V15zm2.25 0a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H9a.75.75 0 01-.75-.75zM6 18a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V18zm2.25 0a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H9a.75.75 0 01-.75-.75z"
                                 clip-rule="evenodd" />
                         </svg>
@@ -93,13 +93,13 @@
                 </li>
                 <li>
                     <a href="{{ route('suppliers.index') }}"
-                        class="group {{ request()->routeIs('suppliers.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+                        class="group {{ request()->routeIs('suppliers.index') ? 'rounded-xl bg-gradient-to-r from-luanYellow to-luanFucsia  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                            <path class="fill-current text-gray-500 group-hover:text-cyan-300"
+                            <path class="fill-current text-gray-500 group-hover:text-luanFucsia"
                                 d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25zM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 116 0h3a.75.75 0 00.75-.75V15z" />
-                            <path class="fill-current text-gray-700 group-hover:text-cyan-600"
+                            <path class="fill-current text-gray-700 group-hover:text-luanFucsia"
                                 d="M8.25 19.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0zM15.75 6.75a.75.75 0 00-.75.75v11.25c0 .087.015.17.042.248a3 3 0 015.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 00-3.732-10.104 1.837 1.837 0 00-1.47-.725H15.75z" />
-                            <path class="fill-current text-gray-900 group-hover:text-cyan-300"
+                            <path class="fill-current text-gray-900 group-hover:text-luanFucsia"
                                 d="M19.5 19.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z" />
                         </svg>
                         <span class="group-hover:text-gray-700">{{ __('Suppliers') }}</span>
@@ -107,12 +107,12 @@
                 </li>
                 <li>
                     <a href="{{ route('categories.index') }}"
-                        class="group {{ request()->routeIs('categories.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+                        class="group {{ request()->routeIs('categories.index') ? 'rounded-xl bg-gradient-to-r from-luanYellow to-luanFucsia  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd"
+                            <path class="fill-current text-gray-300 group-hover:text-luanFucsia" fill-rule="evenodd"
                                 d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
                                 clip-rule="evenodd" />
-                            <path class="fill-current text-gray-600 group-hover:text-cyan-600"
+                            <path class="fill-current text-gray-600 group-hover:text-luanFucsia"
                                 d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
                         </svg>
                         <span class="group-hover:text-gray-700">{{ __('Categories') }}</span>
@@ -123,9 +123,9 @@
                         <a href="#" class="group flex items-center space-x-4 px-4 py-3" id="btn-orders">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
-                                <path class="fill-current text-gray-600 group-hover:text-cyan-600"
+                                <path class="fill-current text-gray-600 group-hover:text-luanFucsia"
                                     d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-                                <path class="fill-current text-gray-500 group-hover:text-cyan-300"
+                                <path class="fill-current text-gray-500 group-hover:text-luanFucsia"
                                     d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
                             </svg>
                             <span class="group-hover:text-gray-700">{{ __('Orders') }}</span>
@@ -141,7 +141,7 @@
 
 
                             <a href="{{ route('sales.index') }}"
-                                class="{{ request()->routeIs('sales.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
+                                class="{{ request()->routeIs('sales.index') ? 'rounded-xl bg-gradient-to-r from-luanYellow to-luanFucsia  text-white' : 'rounded-md text-gray-600' }} flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="mx-1 h-5 w-5">
                                     <path fill-rule="evenodd"
@@ -156,7 +156,7 @@
                             <hr class="border-gray-200 dark:border-gray-700">
 
                             <a href="{{ route('referrals.index') }}"
-                                class="{{ request()->routeIs('referrals.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
+                                class="{{ request()->routeIs('referrals.index') ? 'rounded-xl bg-gradient-to-r from-luanYellow to-luanFucsia  text-white' : 'rounded-md text-gray-600' }} flex transform px-4 py-3 text-sm capitalize text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="mx-1 h-5 w-5">
                                     <path
@@ -173,11 +173,11 @@
                 </li>
                 <li>
                     <a href="{{ route('shops.index') }}"
-                        class="group {{ request()->routeIs('shops.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+                        class="group {{ request()->routeIs('shops.index') ? 'rounded-xl bg-gradient-to-r from-luanYellow to-luanFucsia  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="h-5 w-5">
-                            <path class="text-gray-600 group-hover:text-cyan-600"
+                            <path class="text-gray-600 group-hover:text-luanFucsia"
                                 d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
                         </svg>
 
@@ -186,7 +186,7 @@
                 </li>
                 <li>
                     <a href="{{ route('audits.index') }}"
-                        class="group {{ request()->routeIs('audits.index') ? 'rounded-xl bg-gradient-to-r from-sky-600 to-cyan-400  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
+                        class="group {{ request()->routeIs('audits.index') ? 'rounded-xl bg-gradient-to-r from-luanYellow to-luanFucsia  text-white' : 'rounded-md text-gray-600' }} flex items-center space-x-4 px-4 py-3">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                             style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
@@ -196,9 +196,6 @@
                         <span class="group-hover:text-gray-700">{{ __('Audits') }}</span>
                     </a>
                 </li>
-
-
-
             </ul>
         </div>
         <hr class="mt-2 border-gray-300" />
@@ -235,7 +232,7 @@
                 <div class="flex space-x-4">
                     <!--search bar -->
                     <div hidden class="md:block">
-                        <div class="relative flex items-center text-gray-400 focus-within:text-cyan-400">
+                        <div class="relative flex items-center text-gray-400 focus-within:text-luanFucsia">
                             <span class="absolute left-4 flex h-6 items-center border-r border-gray-300 pr-3">
                                 <svg xmlns="http://ww50w3.org/2000/svg" class="w-4 fill-current"
                                     viewBox="0 0 35.997 36.004">
@@ -245,7 +242,7 @@
                                 </svg>
                             </span>
                             <input type="search" name="leadingIcon" id="leadingIcon" placeholder="Search here"
-                                class="w-full rounded-xl border border-gray-300 py-2.5 pl-14 pr-4 text-sm text-gray-600 outline-none transition focus:border-cyan-300">
+                                class="w-full rounded-xl border border-gray-300 py-2.5 pl-14 pr-4 text-sm text-gray-600 outline-none transition focus:border-luanFucsia">
                         </div>
                     </div>
                     <!--/search bar -->

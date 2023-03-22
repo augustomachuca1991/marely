@@ -25,6 +25,9 @@ module.exports = {
                 lime: colors.lime,
                 amber: colors.amber,
                 slate: colors.slate,
+                luanFucsia: '#D60B51',
+                luanYellow: '#F29100',
+
             },
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
